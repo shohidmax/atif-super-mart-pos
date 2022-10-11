@@ -1,10 +1,21 @@
+
+
+
 .App {
   text-align: center;
 }
+.animate-spin{
+  animation: spin 1s linear infinite;
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+} 
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -12,6 +23,16 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.barcode39 {
+  font-family: 'Libre Barcode 39 Extended Text', cursive;
+  font-size: 40px;
+}
+.barcode {
+  /* font-family: "wasp 39 m", verdana, calibri; */
+  font-family: "Libre Barcode 39";
+  font-size: 36pt;
+}
+
 
 .App-header {
   background-color: #282c34;

@@ -1,0 +1,19 @@
+{
+    "_id": "633f4e807784639f332e3ba5",
+    "Supplier_Name": "FOODS CORNER",
+    "BarCode": 8851607500026,
+    "Group": "DRINKS & BEVERAGES",
+    "Product": "DRINK POWDER",
+    "Brand": "TANG",
+    "Style": "ORANGE DRINKING POWDER 125GM",
+    "Stock_Qty": 0,
+    "StockQty": 5,
+    "CPU": 68.99,
+    "CPU_Value": 0,
+    "RPU": 100,
+    "RPU_Value": 0,
+    "Damage_Quntity": 0,
+    "Comment": 0,
+    "Status": "active",
+    "orderq": 1
+}

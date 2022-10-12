@@ -27,6 +27,7 @@ import Print1 from './Component/Print/Print1';
 import Sales2 from './Component/Pages/Sales2/Sales2';
 import Damage from './Component/Damage/Damage';
 import Addsuppler from './Component/Form/Addsuppler/Addsuppler';
+import Updatedamage from './Component/Inventry/Updatedamage/Updatedamage';
 
 function App() {
 
@@ -37,13 +38,13 @@ function App() {
   const [Products, setProducts] = useProducts();
 
 // brand api
-// http://localhost:5000/products/brand.json
+// https://frozen-badlands-76581.herokuapp.com/products/brand.json
 // group api
-// http://localhost:5000/products/group.json
+// https://frozen-badlands-76581.herokuapp.com/products/group.json
 // product api
-// http://localhost:5000/products/prodid.json
+// https://frozen-badlands-76581.herokuapp.com/products/prodid.json
 // supplier api
-// http://localhost:5000/products/supp.json
+// https://frozen-badlands-76581.herokuapp.com/products/supp.json
 
 // atif super mart database 
 // atifsupermart202199
@@ -70,6 +71,7 @@ function App() {
         <Route path="/Sales" element={<Sales2></Sales2>} />
         <Route path="/damage" element={<Damage></Damage>} />
         <Route path="/Addsupplier" element={<Addsuppler></Addsuppler>} />
+        <Route path="/damageq" element={<Updatedamage></Updatedamage>}/>
       </Routes>
     
     <Modal1></Modal1>

@@ -4,7 +4,7 @@ const useSupplier = () =>{
     const [Supplier, setSupplier] = useState([]);
 
     useEffect( ()=>{
-        fetch('http://localhost:5000/supplier')
+        fetch('https://frozen-badlands-76581.herokuapp.com/supplier')
         .then(res => res.json())
         .then(data => setSupplier(data));
     }, []);
@@ -20,4 +20,4 @@ export default useSupplier;
 //       }
 // }
 // https://shielded-beyond-98967.herokuapp.com/products
-// http://localhost:5000/products/supp.json
+// https://frozen-badlands-76581.herokuapp.com/products/supp.json

@@ -13,7 +13,7 @@ const Brandmodal = () => {
     const Branddata = {ID, Brand_Type_Name};
 
     // send data to the server
-    fetch('http://localhost:5000/brand', {
+    fetch('https://frozen-badlands-76581.herokuapp.com/brand', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

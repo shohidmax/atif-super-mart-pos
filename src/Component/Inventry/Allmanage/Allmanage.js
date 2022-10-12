@@ -6,7 +6,7 @@ const Allmanage = () => {
     const handleUserDelete = id =>{
         const proceed = window.confirm('Are you sure you want to delete?');
         if(proceed){
-            const url = `http://localhost:5000/brand/${id}`;
+            const url = `https://frozen-badlands-76581.herokuapp.com//brand/${id}`;
             fetch(url, {
                 method: 'DELETE'
             })

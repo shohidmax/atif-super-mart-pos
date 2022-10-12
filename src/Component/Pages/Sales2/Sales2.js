@@ -4,10 +4,12 @@ import useProducts from "../../../Hooks/useProducts/useProducts";
 const Sales2 = () => {
   const [Sale, setSale] = useState([]);
   // const [cart, setCart] = useStat8851607500026
-
-
   const [copy, setCopy] = useState('');
+
   const [Products] = useProducts();
+
+
+  
     let total = 0;
     let Product_quantity = 0;
     const totalPrice = 0;

@@ -4,7 +4,7 @@ const useGroups = () =>{
     const [Groups, setGroups] = useState([]);
 
     useEffect( ()=>{
-        fetch('http://localhost:5000/group')
+        fetch('https://frozen-badlands-76581.herokuapp.com/group')
         .then(res => res.json())
         .then(data => setGroups(data));
     }, []);

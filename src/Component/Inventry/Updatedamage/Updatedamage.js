@@ -1,72 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-
 const Updatedamage = () => {
-    
-    const {id} = useParams();
     const [Pdata, setPdata] = useState([]);
-    // useEffect( () =>{
-    //     const url = `https://hidden-waters-14181.herokuapp.com/products/${id}`;
-    //     fetch(url)
-    //     .then(r => r.json())
-    //     .then(data => setPdata(data));
-    // }, [id]); 
- 
-     const handleDelever = (Delever) =>{
-        const currentStock = parseFloat(Pdata.Stock_Qty);
-        const value = 1;
-        const reStock = currentStock - value;
-         
-        
-        const updatedStock = {reStock};
-        // update Quntity quntity to the server
-        const url = `https://hidden-waters-14181.herokuapp.com/products/${id}`;
-        fetch(url, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(updatedStock)
-        })
-        .then(res => res.json())
-        .then(data =>{
-            // setPdata(data);
-            alert('product quntity Delete successfully!');
-            // event.target.reset();
-            window.location.reload();
-        })
-     };
-    
-
-    const handleUpdateProduct = event =>{
-        event.preventDefault();
-        const Stock_Qty = event.target.Stock_Qty.value;
-        const reStock = parseFloat(Stock_Qty) + Pdata.Stock_Qty;
-        const updatedStock = {reStock};
-        // update Quntity quntity to the server
-        const url = `https://hidden-waters-14181.herokuapp.com/products/${id}`;
-        fetch(url, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(updatedStock)
-        })
-        .then(res => res.json())
-        .then(data =>{
-            // setPdata(data);
-            alert('product quntity added successfully!!!');
-            event.target.reset();
-            // window.location.reload();
-        })
-    };
 
 
     const findproduct = (B) =>{
-        // setPdata = [];
         B.preventDefault();
         const Find = B.target.bangla.value;
-        const url = `https://frozen-badlands-76581.herokuapp.com//damage-stock-update/${Find}`;
+        const url = `http://localhost:5000/damage-stock-update/${Find}`;
         console.log(url);
         fetch(url, {
             method: 'GET',
@@ -79,12 +19,65 @@ const Updatedamage = () => {
             if (!data) {
                 return <progress class="progress w-56"></progress>;
             }else{
-                setPdata(data)
+                setPdata(data);
             }
         });
         B.target.reset(); 
     };
-    console.log(Pdata);
+
+    const handleAddToDamage = event =>{
+        event.preventDefault();
+        const ids = Pdata._id; 
+        console.log('remover id ', ids);
+        const Damage_Quntity = event.target.Stock_Qty.value;
+        const reStock = parseFloat(Damage_Quntity) + Pdata.Damage_Quntity;
+        const updatedStock = {reStock};
+ 
+        const url = `http://localhost:5000/handleAddToDamage/${ids}`;
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(updatedStock)
+        })
+        .then(res => res.json())
+        .then(data =>{
+            setPdata(data);
+            alert('product quntity added successfully!!!');
+            setPdata = [];
+            
+        })
+        event.target.reset();
+    };
+    const handleRemoveDamage = event =>{
+        event.preventDefault();
+        const ids = Pdata._id; 
+        console.log('remover id ', ids);
+        const Damage_Quntity = event.target.Stock_Qty.value;
+        const reStock = parseFloat(Damage_Quntity) - Pdata.Damage_Quntity;
+        const updatedStock = {reStock};
+ 
+        const url = `http://localhost:5000/handleAddToDamage/${ids}`;
+        fetch(url, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(updatedStock)
+        })
+        .then(res => res.json())
+        .then(data =>{
+            setPdata(data);
+            alert('product quntity added successfully!!!');
+            setPdata = [];
+           
+        })
+        event.target.reset();
+    };
+
+
 
 
 
@@ -114,40 +107,61 @@ const Updatedamage = () => {
  
     return (
         <div className='container'>
-            <div className='row'>
-            <div className=" col-md-12 border border-primary rounded m-2">
+            
+            <div className=" w-10/12 border border-primary rounded m-2 mx-auto">
             <div >
                 <div>
-                    <h2>Find Product {Pdata.length}</h2>
+                    <h2 className='online'>Find Product {Pdata.length}</h2>
                     <form onSubmit={findproduct}> 
                         <input name="bangla"   className="input input-bordered input-info w-full max-w-sm m-2"   type="text" placeholder='Product Stock Quntity' required />
                         
                     </form>
 
                 </div>
+                <div className='flex p-3 m-2 text-left mx-auto'>
+                    <div>
+                    <h2 className=''>Name : {Pdata.Brand}{" "}{Pdata.Product}{" "} {Pdata.Style}</h2>
+                    <h2 className=''>Stock : {Pdata.StockQty}</h2>
+                    <h2>Suppler : {Pdata.Supplier_Name} Ltd.</h2>
+                    <h2>Damage : {Pdata.Damage_Quntity} Ltd.</h2>
+                    <h1>Product Barcode : {Pdata.BarCode}</h1>
+                    <input type="radio" name="radio-4" class="radio radio-accent" checked />
+
+
+                    </div>
+                    <div>
+                        <hr/>
+                    </div>
+                    <div className=' mx-auto'>
+                    <h2 className=''>Name : {Pdata.Brand}{" "}{Pdata.Product}{" "} {Pdata.Style}</h2>
+                    <h2 className=''>Stock : {Pdata.StockQty}</h2>
+                    <h2>Suppler : {Pdata.Supplier_Name} Ltd.</h2>
+                    <h1>Product Barcode : {Pdata.BarCode}</h1>
+
+                    </div>
+                </div>
             
-            <h2 className='text-left'>Name : {Pdata.Brand}{" "}{Pdata.Product}{" "} {Pdata.Style}</h2>
-            <h2 className='text-left'>Stock : {Pdata.StockQty}</h2>
-            <h2>Suppler : {Pdata.Supplier_Name} Ltd.</h2>
-            <h1>Product Barcode : {Pdata.BarCode}</h1>
-            <button onClick={handleDelever}  className='btn btn-danger w-25 mt-2'> Delevery</button>
+
+            {/* <button onClick={handleDelever}  className='btn btn-danger w-25 mt-2'> Delevery</button> */}
             </div>
-            <div className='border border-primary rounded m-3'>
-                <form className='m-2' onSubmit={handleUpdateProduct}>
-                <input  className="input input-bordered input-info w-full max-w-sm m-2"   type="number" name="Stock_Qty" placeholder='Product Stock Quntity' required />
-                <input className="form-submit  btn btn-primary w-100 mb-2" type="submit" value="Add Stock"/>
-                
-            </form>
-            </div> 
-            <div className='border border-primary rounded m-3'>
-                <form className='m-2' onSubmit={handleUpdateProduct}>
-                <input  className="input input-bordered input-info w-full max-w-sm m-2"   type="number" name="Stock_Qty" placeholder='Product Stock Quntity' required />
-                <input className="form-submit  btn btn-primary w-100 mb-2" type="submit" value="Add Stock"/>
-                
-            </form>
-            </div>
+                <div className='flex '>
+                    <div className='border border-primary rounded m-3 w-2/4'>
+                        <form className='m-2' onSubmit={handleAddToDamage}>
+                        <input  className="input input-bordered input-info w-full max-w-sm m-2"   type="number" name="Stock_Qty" placeholder='Product Stock Quntity' required />
+                        <input className="form-submit  btn btn-primary w-100 mb-2" type="submit" value="Add TO Damage"/>
+
+                        </form>
+                    </div> 
+                    <div className='border border-primary rounded m-3 w-2/4'>
+                        <form className='m-2' onSubmit={handleRemoveDamage}>
+                            <input  className="input input-bordered input-info w-full max-w-sm m-2"   type="number" name="Stock_Qty" placeholder='Product Stock Quntity' required />
+                            <input className="form-submit  btn btn-primary w-100 mb-2" type="submit" value="Add Replac Stock"/>
+
+                        </form>
+                    </div>
+                </div>
              </div>
-            </div>
+            
         </div>
     );
 };

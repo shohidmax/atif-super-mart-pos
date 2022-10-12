@@ -28,12 +28,14 @@ const Header = ({Supplier, Brand, Product, Groups, Products}) => {
     <Link to="/home" className="btn btn-ghost normal-case text-xl">ATIF SUPER MART</Link>
   </div>
   <div className="navbar-end hidden lg:flex">
-    <ul className="menu menu-horizontal p-0">
-      <li><Link to="/home">supplier {Supplier.length}</Link></li>
-      <li><Link to="/home">brand {Brand.length}</Link></li>
-      <li><Link to="/home">product {Product.length}</Link></li>
-      <li><Link to="/home">Groups {Groups.length}</Link></li>
-      <li><Link to="/home">Products {Products.length}</Link></li>
+    <ul className="menu menu-horizontal ml-3">
+     
+      <li> <input type="radio" name="radio-1" class="radio radio-accent"  checked/>{Brand.length} </li>
+      <li> <input type="radio" name="radio-2" class="radio radio-accent" checked />{Supplier.length} </li>
+      <li> <input type="radio" name="radio-3" class="radio radio-accent" checked />{Product.length} </li>
+      <li> <input type="radio" name="radio-6" class="radio radio-accent" checked />{Groups.length} </li>
+      <li> <input type="radio" name="radio-5" class="radio radio-accent" checked />{Products.length} </li>
+      
       
       <li tabindex="0">
         <a>

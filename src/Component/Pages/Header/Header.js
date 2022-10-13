@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Header = ({Supplier, Brand, Product, Groups, Products}) => {
+const Header = () => {
     return (
         <div>
             <div className="navbar bg-base-100">
@@ -17,16 +17,11 @@ const Header = ({Supplier, Brand, Product, Groups, Products}) => {
             <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
           </Link>
           
-          </li>
+          </li>   
           <li className='btn btn-primary p-2 m-2 '><Link to="/sales">Sales</Link></li>
           <li className='btn btn-primary p-2 m-2 '><Link to="/damageq">Damage</Link></li>
           <li className='btn btn-primary p-2 m-2 '> <Link to="/Allmanage">Allmanage</Link></li>
-          <li className='btn btn-primary p-2 m-2  '> <input type="radio" name="radio-1" class="radio radio-accent"  checked/>{Brand.length} </li>
-          <li  className='btn btn-primary p-2 m-2 '> <input type="radio" name="radio-2" class="radio radio-accent" checked />{Supplier.length} </li>
-          <li  className='btn btn-primary p-2 m-2 '> <input type="radio" name="radio-3" class="radio radio-accent" checked />{Product.length} </li>
-          <li  className='btn btn-primary p-2 m-2 '> <input type="radio" name="radio-6" class="radio radio-accent" checked />{Groups.length} </li>
-          <li  className='btn btn-primary p-2 m-2 '> <input type="radio" name="radio-5" class="radio radio-accent" checked />{Products.length} </li>
-      
+          <li className='btn btn-primary p-2 m-2 '> <Link to="/Order">Damage List</Link></li>
       </ul>
     </div>
     <Link to="/home" className="btn btn-ghost normal-case text-xl">ATIF SUPER MART</Link>
@@ -42,14 +37,7 @@ const Header = ({Supplier, Brand, Product, Groups, Products}) => {
         </a> */}
         
       </li>
-      <li className='btn  btn-primary p-2 m-2 '> <input type="radio" name="radio-1" class="radio radio-accent"  checked/>{Brand.length} </li>
-      <li  className='btn btn-primary p-2 m-2 '> <input type="radio" name="radio-2" class="radio radio-accent" checked />{Supplier.length} </li>
-      <li  className='btn btn-primary p-2 m-2 '> <input type="radio" name="radio-3" class="radio radio-accent" checked />{Product.length} </li>
-      <li  className='btn btn-primary p-2 m-2 '> <input type="radio" name="radio-6" class="radio radio-accent" checked />{Groups.length} </li>
-      <li  className='btn btn-primary p-2 m-2 '> <input type="radio" name="radio-5" class="radio radio-accent" checked />{Products.length} </li>
-      
-      
-      
+      <li className='btn btn-primary p-2 m-2 '> <Link to="/Order">Damage List</Link></li>
       <li className='btn btn-primary p-2 m-2 '><Link to="/sales">Sales</Link></li>
       <li className='btn btn-primary p-2 m-2 '><Link to="/damageq">Damage</Link></li>
       <li className='btn btn-primary p-2 m-2 '> <Link to="/Allmanage">Allmanage</Link></li>

@@ -5,7 +5,6 @@ const Sales2 = () => {
   const [Sale, setSale] = useState([]);
   // const [cart, setCart] = useStat8851607500026
   const [copy, setCopy] = useState('');
-
   const [Products] = useProducts();
 
 
@@ -17,7 +16,6 @@ const Sales2 = () => {
     total = total + product.RPU * product.orderq;
     Product_quantity = Product_quantity + product.orderq;
     //  totalPrice = total * Product_quantity;
-    
   };
 const handCopy = e => {
     const texts = e.target.copy.value;

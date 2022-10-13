@@ -110,12 +110,12 @@ const Updatedamage = () => {
     return (
         <div className='container'>
             
-            <div className=" w-10/12 border border-primary rounded m-2 mx-auto">
+            <div className=" w-10/12 border border-primary rounded m-2 mx-auto p-1" >
             <div >
-                <div>
+                <div className='p-1'>
                     <h2 className='online'>Find Product {Pdata.length}</h2>
                     <form onSubmit={findproduct}> 
-                        <input name="bangla"   className="input input-bordered input-secondary w-full max-w-xs m-2 p-2"   type="text" placeholder='Enter Your BarCode Hare' required />
+                        <input name="bangla"   className="input overflow-hidden input-bordered input-secondary w-full max-w-xs p-2 m-auto"   type="text" placeholder='Enter Your BarCode Hare' required />
                         
                     </form>
  
@@ -173,7 +173,10 @@ const Updatedamage = () => {
             {/* <button onClick={handleDelever}  className='btn btn-danger w-25 mt-2'> Delevery</button> */}
             </div>
             {
-                !Pdata.length == 0 ? 
+                Pdata.length == 0 ? <div><progress class="progress progress-info bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500  w-full max-w-xs  mx-auto"></progress>  
+
+
+                </div>:
             
                 <div className='Flex sm:flex '>
                     <div className='border border-primary rounded m-3 sm:w-2/4'>
@@ -192,10 +195,7 @@ const Updatedamage = () => {
   
                         </form>
                     </div>
-                </div> : <div><progress class="progress progress-info bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500  w-full max-w-xs  mx-auto"></progress>  
-
-
-                </div>
+                </div> 
                 }
              </div>
             

@@ -40,7 +40,7 @@ const Header = () => {
       <li className='btn btn-primary p-2 m-2 '> <Link to="/Order">Damage List</Link></li>
       <li className='btn btn-primary p-2 m-2 '><Link to="/sales">Sales</Link></li>
       <li className='btn btn-primary p-2 m-2 '><Link to="/damageq">Damage</Link></li>
-      <li className='btn btn-primary p-2 m-2 '> <Link to="/Allmanage">Allmanage</Link></li>
+      <li className='btn btn-primary p-2 m-2 ' > <Link disabled to="/Allmanage">Allmanage</Link></li>
     </ul>
   </div>
   

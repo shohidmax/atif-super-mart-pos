@@ -30,6 +30,7 @@ import Addsuppler from './Component/Form/Addsuppler/Addsuppler';
 import Updatedamage from './Component/Inventry/Updatedamage/Updatedamage';
 import Stockservice from './Component/Inventry/Stockservice/Stockservice';
 import Footer from './Component/Footer/Footer';
+import Testdata from './Component/Utilitis/Testdata';
 
 function App() {
 
@@ -75,6 +76,7 @@ function App() {
         <Route path="/Addsupplier" element={<Addsuppler></Addsuppler>} />
         <Route path="/damageq" element={<Updatedamage></Updatedamage>}/>
         <Route path="/Order" element={<Stockservice></Stockservice>}/>
+        <Route path="/Test" element={<Testdata></Testdata>}/>
       </Routes>
     
     <Modal1></Modal1>
@@ -90,7 +92,7 @@ function App() {
     <a href="tel:+8801793496030">call</a>
     <a className='m-6' href={`tel:+${call}`}>call</a>
      */}
-     <Footer Supplier={Supplier} Brand={Brand} Groups={Groups} Product={Product} Products={Products}></Footer>
+     {/* <Footer Supplier={Supplier} Brand={Brand} Groups={Groups} Product={Product} Products={Products}></Footer> */}
     </div>
   );
 }

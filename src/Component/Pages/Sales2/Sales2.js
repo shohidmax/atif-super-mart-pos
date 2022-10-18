@@ -17,43 +17,52 @@ const Sales2 = () => {
     Product_quantity = Product_quantity + product.orderq;
     //  totalPrice = total * Product_quantity;
   };
-const handCopy = e => {
-    const texts = e.target.copy.value;
-    console.log(texts);
-};
+  const handCopy = e => {
+      const texts = e.target.copy.value;
+      console.log(texts);
+  };
 
 
 
-const  playSound = ()=> {
+  const  playSound = ()=> {
   <audio id="play" src="http://www.soundjay.com/button/beep-07.wav"></audio>
 
-}
+  }
 
-const addToCart = (barcode) => {
-  barcode.preventDefault();
-  // get barcode from search menu
-  const getbarcode = barcode.target.loger.value;
-  // find product from store or database
-  const getSerarchProduct = Products.find((p) => p.BarCode == getbarcode);
-  const existe = Sale.find((i) => i.BarCode == getSerarchProduct.BarCode);
- // comparare local state and database
-  let newMatch = getSerarchProduct == existe;
-  // console.log(newMatch, 'newmatch datat ');
-  // if data not store in object so get datat and set also aquantity
-    if (newMatch == false) {
-      getSerarchProduct.orderq = 1;
-    setSale([...Sale, getSerarchProduct]);
-    } else{
-      const rolex = Sale.find((i) => i.BarCode == getbarcode);
-      console.log(rolex.orderq[16]); 
-      rolex.orderq = rolex.orderq + 1;
-      const rolex2 = [{rolex}]
-        const maps = [...Sale];
-       const maps2 = maps.map(obj => rolex2.find(o => o.BarCode === obj.BarCode) || obj);
-      setSale([...Sale])
-    }
-  barcode.target.reset();
-}
+  const addToCart = (barcode) => {
+      barcode.preventDefault();
+      // get barcode from search menu
+      const getbarcode = barcode.target.loger.value;
+      // find product from store or database
+      const getSerarchProduct = Products.find((p) => p.BarCode == getbarcode);
+      const existe = Sale.find((i) => i.BarCode == getSerarchProduct.BarCode);
+    // comparare local state and database
+      let newMatch = getSerarchProduct == existe;
+      // console.log(newMatch, 'newmatch datat ');
+      // if data not store in object so get datat and set also aquantity
+        if (newMatch == false) {
+          getSerarchProduct.orderq = 1;
+        setSale([...Sale, getSerarchProduct]);
+        } else{
+          const rolex = Sale.find((i) => i.BarCode == getbarcode);
+          console.log(rolex.orderq[16]); 
+          rolex.orderq = rolex.orderq + 1;
+          const rolex2 = [{rolex}]
+            const maps = [...Sale];
+          const maps2 = maps.map(obj => rolex2.find(o => o.BarCode === obj.BarCode) || obj);
+          setSale([...Sale])
+        }
+      barcode.target.reset();
+  }
+  const handelUpdateQuantity = (R) =>{
+    R.preventDefault();
+    const Replace = R.target.replace_order.value;
+    const Replace1 = R.target.replace_order1.value;
+    // const Replace2 = R.target.for.value;
+    console.log(Replace, 'clicked', Replace1);
+    R.target.reset();
+  }
+
 
   const reset = () => {
     setSale = [];
@@ -94,7 +103,7 @@ const addToCart = (barcode) => {
               </thead>
               <tbody>
                 {Sale.map((r, index) => (
-                  <tr>
+                  <tr key={index + 1}>
                     <th>{index + 1}</th>
                     <td><button onClick={handCopy} type="input" name="copy" value={r.BarCode}> {r.BarCode}</button></td>
                     <td>{r.RPU}</td>
@@ -102,10 +111,13 @@ const addToCart = (barcode) => {
                     <td>{r.Brand} {" "}{r.Style} </td>
                     <td>{r.Brand}</td>
                     <td>{r._id}</td>
-                    <td>{r.orderq }</td>
+                    <td><form onSubmit={handelUpdateQuantity}>
+                      <input type="text" placeholder={r.orderq } name='replace_order'/>
+                      <input type="text" value={r.BArdode}  name='replace_order1'/>
+                      </form></td>
                     <td><button className="btn btn-circle btn-outline">
   <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M6 18L18 6M6 6l12 12" /></svg>
-</button></td>
+  </button></td>
                   </tr> 
                 ))}
               </tbody>

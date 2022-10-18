@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import useSupplier from '../../../Hooks/Supplier/useSupplier';
 import useProducts from '../../../Hooks/useProducts/useProducts';
-
+import img from './copy.png';
 const Stockservice = () => {
     const [Stock, setStock] = useState([]);
     const [Products, setProducts] = useProducts();
@@ -15,6 +15,18 @@ const Stockservice = () => {
     Product_quantity = Product_quantity + product.orderq;
    
   };
+            // --------------------------------------------------------------------------------------------------
+        // add to clip text
+        const [copySuccess, setCopySuccess] = useState('');
+
+        const copyToClipBoard = async copyMe => {
+          try {
+            await navigator.clipboard.writeText(copyMe);
+            setCopySuccess('Copied!');
+          } catch (err) {
+            setCopySuccess('Failed to copy!');
+          }
+      };
 
     const DevideSupplier = (e) =>{
         const supp = e.target.value;
@@ -100,7 +112,7 @@ const Stockservice = () => {
                             Stock.map((r, index) => <tr key={index + 1}>
                             <th>{index + 1}</th> 
                             <td>{r.Brand}{' '}{r.Style}</td> 
-                            <td>{r.BarCode}</td> 
+                            <td>{r.BarCode} <button className="btn btn-outline btn-primary btn-xs" onClick={() => copyToClipBoard(r.BarCode)}><img style={{'width': '20px'}} src={img} alt="" /></button> </td> 
                             <td>{r.Supplier_Name}</td> 
                             <td>{r.Brand}</td> 
                             <td>{r.CPU}</td> 

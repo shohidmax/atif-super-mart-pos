@@ -82,7 +82,7 @@ const Login = () => {
                           <input type="text" placeholder="password" required onBlur={handlePasswordBlur} class="input input-bordered" />
                           <label class="label">
                             <button href="#" class="label-text-alt link link-hover">Forgot password?</button>
-                            <Link to='/signup' class="label-text-alt link link-hover">Signup</Link>
+                            <Link to='/signup' class="label-text-alt linknpm install react-hot-toast link-hover">Signup</Link>
                           </label>
                         </div>
                         <div class="form-control mt-6">

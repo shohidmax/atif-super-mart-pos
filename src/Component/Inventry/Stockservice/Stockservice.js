@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import useSupplier from '../../../Hooks/Supplier/useSupplier';
 import useProducts from '../../../Hooks/useProducts/useProducts';
 import img from './copy.png';
+import toast, { Toaster } from 'react-hot-toast';
 const Stockservice = () => {
     const [Stock, setStock] = useState([]);
     const [Products, setProducts] = useProducts();
     const [Supplier, setSupplier] = useSupplier();
-
+    const notify = (copyMe) => toast('Copied!');
     let total = 0;
     let Product_quantity = 0;
     const totalPrice = 0;
@@ -23,6 +24,7 @@ const Stockservice = () => {
           try {
             await navigator.clipboard.writeText(copyMe);
             setCopySuccess('Copied!');
+            notify()
           } catch (err) {
             setCopySuccess('Failed to copy!');
           }
@@ -144,7 +146,7 @@ const Stockservice = () => {
               }
             
             </div>
-            
+           
         </div>
     );
 };

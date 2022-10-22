@@ -33,11 +33,11 @@ console.log(user);
           </Link>
           
           </li>   
-          <li className='btn btn-primary p-2 m-2 '><Link to="/sales">Sales</Link></li>
-          <li className='btn btn-primary p-2 m-2 '><Link to="/damageq">Damage</Link></li>
-          <li className='btn btn-primary p-2 m-2 '> <Link to="/Allmanage">Allmanage</Link></li>
           <li className='btn btn-primary p-2 m-2 '> <Link to="/Order">Damage List</Link></li>
-          <li className='btn btn-primary p-2 m-2 '> {user ?<Link to="/Order">Login</Link> : <Link to="/Order">Signup</Link>}</li>
+      <li className='btn btn-primary p-2 m-2 '><Link to="/sales">Sales</Link></li>
+      <li className='btn btn-primary p-2 m-2 '><Link to="/damageq">Damage</Link></li>
+      <li className='btn btn-primary p-2 m-2 ' > <Link disabled to="/Allmanage">Allmanage</Link></li>
+      <li className='btn btn-primary p-2 m-2 '> {user ?<button onClick={LogOut} >LogOut</button> : <Link to="login" >Login</Link>}</li>
       </ul>
     </div>
     <Link to="/home" className="btn btn-ghost normal-case text-xl">ATIF SUPER MART</Link>

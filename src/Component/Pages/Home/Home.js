@@ -1,20 +1,11 @@
 import React from 'react';
-import Loadcomponent from '../../Utilitis/Loadcomponent';
-import Loading from '../../Utilitis/Loading';
-import LoadVlogs from '../../Utilitis/LoadVlogs';
-import Processing from '../../Utilitis/Processing';
-import Progrss from '../../Utilitis/Progrss';
 import Slider from '../Slider/Slider';
 
 const Home = () => {
     return (
         <div className='p-2'>
             <Slider></Slider>
-            <Processing></Processing>
-            <Loadcomponent></Loadcomponent>
-            <Loading></Loading>
-            <Progrss></Progrss>
-            <LoadVlogs></LoadVlogs>
+            
         </div>
     );
 };

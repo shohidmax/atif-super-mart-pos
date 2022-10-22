@@ -34,6 +34,7 @@ import Testdata from './Component/Utilitis/Testdata';
 import Login from './Component/Authorization/Login/Login';
 import SignUp from './Component/Authorization/Signup/SignUp';
 import Requireauth from './Component/Authorization/Shaired/Requireauth';
+import toast, { Toaster } from 'react-hot-toast';
 function App() {
   const [Supplier, setSupplier] = useSupplier();
   const [Brand, setBrand] = useBrand();
@@ -90,6 +91,7 @@ function App() {
     <Productmodal></Productmodal>
     <Productsmodal/>
     <SaleModal></SaleModal>
+    <Toaster />
     
     {/* <h1> ATIF SUPER MART </h1>
     // const call = '+8801793496030';

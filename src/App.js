@@ -31,9 +31,10 @@ import Updatedamage from './Component/Inventry/Updatedamage/Updatedamage';
 import Stockservice from './Component/Inventry/Stockservice/Stockservice';
 import Footer from './Component/Footer/Footer';
 import Testdata from './Component/Utilitis/Testdata';
-
+import Login from './Component/Authorization/Login/Login';
+import SignUp from './Component/Authorization/Signup/SignUp';
+import Requireauth from './Component/Authorization/Shaired/Requireauth';
 function App() {
-
   const [Supplier, setSupplier] = useSupplier();
   const [Brand, setBrand] = useBrand();
   const [Product, setProduct] = useProduct();
@@ -48,10 +49,11 @@ function App() {
 // https://frozen-badlands-76581.herokuapp.com/products/prodid.json
 // supplier api
 // https://frozen-badlands-76581.herokuapp.com/products/supp.json
-
+// hi kamon aso
 // atif super mart database 
 // atifsupermart202199
 // pass FGzi4j6kRnYTIyP9
+
 
 
 
@@ -71,12 +73,14 @@ function App() {
         <Route path="/sales2" element={<Sales></Sales>} />
         <Route path="/print" element={<Print></Print>} />
         <Route path="/print1" element={<Print1></Print1>} />
-        <Route path="/Sales" element={<Sales2></Sales2>} />
+        <Route path="/Sales" element={<Requireauth><Sales2></Sales2></Requireauth>} />
         <Route path="/damage" element={<Damage></Damage>} />
         <Route path="/Addsupplier" element={<Addsuppler></Addsuppler>} />
-        <Route path="/damageq" element={<Updatedamage></Updatedamage>}/>
+        <Route path="/damageq" element={<Requireauth><Updatedamage></Updatedamage></Requireauth>}/>
         <Route path="/Order" element={<Stockservice></Stockservice>}/>
         <Route path="/Test" element={<Testdata></Testdata>}/>
+        <Route path="/login" element={<Login></Login>}/>
+        <Route path="/signup" element={<SignUp></SignUp>}/>
       </Routes>
     
     <Modal1></Modal1>

@@ -162,7 +162,7 @@ const Updatedamage = () => {
                     <hr/>
                     <h1>Product _id: {Pdata._id}</h1>
                     <hr/>
-                    
+                     
                     <h1>Product Barcode : {Pdata.BarCode}</h1>
                     <hr/>
                     </div>

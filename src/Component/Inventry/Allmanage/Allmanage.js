@@ -17,6 +17,8 @@ const Allmanage = () => {
     // I prefer to not show the whole text area selected.
     e.target.focus();
     setCopySuccess('Copied!');
+
+
   };
 
   const handleUserDelete = (id) => {
@@ -126,7 +128,7 @@ const Allmanage = () => {
              {
                 Products.map((r, index) => <tr class="hover">
                 <th>{index + 1}</th>
-                <td >{r.BarCode} <button className="btn btn-outline btn-primary btn-xs" onClick={() => copyToClipBoard(r.BarCode)}><img style={{'width': '20px'}} src={img} alt="" /></button> </td>
+                <td >{r.BarCode} <button className="btn-outline  hover:bg-transparent hover:rounded-full hover:animate-bounce hover::scale-110 transition duration-100 ease-in-out	 btn-xs" onClick={() => copyToClipBoard(r.BarCode)}><img style={{'width': '20px', 'height': 'auto'}} className='m-1' src={img} alt="" /></button> </td>
                 <td>{r.Group}</td>
                 <td>{r.Product}</td>
                 <td>{r.Brand}</td>

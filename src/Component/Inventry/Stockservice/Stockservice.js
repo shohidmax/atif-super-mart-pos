@@ -112,7 +112,7 @@ const Stockservice = () => {
                             Stock.map((r, index) => <tr key={index + 1}>
                             <th>{index + 1}</th> 
                             <td>{r.Brand}{' '}{r.Style}</td> 
-                            <td>{r.BarCode} <button className="btn btn-outline btn-primary btn-xs" onClick={() => copyToClipBoard(r.BarCode)}><img style={{'width': '20px'}} src={img} alt="" /></button> </td> 
+                            <td>{r.BarCode} <button className="btn-outline  hover:bg-transparent hover:rounded-full hover:animate-bounce	 btn-xs" onClick={() => copyToClipBoard(r.BarCode)}><img style={{'width': '20px', 'height': 'auto'}} className='m-1' src={img} alt="" /></button> </td> 
                             <td>{r.Supplier_Name}</td> 
                             <td>{r.Brand}</td> 
                             <td>{r.CPU}</td> 

@@ -1,15 +1,26 @@
 import React from 'react';
 import useSsr from '../../../Hooks/Ssr/useSsr';
+const imageStorageKey ='7dec4c10f51e1e22708ccd12b0590a32';
 
 const Addsr = () => {
     const [Ssr, setSsr] = useSsr();
 
     const handleAddssr = event =>{
         event.preventDefault();
-      
-
-        var today = new Date();
+        const image = event.target.img.files[0];
+        const formData = new FormData();
+        formData.append('image', image);
+        const url = `https://api.imgbb.com/1/upload?key=${imageStorageKey}`;
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+        .then(res=>res.json())
+        .then(result => {
+            if(result.success){
+                var today = new Date();
         const ID = Ssr.length + 1;
+        const img = result.data.url;
         const company_name = event.target.company_name.value;
         const Deeler_name = event.target.Deeler_name.value;
         const deelar_number = event.target.deelar_number.value;
@@ -21,10 +32,8 @@ const Addsr = () => {
         var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
         var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         console.log(date, time);
-      
-
           // make object 
-          const srrData = {ID, company_name, Deeler_name, deelar_number, salesman_name, salesman_number, deliveryman_name, deliveryman_number, ssrdetail, date, time};
+          const srrData = {ID, company_name, Deeler_name, deelar_number, salesman_name, salesman_number, deliveryman_name, deliveryman_number, ssrdetail, date, time, img};
         console.log(srrData);
         // send data to the server
         if (Ssr.length < ID) {
@@ -42,9 +51,10 @@ const Addsr = () => {
                 event.target.reset();
                 window.location.reload(); 
                  
-            })
-            
+            })  
         }
+        }
+        });
     }
     
     return (
@@ -65,7 +75,11 @@ const Addsr = () => {
                 <input name='deliveryman_number' type="number" placeholder="Delevery man Mobile Number" className="input mb-4 input-bordered input-accent w-full max-w-xs" required/><br/>
                 <textarea name='ssrdetail' type="text" placeholder="Brand or product list" className="input mb-4 input-bordered input-accent w-full max-w-xs" required/><br/>
                 </div> 
-                <input disabled={!Ssr.length > 0 } className='btn btn-primary' type="submit" value='Submit' /><br/>
+                <div>
+                   <input type="file" className="input mb-4 input-bordered input-accent w-full max-w-xs" name="img" />    
+
+                </div>
+                <input  className='btn btn-primary' type="submit" value='Submit' /><br/>
                 <progress className="progress w-56 mx-auto"></progress>
             </form>
         </div>

@@ -35,29 +35,15 @@ import Login from './Component/Authorization/Login/Login';
 import SignUp from './Component/Authorization/Signup/SignUp';
 import Requireauth from './Component/Authorization/Shaired/Requireauth';
 import toast, { Toaster } from 'react-hot-toast';
+import Srlist from './Component/Pages/Srlist/Srlist';
 function App() {
   const [Supplier, setSupplier] = useSupplier();
   const [Brand, setBrand] = useBrand();
   const [Product, setProduct] = useProduct();
   const [Groups, setGroups] = useGroups();
   const [Products, setProducts] = useProducts();
-
-// brand api
-// https://frozen-badlands-76581.herokuapp.com/products/brand.json
-// group api
-// https://frozen-badlands-76581.herokuapp.com/products/group.json
-// product api
-// https://frozen-badlands-76581.herokuapp.com/products/prodid.json
-// supplier api
-// https://frozen-badlands-76581.herokuapp.com/products/supp.json
-// hi kamon aso
-// atif super mart database 
-// atifsupermart202199
-// pass FGzi4j6kRnYTIyP9
-
-
-
-
+// atifsupermart20219922
+// pass FG22zi4j6kRnYTIyP9
   return (
     <div className="App ">
     <Header ></Header>
@@ -75,6 +61,7 @@ function App() {
         <Route path="/print" element={<Print></Print>} />
         <Route path="/print1" element={<Print1></Print1>} />
         <Route path="/Sales" element={<Requireauth><Sales2></Sales2></Requireauth>} />
+        <Route path="/srlist" element={<Requireauth><Srlist></Srlist></Requireauth>} />
         <Route path="/damage" element={<Damage></Damage>} />
         <Route path="/Addsupplier" element={<Addsuppler></Addsuppler>} />
         <Route path="/damageq" element={<Requireauth><Updatedamage></Updatedamage></Requireauth>}/>
@@ -91,13 +78,16 @@ function App() {
     <Productmodal></Productmodal>
     <Productsmodal/>
     <SaleModal></SaleModal>
-    <Toaster />
-    
-    {/* <h1> ATIF SUPER MART </h1>
-    // const call = '+8801793496030';
+    <Toaster
+    position='top-right'
+    reverseOrder={true}  
+
+    />
+{/*     
+    <h1> ATIF SUPER MART </h1>
     <a href="tel:+8801793496030">call</a>
-    <a className='m-6' href={`tel:+${call}`}>call</a>
-     */}
+    <a className='m-6' href={`tel:+${call}`}>call</a> */}
+
      {/* <Footer Supplier={Supplier} Brand={Brand} Groups={Groups} Product={Product} Products={Products}></Footer> */}
     </div>
   );

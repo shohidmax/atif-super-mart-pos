@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+
 const Updatedamage = () => {
     const [Pdata, setPdata] = useState([]);
 
+    
     const findproduct = (B) =>{
         B.preventDefault();
         const Find = B.target.bangla.value;
@@ -43,7 +46,8 @@ const Updatedamage = () => {
         .then(res => res.json())
         .then(data =>{
             setPdata(data);
-            alert('product quntity added successfully!!!');
+            toast.success('Product Quntity added successfully!!!')
+
             setPdata = [];
             
         })
@@ -69,7 +73,7 @@ const Updatedamage = () => {
         .then(res => res.json())
         .then(data =>{
             setPdata(data);
-            alert('product quntity added successfully!!!');
+            toast.success('Product Quntity Decrise successfully!!!')
             setPdata = [];
            
         })

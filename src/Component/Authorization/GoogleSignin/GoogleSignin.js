@@ -3,6 +3,7 @@ import logo from "./google.png";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import {useLocation, useNavigate } from "react-router-dom";
 import auth from "../../../firebase.init";
+import toast, { Toaster } from 'react-hot-toast';
 
 const GoogleSignin = () => {
   const [signInWithGoogle, user, loading, error] = useSignInWithGoogle(auth, {sendEmailVerification: true});
@@ -13,21 +14,14 @@ const GoogleSignin = () => {
       navigate(from, { replace: true });
     }
   if (error) {
-    return (
-      <div>
-        <p>Error: {error.message}</p>
-      </div>
-    );
+    return  toast.error('Failed to login Please!! Try again Later !!npm ');
+    console.error(error);
   }
   if (loading) {
     return <p>Please wait...</p>;
   }
   if (user) {
-    return (
-      <div>
-        <p>Successfully Loged</p>
-      </div>
-    );
+    return toast.success('Successfully Login');
   }
   if (user) {
     navigate(from, { replace: true });
@@ -38,7 +32,7 @@ const GoogleSignin = () => {
       <img style={{ width: "30px" }} src={logo} alt="" />
       <button
         onClick={() => signInWithGoogle()}
-        style={{ background: "border-box" }}
+        style={{ background: "border-box",  }}
         className="border-0"
       >
         Google Sign In

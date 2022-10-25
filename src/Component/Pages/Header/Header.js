@@ -9,13 +9,6 @@ const Header = () => {
   const LogOut = () => {
     signOut(auth);
   };
-console.log(user);
-
-
-
-
-
-
 
     return (
         <div>
@@ -37,6 +30,8 @@ console.log(user);
       <li className='btn btn-primary p-2 m-2 '><Link to="/sales">Sales</Link></li>
       <li className='btn btn-primary p-2 m-2 '><Link to="/damageq">Damage</Link></li>
       <li className='btn btn-primary p-2 m-2 ' > <Link disabled to="/Allmanage">Allmanage</Link></li>
+      <li className='btn btn-primary p-2 m-2 ' > <Link disabled to="/Allmanage">Allmanage</Link></li>
+      <li className='btn btn-primary p-2 m-2 ' > <Link disabled to="/Allmanage">Allmanage</Link></li>
       <li className='btn btn-primary p-2 m-2 '> {user ?<button onClick={LogOut} >LogOut</button> : <Link to="login" >Login</Link>}</li>
       </ul>
     </div>
@@ -56,6 +51,8 @@ console.log(user);
       <li className='btn btn-primary p-2 m-2 '> <Link to="/Order">Damage List</Link></li>
       <li className='btn btn-primary p-2 m-2 '><Link to="/sales">Sales</Link></li>
       <li className='btn btn-primary p-2 m-2 '><Link to="/damageq">Damage</Link></li>
+      <li className='btn btn-primary p-2 m-2 ' > <Link disabled to="/addssr">add SR</Link></li>
+      <li className='btn btn-primary p-2 m-2 ' > <Link disabled to="/srlist">SR List</Link></li>
       <li className='btn btn-primary p-2 m-2 ' > <Link disabled to="/Allmanage">Allmanage</Link></li>
       <li className='btn btn-primary p-2 m-2 '> {user ?<button onClick={LogOut} >LogOut</button> : <Link to="login" >Login</Link>}</li>
 

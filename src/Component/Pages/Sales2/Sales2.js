@@ -1,14 +1,15 @@
 import React, { useState } from "react";
 import useProducts from "../../../Hooks/useProducts/useProducts";
+import LoadVlogs from "../../Utilitis/LoadVlogs";
 
 const Sales2 = () => {
   const [Sale, setSale] = useState([]);
   // const [cart, setCart] = useStat8851607500026
   const [copy, setCopy] = useState('');
   const [Products] = useProducts();
+  let Hold = [];
 
-
-  
+  // Price Calculation 
     let total = 0;
     let Product_quantity = 0;
     const totalPrice = 0;
@@ -21,24 +22,26 @@ const Sales2 = () => {
       const texts = e.target.copy.value;
       console.log(texts);
   };
-
-
-
-  const  playSound = ()=> {
-  <audio id="play" src="http://www.soundjay.com/button/beep-07.wav"></audio>
+  // manage hold data
+  const handelHoldData = () =>{
+    let currentsaledata = {...Sale};
+    Hold.Push(currentsaledata)
+    Sale = [];
+    console.log(Hold);
 
   }
+console.log(...Sale, Hold);
+
 
   const addToCart = (barcode) => {
       barcode.preventDefault();
-      // get barcode from search menu
+      // get barcode from search Input
       const getbarcode = barcode.target.loger.value;
       // find product from store or database
       const getSerarchProduct = Products.find((p) => p.BarCode == getbarcode);
       const existe = Sale.find((i) => i.BarCode == getSerarchProduct.BarCode);
     // comparare local state and database
       let newMatch = getSerarchProduct == existe;
-      // console.log(newMatch, 'newmatch datat ');
       // if data not store in object so get datat and set also aquantity
         if (newMatch == false) {
           getSerarchProduct.orderq = 1;
@@ -70,7 +73,7 @@ const Sales2 = () => {
   console.log(Sale);
 
   if (Products <= 500) {
-    return <button class="btn loading">loading</button>;
+    return <LoadVlogs></LoadVlogs>;
   }
 
   return (
@@ -98,7 +101,7 @@ const Sales2 = () => {
           </div>
             <div>
             <label className="p-2"> Rate </label>
-            <input name="loger"  style={{'width':'100px','height':'30px',}} className="input border-2 bg-red-100 " type="text" placeholder="0.00" />
+            <input name="loger"   style={{'width':'100px','height':'30px',}} className="text-end input border-2 bg-red-100 " type="text" placeholder="0.00" />
             </div>
         </div>
         <hr/>
@@ -205,7 +208,9 @@ const Sales2 = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-1">
+                {
+                  Hold?.map((r,q) => {
+                    <tr className="border-1">
                   <td>shohid0101</td>
                   <td>  </td>
                   <td>2.000</td>
@@ -213,30 +218,9 @@ const Sales2 = () => {
                   <td>2.000</td>
                   <td><button>...</button></td>
                 </tr>
-                <tr className="border-1">
-                  <td>shohid0101</td>
-                  <td>  </td>
-                  <td>2.000</td>
-                  <td>2.000</td>
-                  <td>2.000</td>
-                  <td><button>...</button></td>
-                </tr>
-                <tr className="border-1">
-                  <td>shohid0101</td>
-                  <td>  </td>
-                  <td>2.000</td>
-                  <td>2.000</td>
-                  <td>2.000</td>
-                  <td><button>...</button></td>
-                </tr>
-                <tr className="border-1">
-                  <td>shohid0101</td>
-                  <td>  </td>
-                  <td>2.000</td>
-                  <td>2.000</td>
-                  <td>2.000</td>
-                  <td><button>...</button></td>
-                </tr>
+                  })
+                }
+                
                 <tr className="border-1">
                   <td>shohid0101</td>
                   <td>  </td>
@@ -251,12 +235,35 @@ const Sales2 = () => {
 
           </div>
           {/* secend section  */}
-          <div className="border-2">
-
+          <div className="">
+                <div className="border-2 p-1 m-1">
+                  <button style={{'width':'100px', 'height':'32px'}} onClick={handelHoldData}  className=" btn-primary m-2">Hold</button><br/>
+                  <button style={{'width':'100px', 'height':'32px'}}  className=" btn-primary m-2">Exchange</button>
+                </div>
           </div>
           {/* drd sectuin */}
 
-          <div className="border-2">
+          <div className="border-2 mx-auto" style={{'width':'55%'}}>
+            {/* 1st div  */}
+            <div className="flex">
+            <button  style={{'width':'25%', 'height':'32px'}} className=" btn-primary m-1 w-1/4">Applay Promotion</button>
+            <button  style={{'width':'70%', 'height':'32px'}} className=" btn-primary m-1 ">Print Last invoice</button>
+            
+
+            </div>
+            {/* 2nd div  */}
+            <div className="flex justify-between p-2">
+              <label>#No of Copies</label>
+              <input name="loger" style={{'width':'75%','height':'30px',}} className="input border-2 bg-red-100 " type="text" placeholder="1" />
+            </div>
+            {/* 3rd div  */}
+            <div>
+            <button  style={{'width':'25%', 'height':'32px'}} className=" btn-primary m-1 ">Clear Sale</button>
+            <button  style={{'width':'70%', 'height':'32px'}} className=" btn-primary m-1 ">Print and submin</button>
+            
+
+
+            </div>
 
           </div>
           
@@ -271,29 +278,28 @@ const Sales2 = () => {
             <div>
               <div className="flex justify-between">
                 <label>Total Quantity : </label>
-                <input type="text"  style={{'width':'100px','height':'20px',}}   placeholder={Sale.length}/>
+                <input type="text"  className="text-end"  style={{'width':'100px','height':'20px',}}   placeholder={Sale.length}/>
               </div>
               <div className="flex  justify-between">
                 <label>Total Quantity  </label>
-              	 <input type="text"  style={{'width':'100px','height':'20px',}}  placeholder={Product_quantity}/>
+              	 <input type="text"  className="text-end"  style={{'width':'100px','height':'20px',}}  placeholder={Product_quantity}/>
               </div>
             </div>
-
           </div>
           {/* secend section  */}
           <div className="border-4 p-1">
             <div> 
                   <div className="flex justify-between">
                     <span> Point Balance </span>
-                    <input type="text" style={{'width':'150px','height':'20px',}} placeholder="0.00" /> 
+                    <input type="text" className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" /> 
                   </div>
                   <div className="flex justify-between">
                     <span> Point THis Inv.</span>
-                    <input type="text" style={{'width':'150px','height':'20px',}} placeholder="0.00" /> 
+                    <input type="text" className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" /> 
                   </div>
                   <div className="flex justify-between">
                     <span> Point Redeem </span>
-                    <input type="text" style={{'width':'150px','height':'20px',}} placeholder="0.00" /> 
+                    <input type="text"  className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" /> 
                   </div>
               </div>            
           </div>
@@ -306,31 +312,31 @@ const Sales2 = () => {
             </div>
             <div className="flex justify-between">
               <span> Total Price {totalPrice}</span>
-              <input type="text" style={{'width':'150px','height':'20px',}} placeholder={totalPrice} />
+              <input type="text"  className="text-end" style={{'width':'150px','height':'20px',}} placeholder={totalPrice} value={total} />
             </div>
             <div className="flex justify-between">
               <span> Discount  %  </span>
-              <input type="text" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
+              <input type="text"  className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
             </div>
             <div className="flex justify-between">
               <span> Discount Amound </span>
-              <input type="text" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
+              <input type="text"  className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
             </div>
             <div className="flex justify-between">
               <span> Vat Amound </span>
-              <input type="text" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
+              <input type="text"  className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
             </div>
             <div className="flex justify-between">
               <span> Exchange Amound </span>
-              <input type="text" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
+              <input type="text" className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
             </div>
             <div className="flex justify-between">
               <span> Rounding </span>
-              <input type="text" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
+              <input type="text" className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
             </div>
             <div className="flex justify-between">
               <span> Net Amount </span>
-              <input type="text" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
+              <input type="text" className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
             </div>
             
             </div>            
@@ -358,19 +364,19 @@ const Sales2 = () => {
             <div> 
             <div className="flex justify-between">
               <span> Cash Amount </span>
-              <input type="text" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
+              <input type="text"  className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
             </div>
             <div className="flex justify-between">
               <span> Card Amound </span>
-              <input type="text" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
+              <input type="text"  className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
             </div>
             <div className="flex justify-between">
               <span> Pay Amound </span>
-              <input type="text" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
+              <input type="text"  className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
             </div>
             <div className="flex justify-between">
               <span> Rtn Amound </span>
-              <input type="text" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
+              <input type="text"  className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
             </div>
             </div>            
           </div>

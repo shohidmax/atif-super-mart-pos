@@ -36,6 +36,7 @@ import SignUp from './Component/Authorization/Signup/SignUp';
 import Requireauth from './Component/Authorization/Shaired/Requireauth';
 import toast, { Toaster } from 'react-hot-toast';
 import Srlist from './Component/Pages/Srlist/Srlist';
+import Account from './Component/Accounts/Account';
 function App() {
   const [Supplier, setSupplier] = useSupplier();
   const [Brand, setBrand] = useBrand();
@@ -69,6 +70,7 @@ function App() {
         <Route path="/Test" element={<Testdata></Testdata>}/>
         <Route path="/login" element={<Login></Login>}/>
         <Route path="/signup" element={<SignUp></SignUp>}/>
+        <Route path="/accounts" element={<Account></Account>}/>
       </Routes>
     
     <Modal1></Modal1>

@@ -66,11 +66,12 @@ const Stockservice = () => {
                 <h1 className='text-5xl'>Supplier Wise Damage Report {Products.length}</h1>
                 <div className='m-2 pt-4'>
                     <form >
-                    <select value='value' onChange={DevideSupplier} class="select select-success w-full max-w-xs" name='suppl'>
-                        {
-                            Supplier.map((s, index) => <option key={index + 1} value={s.Name}>{s.Reg_Name}</option>)
-                        }
-                    </select>
+                    <select  onChange={DevideSupplier}  class="select select-primary w-full max-w-xs"  name='suppl'>
+                             <option disabled selected>What is the best TV show?</option>
+                             {
+                                    Supplier.map((s, index) => <option key={index + 1} value={s.Name}>{s.Reg_Name}</option>)
+                            }
+                            </select>
                     </form>
                 </div>
             </div>

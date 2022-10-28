@@ -8,9 +8,28 @@ const Brandmodal = () => {
   const handleAddBrand = event =>{
     event.preventDefault();
     const Brand_Type_Name = event.target.Brand_Type_Name.value;
-    const ID = Brand.length + 1;
+    let ID = 0;
+
+    // lost hastel
+
+var largest = Brand[1].ID;
+console.log(largest,'prev', Brand[1].ID);
+const datanew = {
+  "_id": "62fb75936785e6929c2bbe67",
+  "ID": 272,
+  "Brand_Type_Name": "..........."
+};
+
+for (const i = 0; i < Brand.length; i++) {
+    if (largest < Brand[i] ) {
+        largest = Brand[i];
+    }
+}
+largest=ID + 1 ;
+console.log(largest + 1, 'brand number',  ID);
       // make object 
-    const Branddata = {ID, Brand_Type_Name};
+      ID = ID + 1;
+    const Branddata = {ID , Brand_Type_Name};
 
     // send data to the server
     fetch('https://frozen-badlands-76581.herokuapp.com/brand', {

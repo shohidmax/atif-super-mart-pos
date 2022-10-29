@@ -8,6 +8,8 @@ const Stockservice = () => {
     const [Products, setProducts] = useProducts();
     const [Supplier, setSupplier] = useSupplier();
     const notify = (copyMe) => toast('Copied!');
+
+    // calculation
     let total = 0;
     let Product_quantity = 0;
     const totalPrice = 0;
@@ -67,7 +69,7 @@ const Stockservice = () => {
                 <div className='m-2 pt-4'>
                     <form >
                     <select  onChange={DevideSupplier}  class="select select-primary w-full max-w-xs"  name='suppl'>
-                             <option disabled selected>What is the best TV show?</option>
+                             <option disabled selected>select Your supplier </option>
                              {
                                     Supplier.map((s, index) => <option key={index + 1} value={s.Name}>{s.Reg_Name}</option>)
                             }

@@ -16,7 +16,6 @@ import Productmodal from './Component/Element/Productmodal';
 import Productsmodal from './Component/Element/Productsmodal';
 import Groupmodal from './Component/Element/Groupmodal';
 import Addsr from './Component/Form/Addsr/Addsr';
-import Recept from './Hooks/Recept/Recept';
 import Allmanage from './Component/Inventry/Allmanage/Allmanage';
 import useProducts from './Hooks/useProducts/useProducts';
 import SizeStyle from './Component/Pages/SizeStyle/SizeStyle';
@@ -37,6 +36,8 @@ import Requireauth from './Component/Authorization/Shaired/Requireauth';
 import toast, { Toaster } from 'react-hot-toast';
 import Srlist from './Component/Pages/Srlist/Srlist';
 import Account from './Component/Accounts/Account';
+import RequireManager from './Component/Authorization/Shaired/RequireManager';
+import Recept from './Component/Invoice/Recept/Recept';
 function App() {
   const [Supplier, setSupplier] = useSupplier();
   const [Brand, setBrand] = useBrand();
@@ -61,16 +62,17 @@ function App() {
         <Route path="/sales2" element={<Sales></Sales>} />
         <Route path="/print" element={<Print></Print>} />
         <Route path="/print1" element={<Print1></Print1>} />
-        <Route path="/Sales" element={<Requireauth><Sales2></Sales2></Requireauth>} />
+        <Route path="/Sales" element={<Requireauth><RequireManager><Sales2></Sales2></RequireManager></Requireauth>} />
         <Route path="/srlist" element={<Requireauth><Srlist></Srlist></Requireauth>} />
         <Route path="/damage" element={<Damage></Damage>} />
         <Route path="/Addsupplier" element={<Addsuppler></Addsuppler>} />
         <Route path="/damageq" element={<Requireauth><Updatedamage></Updatedamage></Requireauth>}/>
-        <Route path="/Order" element={<Stockservice></Stockservice>}/>
+        <Route path="/Order" element={<Requireauth><RequireManager><Stockservice></Stockservice></RequireManager></Requireauth>}/>
         <Route path="/Test" element={<Testdata></Testdata>}/>
         <Route path="/login" element={<Login></Login>}/>
         <Route path="/signup" element={<SignUp></SignUp>}/>
         <Route path="/accounts" element={<Account></Account>}/>
+        <Route path="/rpt" element={<Recept></Recept>}/>
       </Routes>
     
     <Modal1></Modal1>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import LoadTable from '../../Utilitis/LoadTable';
 
 const Updatedamage = () => {
     const [Pdata, setPdata] = useState([]);
@@ -19,7 +20,7 @@ const Updatedamage = () => {
         .then(r => r.json())
         .then(data => {
             if (!data) {
-                return <progress class="progress w-56"></progress>;
+                return <LoadTable></LoadTable>;
             }else{
                 setPdata(data);
             }

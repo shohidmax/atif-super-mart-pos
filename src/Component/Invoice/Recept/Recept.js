@@ -247,13 +247,13 @@ const Recept = () => {
                                     rptdata.map((r,q) => <>
                                      <h1 className='text-start'> {r.product_title}  </h1>
                                     <div  className='flex justify-between p-1'>
-                                        <p className='fond-bold' style={{'font-size':'14px'}}>{r.product_barcode} </p>  
+                                        <p className='fond-bold' style={{'font-size':'14px', 'font-wedth':'800'}}>{r.product_barcode} </p>  
                                         <p className='fond-bold' style={{'font-size':'14px'}}>{r.QTS} </p>  
 
                                         <p className='fond-bold' style={{'font-size':'14px'}}>{r.RPU} </p>  
                                         <p className='fond-bold' style={{'font-size':'14px'}}>{r.RPU * r.QTS} </p>  
                                     </div>
-                                    <hr style={{'border':'1px dashed black'}}/>
+                                    <hr style={{'border':'1px solid black'}}/>
 
                                     
                                     </>)
@@ -263,7 +263,6 @@ const Recept = () => {
                     </div>
                     
                     <div className='mb-2'>
-                        <hr style={{'border':'1px solid black'}}/>
                         <div className='flex justify-between p-1'>
                             <p className='fond-bold' style={{'font-size':'14px'}}>Total Tk </p>
                             <p className='fond-bold' style={{'font-size':'14px'}}>{Product_quantity}  </p>
@@ -300,10 +299,7 @@ const Recept = () => {
                         </div>
                         <hr style={{'border':'1px dashed black'}}/>
                         <p className='fond-bold' style={{'font-size':'10px', 'width':'100%'}}>
-                            cccccccccccccccccccccccccccccc
-                            ccccccccccccccccccccccccccccc
-                            ccccccccccccccccccccccccccccc
-                            ccccccccccccccccccccccccccccc
+                        item purchase can be exchanged within 48 hours with no exchange for item fastest can be refund for cash
                         </p>
 
                         <hr style={{'border':'1px dashed black'}}/>

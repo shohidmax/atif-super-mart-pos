@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
+// const barcode = require('barcode');
+import Barcode from 'react-barcode';
 
 const Testdata = () => {
+    // const code39 = barcode('code39', {
+    //     data: "it works",
+    //     width: 400,
+    //     height: 100,
+    // });
 
     let productdata = {
         "_id": "633f4e807784639f332e3b62",
@@ -46,6 +53,10 @@ const Testdata = () => {
 
     return (
         <div>
+            <div>
+                    {/* <h1>{code39}</h1> */}
+                    <Barcode value="barcode-example" />;
+            </div>
             <form onSubmit={addData}>
                 <input type="text" className='input border-primary' name='name' />
                 <input className='btn' type="submit" />

@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import useProducts from "../../../Hooks/useProducts/useProducts";
+import Recept from "../../Invoice/Recept/Recept";
+import Print from "../../Print/Print";
 import LoadVlogs from "../../Utilitis/LoadVlogs";
 
 const Sales2 = () => {
   const [Sale, setSale] = useState([]);
+  const [print, setPrint] = useState(false);
   // const [cart, setCart] = useStat8851607500026
   const [copy, setCopy] = useState('');
   const [Products] = useProducts();
@@ -30,7 +33,20 @@ const Sales2 = () => {
     console.log(Hold);
 
   }
-console.log(...Sale, Hold);
+    const saveInvoiceData =() =>{
+      console.log('clicked');
+      setPrint = true;
+      
+      
+
+
+    }
+    console.log(print, '------------------------------------------------------------------------------------------');
+    if (print == true) {
+      return <Recept></Recept>;
+    }
+
+// console.log(...Sale, Hold);
 
 
   const addToCart = (barcode) => {
@@ -259,7 +275,7 @@ console.log(...Sale, Hold);
             {/* 3rd div  */}
             <div>
             <button  style={{'width':'25%', 'height':'32px'}} className=" btn-primary m-1 ">Clear Sale</button>
-            <button  style={{'width':'70%', 'height':'32px'}} className=" btn-primary m-1 ">Print and submin</button>
+            <button onClick={saveInvoiceData}  style={{'width':'70%', 'height':'32px'}} className=" btn-primary m-1 ">Print and submin</button>
             
 
 

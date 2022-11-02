@@ -3,6 +3,8 @@ import { useRef } from 'react';
 import ReactPrint from 'react-to-print';
 import useGroups from '../../../Hooks/Groups/useGroups';
 import logo from './logo.png';
+import { Barcode, QRCode } from "@progress/kendo-react-barcodes";
+
 
 const Recept = () => {
     const rptdata = [
@@ -29,162 +31,6 @@ const Recept = () => {
          "product_barcode": 101102020104,
          "RPU": 12,
          "QTS": 2
-        },
-        {
-         "product_title": "BANGAS GRAND CHOICE 100GM",
-         "product_barcode": 13256830406,
-         "RPU": 20,
-         "QTS": 8
-        },
-        {
-         "product_title": "DR. H&H MORNINGA GINGER TEA 60G",
-         "product_barcode": 16965020212,
-         "RPU": 190,
-         "QTS": 8
-        },
-        {
-         "product_title": "KELLY'S FURNITURE CLEANEER 500ML",
-         "product_barcode": 25784243658,
-         "RPU": 165,
-         "QTS": 9
-        },
-        {
-         "product_title": "DREAM CANDY 1PCS",
-         "product_barcode": 51759831201,
-         "RPU": 20,
-         "QTS": 8
-        },
-        {
-         "product_title": "DOVE PINK BEAUTY CREAM 100GM",
-         "product_barcode": 67238891183,
-         "RPU": 90,
-         "QTS": 5
-        },
-        {
-         "product_title": "OLYMPIC TIP CRISPY SALTED 70GM",
-         "product_barcode": 745114130624,
-         "RPU": 15,
-         "QTS": 5
-        },
-        {
-         "product_title": "CUTE GLYCERINE 60G",
-         "product_barcode": 745125066745,
-         "RPU": 45,
-         "QTS": 5
-        },
-        {
-         "product_title": "CUTE AFTER SAVE LOTION 40ML",
-         "product_barcode": 88021511088,
-         "RPU": 45,
-         "QTS": 3
-        },
-        {
-         "product_title": "CUTE ROMANCE 60ML",
-         "product_barcode": 88021511149,
-         "RPU": 215,
-         "QTS": 3
-        },
-        {
-         "product_title": "CUTE ROMANCE 15ML",
-         "product_barcode": 88021511156,
-         "RPU": 80,
-         "QTS": 3
-        },
-        {
-         "product_title": "CUTE ANTI DANDRUF SHAMPOO 120ML",
-         "product_barcode": 88021512832,
-         "RPU": 100,
-         "QTS": 9
-        },
-        {
-         "product_title": "CUTE ROSE 75GM",
-         "product_barcode": 88021512863,
-         "RPU": 26,
-         "QTS": 9
-        },
-        {
-         "product_title": "CUTE JASMINE ENRICHED 125GM",
-         "product_barcode": 88021513051,
-         "RPU": 42,
-         "QTS": 2
-        },
-        {
-         "product_title": "CUTE JASMINE ENRICHED 75GM",
-         "product_barcode": 88021513068,
-         "RPU": 28,
-         "QTS": 1
-        },
-        {
-         "product_title": "NESTLE NESCAFE CLASSIC 1.5GM",
-         "product_barcode": 1055359,
-         "RPU": 5,
-         "QTS": 5
-        },
-        {
-         "product_title": "MODHUMOTY FLOOR CLEANER 500ML",
-         "product_barcode": 1075495,
-         "RPU": 115,
-         "QTS": 7
-        },
-        {
-         "product_title": "MODHUMOTY FLOOR CLEANER 1LIT",
-         "product_barcode": 1075496,
-         "RPU": 220,
-         "QTS": 2
-        },
-        {
-         "product_title": "MODHUMOTY TILES CLEANER 1LIT",
-         "product_barcode": 1075497,
-         "RPU": 125,
-         "QTS": 3
-        },
-        {
-         "product_title": "VIM MAJUNI JUMBO",
-         "product_barcode": 1075511,
-         "RPU": 25,
-         "QTS": 1
-        },
-        {
-         "product_title": "KHAN DAMP FIX 3IN1 1LIT",
-         "product_barcode": 1075523,
-         "RPU": 60,
-         "QTS": 2
-        },
-        {
-         "product_title": "ATIF SUPER MART SUGAR 1KG",
-         "product_barcode": 1075541,
-         "RPU": 80,
-         "QTS": 5
-        },
-        {
-         "product_title": "OLYMPIC ENERGY PLUS 24GM",
-         "product_barcode": 1075567,
-         "RPU": 5,
-         "QTS": 2
-        },
-        {
-         "product_title": "BD FOODS -MANGO PICKLE 400GM",
-         "product_barcode": 1085600,
-         "RPU": 120,
-         "QTS": 2
-        },
-        {
-         "product_title": "BD FOODS MANGO PICKLE 400GM",
-         "product_barcode": 1085604,
-         "RPU": 120,
-         "QTS": 2
-        },
-        {
-         "product_title": "MOWCHAK HONEY 1 STAR 250GM",
-         "product_barcode": 1085613,
-         "RPU": 180,
-         "QTS": 3
-        },
-        {
-         "product_title": "MODHUMOTI CHILLI POWDER 100GM",
-         "product_barcode": 1085661,
-         "RPU": 45,
-         "QTS": 8
         }
        ];
 
@@ -203,9 +49,7 @@ const Recept = () => {
 
     return (
         <div>
-            <h1 className='text-4xl'>reacept
-
-</h1>
+            <h1 className='text-4xl'>reacept </h1>
             <div ref={ref} style={{'width':'302.36px', 'height':'auto' }} className='bg-transparent p-2 border-2 mx-auto'> 
                     <div>
                         <img className='mx-auto' style={{'width':'50%'}} src={logo} alt="" />
@@ -223,7 +67,7 @@ const Recept = () => {
                             <p className='fond-bold' style={{'font-size':'12px'}}> Print Date and Time : 10/29/2022 8:14:19 PM </p>
                         </div>
                         <div  className='text-start'>
-                            <p className='fond-bold' style={{'font-size':'14px'}}>Invoice : 10292022AM01010010 </p>
+                            <p className='fond-bold' style={{'font-size':'14px'}}>Invoice : 546456564564564456465456456465</p>
                         </div>
                         <div  className='text-start'>
                             <p className='fond-bold' style={{'font-size':'14px'}}>Coustomer : Sarwar jahan  </p>
@@ -304,6 +148,8 @@ const Recept = () => {
 
                         <hr style={{'border':'1px dashed black'}}/>
                         <h1 className='text-center font-bold text-xl'> Thank You For Shopping </h1>
+                    <QRCode style={{'width':'250px', 'height':'250px'}} className='mx-auto' value="https://www.facebook.com/atifsupermart" />
+
 
                         
 

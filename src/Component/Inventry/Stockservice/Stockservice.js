@@ -3,11 +3,17 @@ import useSupplier from '../../../Hooks/Supplier/useSupplier';
 import useProducts from '../../../Hooks/useProducts/useProducts';
 import img from './copy.png';
 import toast, { Toaster } from 'react-hot-toast';
+import { useRef } from 'react';
+import ReactPrint from 'react-to-print';
 const Stockservice = () => {
+
+
+const ref = useRef(); 
     const [Stock, setStock] = useState([]);
     const [Products, setProducts] = useProducts();
     const [Supplier, setSupplier] = useSupplier();
     const notify = (copyMe) => toast('Copied!');
+    const [state, setstate] = useState('');
 
     // calculation
     let total = 0;
@@ -34,7 +40,7 @@ const Stockservice = () => {
 
     const DevideSupplier = (e) =>{
         const supp = e.target.value;
-        console.log(supp);
+        setstate(supp)
         const getSerarchProduct = Products.filter((p) => p.Supplier_Name == supp);
         setStock(getSerarchProduct);
     }
@@ -95,8 +101,10 @@ const Stockservice = () => {
                 </div>
               </div> : 
               
-              <div class="overflow-x-auto border-primary">
+              <div  ref={ref} class="overflow-x-auto border-primary">
+                <h1 className='m-2 mx-auto text-xl'>{state}</h1>
                   <table class="table table-compact w-full">
+                    
                     <thead>
                       <tr>
                         <th>SN</th> 
@@ -149,7 +157,7 @@ const Stockservice = () => {
               }
             
             </div>
-           
+            <ReactPrint trigger={() => <button> print</button>} content={() => ref.current}/>
         </div>
     );
 };

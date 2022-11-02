@@ -38,6 +38,10 @@ import Srlist from './Component/Pages/Srlist/Srlist';
 import Account from './Component/Accounts/Account';
 import RequireManager from './Component/Authorization/Shaired/RequireManager';
 import Recept from './Component/Invoice/Recept/Recept';
+import Inputs from './Inputs/Inputs';
+import Qr from './Component/Utilitis/Qr';
+import Salesreportq from './Component/Invoice/Report/Salesreportq';
+import BarCode from './Component/Invoice/BarCode/BarCode';
 function App() {
   const [Supplier, setSupplier] = useSupplier();
   const [Brand, setBrand] = useBrand();
@@ -73,6 +77,10 @@ function App() {
         <Route path="/signup" element={<SignUp></SignUp>}/>
         <Route path="/accounts" element={<Account></Account>}/>
         <Route path="/rpt" element={<Recept></Recept>}/>
+        <Route path="/inputs" element={<Inputs></Inputs>}/>
+        <Route path="/qr" element={<Qr></Qr>}/>
+        <Route path="/bar" element={<Salesreportq></Salesreportq>}/>
+        <Route path="/barcode" element={<BarCode></BarCode>}/>
       </Routes>
     
     <Modal1></Modal1>

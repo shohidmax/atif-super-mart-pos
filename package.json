@@ -4,10 +4,16 @@
   "private": true,
   "dependencies": {
     "@fontsource/libre-barcode-39": "^4.5.10",
+    "@progress/kendo-drawing": "^1.17.2",
+    "@progress/kendo-file-saver": "^1.1.1",
+    "@progress/kendo-licensing": "^1.2.2",
+    "@progress/kendo-react-barcodes": "^5.9.0",
+    "@progress/kendo-react-buttons": "^5.9.0",
+    "@progress/kendo-react-pdf": "^5.9.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
-    "barcode": "^0.1.0",
+    "barcode": "^0.0.4",
     "browser-thermal-printer": "^0.0.1",
     "daisyui": "^2.24.0",
     "firebase": "^9.11.0",
@@ -20,8 +26,9 @@
     "react-hot-toast": "^2.4.0",
     "react-pdf-tailwind": "^1.0.1",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "react-to-print": "^2.14.7",
+    "use-scan-detection": "^0.2.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -49,6 +56,7 @@
     ]
   },
   "devDependencies": {
+    "@types/png.js": "^0.2.1",
     "tailwindcss": "^3.1.8"
   }
 }

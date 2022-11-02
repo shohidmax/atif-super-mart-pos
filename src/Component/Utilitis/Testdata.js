@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-// const barcode = require('barcode');
-import Barcode from 'react-barcode';
+// const Barcode = require('barcode');
+
+import { Barcode, QRCode } from "@progress/kendo-react-barcodes";
 
 const Testdata = () => {
-    // const code39 = barcode('code39', {
+    
+    // const code39 = Barcode('code39', {
     //     data: "it works",
     //     width: 400,
     //     height: 100,
@@ -33,7 +35,6 @@ const Testdata = () => {
             console.log(inputData);
             productdata.push(inputData);
             e.target.reset();
-
         }
         // --------------------------------------------------------------------------------------------------
         // add to clip text
@@ -48,14 +49,16 @@ const Testdata = () => {
             }
         };
         
-        
-
-
     return (
         <div>
             <div>
+            {/* <Barcode type="code39" value="017934030" /> */}
                     {/* <h1>{code39}</h1> */}
-                    <Barcode value="barcode-example" />;
+                    {/* <Barcode value="556465456564" />; */}
+                    {/* <svg id="code39"></svg> */}
+                    <Barcode style={{'width':'300px', 'height':'100px'}} type="Code128" value="sarwa54585145r " />
+                    <QRCode style={{'width':'300px', 'height':'100px'}} className='mx-auto' value="https://www.facebook.com/atifsupermart" />
+
             </div>
             <form onSubmit={addData}>
                 <input type="text" className='input border-primary' name='name' />

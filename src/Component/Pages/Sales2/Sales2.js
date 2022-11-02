@@ -225,8 +225,8 @@ const Sales2 = () => {
               </thead>
               <tbody>
                 {
-                  Hold?.map((r,q) => {
-                    <tr className="border-1">
+                  Hold?.map((r,q) => 
+                  <tr className="border-1">
                   <td>shohid0101</td>
                   <td>  </td>
                   <td>2.000</td>
@@ -234,7 +234,7 @@ const Sales2 = () => {
                   <td>2.000</td>
                   <td><button>...</button></td>
                 </tr>
-                  })
+                  )
                 }
                 
                 <tr className="border-1">

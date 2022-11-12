@@ -23,11 +23,12 @@ const RequireManager = ({children}) => {
     return children;
    } else {
     return (
-        <div>
-            <h3 className='text-3xl'> Input Password</h3>
+        <div className='grid mx-auto my-auto bg-red-600 place-content-center ' style={{'height':'100vh'}}>
+            <h3 className='text-3xl m-3'>ATIF SUPER MART </h3>
             <form onSubmit={approve}>
-                <input type="text" className='input' name='pass1' placeholder='password please'  required/> <br/>
-                <input className='btn' type="submit" value='submit' />
+                <input type="text" className='input m-2' name='pass1' placeholder='Login Password' autoComplete='off'  required/> <br/>
+                <input className='btn m-2' type="submit" value='Login' />
+                <input className='btn' type="submit" value='Home' />
             </form>
             
         </div>

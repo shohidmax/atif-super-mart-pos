@@ -3,6 +3,10 @@
 @tailwind utilities;
 @fontsource libre-barcode-39;
 
+@font-face {
+  font-family: 'FontA11';
+  src: url('./ARIAL.TTF');
+}
 
 /* import "@fontsource/libre-barcode-39"; */
 .fixed-bb {

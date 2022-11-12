@@ -1,18 +1,87 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import useProducts from "../../../Hooks/useProducts/useProducts";
+import Modal1 from "../../Element/Modal1";
 import Recept from "../../Invoice/Recept/Recept";
 import Print from "../../Print/Print";
 import LoadVlogs from "../../Utilitis/LoadVlogs";
+import toast, { Toaster } from 'react-hot-toast';
+import swal from 'sweetalert';
 
 const Sales2 = () => {
+  //-------------------------------------------------------------------- Main State ----------------------------------------------------
   const [Sale, setSale] = useState([]);
   const [print, setPrint] = useState(false);
   // const [cart, setCart] = useStat8851607500026
   const [copy, setCopy] = useState('');
   const [Products] = useProducts();
-  let Hold = [];
+  const [Cproduct, setCproduct] = useState({});
 
-  // Price Calculation 
+  // ------------------------------------------------------------ salese informatin for every invoice  ---------------------------------
+  const [Qty, setQty] = useState('');
+  const [Produc, setProduct] = useState('');
+  const [CoustomerID, setCoustomerID] = useState('');
+  const [Mobile, setMobile] = useState('');
+  const [AttendentID, setAttendentID] = useState('');
+  const [ShopName, setShopName] = useState('');
+  const [Coustomer, setCoustomer] = useState('');
+  const [Discount, setDiscount] = useState('');
+  const [DiscountP, setDiscountP] = useState('');
+  const [ExchangeA, setExchangeA] = useState('');
+  const [PayType, setPayType] = useState('');
+  const [PayAmound, setPayAmound] = useState(''); 
+  const [payamount, setPayamount] = useState(''); 
+  const [cardAmound, setcardAmound] = useState(''); 
+  const [cashAmound, setCashAmound] = useState(''); 
+  const [updateQTY, setupdateQTY] = useState(0); 
+  const [Hold, setHold] = useState([]);
+
+  //  Make A sale data and Prepair For An Object 
+   // ----------------------------------------------------------------------- Current Date for Invoice ---------------------------------
+  
+// ------------------------------------------------------------------------- Coustomer Mobile Number -------------------------------
+    const handleMobile = event => {
+      setMobile(event.target.value);
+    }
+   // -----------------------------------------------------------------------  pay amound     ----------------------------------------
+    const handlePA = event => {
+      setPayamount(event.target.value);
+    }
+    //------------------------------------------------------------------------  discount parcentage  ------------------------------------
+    const discountP = event => {
+      setDiscountP(event.target.value);
+    }
+    // --------------------------------------------------------------------- discount amound  -------------------------------------------
+    const discountA = event => {
+      setDiscount(event.target.value);
+    }
+    // --------------------------------------------------------------------- payment  Type ---------------------------------------------
+    const handleCashType = event => {
+      setPayType(event.target.value);
+    }
+    
+    //--------------------------------------------------------------------- card pay amound  ----------------------------------------------
+    const hadleCardA = event => {
+      setcardAmound(event.target.value);
+    }
+    //-------------------------------------------------------- handleCashA amound ------------------------------------------------------
+    const handleCashA = event => {
+      setCashAmound(event.target.value);
+    }
+    
+  // --------------------------------------------------------------------- Detect key sortcut ----------------------------------------
+
+    useEffect(() => {
+      document.addEventListener('Keydown', DetectKey, true)
+    }, []);
+
+    const DetectKey =(e)=>{
+      console.log(e.key, 'clicked E Text');
+    }
+
+
+
+  //------------------------------------------------------------------------- Price Calculation ------------------------------------
     let total = 0;
     let Product_quantity = 0;
     const totalPrice = 0;
@@ -21,76 +90,133 @@ const Sales2 = () => {
     Product_quantity = Product_quantity + product.orderq;
     //  totalPrice = total * Product_quantity;
   };
-  const handCopy = e => {
-      const texts = e.target.copy.value;
-      console.log(texts);
-  };
-  // manage hold data
-  const handelHoldData = () =>{
-    let currentsaledata = {...Sale};
-    Hold.Push(currentsaledata)
-    Sale = [];
-    console.log(Hold);
+  let cnageamound = payamount - total;
+    const handCopy = e => {
+        const texts = e.target.copy.value;
+    };
+     //------------------------------------------------------------------------- Hold Current Data --------------------------------
 
-  }
-    const saveInvoiceData =() =>{
-      console.log('clicked');
-      setPrint = true;
-      
-      
-
+    const handelHoldData = () =>{
+      let currentsaledata = Sale;
+      setHold(currentsaledata)
+      setSale([])
 
     }
-    console.log(print, '------------------------------------------------------------------------------------------');
+    //------------------------------------------------------------------------- save invoice data --------------------------------
+
+    const saveInvoiceData =() =>{
+      setPrint = [true];
+    }
     if (print == true) {
       return <Recept></Recept>;
     }
+    //------------------------------------------------------------------------- Update quantity --------------------------------
 
-// console.log(...Sale, Hold);
+    const updateQuantity = async (e, q) =>{
+      // const rw = await e.target.value 
+      // e.preventDefault();
+      // const rb = e.target.value;
+      handelUpdateQuantity()
+    }
+    //-------------------------------------------------------------------------Update quantity--------------------------------
+    const handelUpdateQuantity = (R) =>{ 
+      R.preventDefault();
+      const Replace = R.target.replace_order.value;
+      setupdateQTY(Replace)
+    
+       return Replace;
+       R.target.reset();
+  }
 
+//---------------------------------------------------------add to cart ----------------------------------------------------
 
-  const addToCart = (barcode) => {
-      barcode.preventDefault();
+   const addToCart = (barcode) => {
       // get barcode from search Input
-      const getbarcode = barcode.target.loger.value;
-      // find product from store or database
+      const getbarcode = barcode || barcode.target.loger.value; 
+      // find product from store or database 
       const getSerarchProduct = Products.find((p) => p.BarCode == getbarcode);
       const existe = Sale.find((i) => i.BarCode == getSerarchProduct.BarCode);
-    // comparare local state and database
+      setCproduct(getSerarchProduct)
+      // comparare local state and database
       let newMatch = getSerarchProduct == existe;
       // if data not store in object so get datat and set also aquantity
         if (newMatch == false) {
-          getSerarchProduct.orderq = 1;
-        setSale([...Sale, getSerarchProduct]);
+          if (!getSerarchProduct.StockQty == 0) {
+            getSerarchProduct.orderq = 1;
+            setSale([...Sale, getSerarchProduct]);
+            
+          } else {
+            swal("Product Out of Stock!");
+          }
         } else{
           const rolex = Sale.find((i) => i.BarCode == getbarcode);
-          console.log(rolex.orderq[16]); 
           rolex.orderq = rolex.orderq + 1;
           const rolex2 = [{rolex}]
             const maps = [...Sale];
           const maps2 = maps.map(obj => rolex2.find(o => o.BarCode === obj.BarCode) || obj);
           setSale([...Sale])
         }
-      barcode.target.reset();
-  }
-  const handelUpdateQuantity = (R) =>{
-    R.preventDefault();
-    const Replace = R.target.replace_order.value;
-    const Replace1 = R.target.replace_order1.value;
-    // const Replace2 = R.target.for.value;
-    console.log(Replace, 'clicked', Replace1);
-    R.target.reset();
-  }
+      
+     }
 
 
+
+     // ------------------------------------------------------------add To Cart 2 --------------------------------------------------
+     const addToCart2 = ( barcode2) =>{
+      addToCart(barcode2);
+     }
+     
+
+     // ------------------------------------------------------------add To Cart 2--------------------------------------------------
+     const addToCart3 = ( barcode3) =>{
+      barcode3.preventDefault();
+      const getbarcode = barcode3.target.loger.value; 
+      addToCart(getbarcode);
+      barcode3.target.reset();
+     }
+
+
+     //----------------------------------------------------------------------------------------------------------------------------
+     const remoVeItem = (data) =>{
+      // const removestate = Sale.remove(r) 
+      const arr = Sale.filter(item => item !== data)
+
+      setSale(arr)
+
+     }
+
+
+
+
+  // -----------------------------------------------------------------------reset sales datat------------------------------------- 
   const reset = () => {
-    setSale = [];
+    let a = [];
+    setSale(a);
+    toast.error(`Sales Data has been cleard`);
   }
-  console.log(Sale);
-
+ 
+  // Product loading
   if (Products <= 500) {
     return <LoadVlogs></LoadVlogs>;
   }
+  const rrrr = {
+    "_id": "633f4e807784639f332e3856",
+    "Supplier_Name": "ACI LTD.",
+    "BarCode": 8901314014528,
+    "Group": "TOILETRIES",
+    "Product": "TOOTHPASTE",
+    "Brand": "COLGATE",
+    "Style": "MAXFRESH BLUE 80G",
+    "Stock_Qty": 0,
+    "StockQty": 0,
+    "CPU": 76,
+    "CPU_Value": 0,
+    "RPU": 85,
+    "RPU_Value": 0,
+    "Damage_Quntity": 0,
+    "Comment": 0,
+    "Status": "active"
+}
 
   return (
     <div>
@@ -101,10 +227,10 @@ const Sales2 = () => {
         <div className="flex p-1 justify-between">
           <div  className="flex">
           <div>
-            <form onSubmit={addToCart}>
-            <label className="p-1">Barcode</label>
-              <input name="loger" style={{'width':'300px','height':'30px',}} className="input border-2 bg-red-100" type="text" placeholder="Barcode Hear" />
-            </form>
+              <form onSubmit={addToCart3}>
+                    <label className="p-1">Barcode</label>
+                   <input name="loger" style={{'width':'300px','height':'30px',}} className="input border-2 bg-red-100" type="text" placeholder="Barcode Hear" />
+                </form>
           </div>
           <div>
             <label className="p-2"> Qty </label>
@@ -117,7 +243,7 @@ const Sales2 = () => {
           </div>
             <div>
             <label className="p-2"> Rate </label>
-            <input name="loger"   style={{'width':'100px','height':'30px',}} className="text-end input border-2 bg-red-100 " type="text" placeholder="0.00" />
+            <input name="loger"   style={{'width':'100px','height':'30px',}} className="text-end input border-2 bg-red-100 " type="text" placeholder={Cproduct.RPU} />
             </div>
         </div>
         <hr/>
@@ -125,12 +251,18 @@ const Sales2 = () => {
         <div className="flex p-1 justify-between">
           
           <div>
-            <label className="p-2"> Product  </label>
-            <input name="loger"  style={{'width':'550px','height':'30px',}} className="input border-2 bg-red-100 " type="text" placeholder="Your Product Hear" />
+            <label  className="p-2"> Product  </label> 
+            <select   name="loger" onChange={e => addToCart2 (e.target.value)}  style={{'width':'550px','height':'30px','font-size':'12px'}} className="input border-2 p-1 m-1 bg-red-100 ">
+                             <option style={{'font-size':'12px'}} disabled selected> select Your supplier  </option>
+                             {
+                                    Products.map((s, index) => <option style={{'font-size':'14px'}} className="mx-auto" key={index + 1} value={s.BarCode}>{s.Brand} - {s.Style} - {s.BarCode} - {s.RPU} TK - In Stock {s.StockQty}</option>)
+                            }
+                            </select>
+            {/* <input name="loger"  style={{'width':'550px','height':'30px',}} className="input border-2 bg-red-100 " type="text" placeholder="Your Product Hear" /> */}
             </div>
           <div>
             <label className="p-2"> In Stock </label>
-            <input name="loger"  style={{'width':'100px','height':'30px',}} className="input border-2 bg-red-100 " type="text" placeholder="0.00" />
+            <input name="loger"  style={{'width':'100px','height':'30px',}} className="input border-2 bg-red-100 " type="text" placeholder={Cproduct.StockQty} />
           </div>
            
         </div>
@@ -146,7 +278,7 @@ const Sales2 = () => {
           </div>
           <div>
             <label className="p-2"> Mobile </label>
-            <input name="loger"  style={{'width':'200px','height':'30px',}}  className="input border-2 bg-red-100 " type="text" placeholder="Coustomer Mobile" />
+            <input name="loger" onChange={handleMobile}  style={{'width':'200px','height':'30px',}}  className="input border-2 bg-red-100 " type="text" placeholder="Coustomer Mobile" />
             </div>
           </div>
           
@@ -176,33 +308,41 @@ const Sales2 = () => {
               <thead className="bg-primary">
                 <tr>
                   <th> SN</th>
-                  <th>Barcode</th>
-                  <th>Price</th>
-                  <th>Product Name</th>
-                  <th>Brand</th>
-                  <th>ID</th>
-                  <th>quantity</th>
-                  <th>update</th>
+                  <th>Barcode</th> 
+                  <th>Product Discription</th>
+                  <th>Rate</th>
+                  <th>Quntity</th>
+                  <th>Discount</th>
+                  <th>Sub Total</th>
+                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 {Sale.map((r, index) => (
                   <tr key={index + 1}>
                     <th>{index + 1}</th>
-                    <td><button onClick={handCopy} type="input" name="copy" value={r.BarCode}> {r.BarCode}</button></td>
-                    <td>{r.RPU}</td>
-
+                    <td><button onClick={handCopy} type="input" name="copy" value={r.BarCode}> {r.BarCode}</button></td>  
                     <td>{r.Brand} {" "}{r.Style} </td>
-                    <td>{r.Brand}</td>
-                    <td>{r._id}</td>
-                    <td><form onSubmit={handelUpdateQuantity}>
-                      <input type="text" placeholder={r.orderq } name='replace_order'/>
-                      <input type="text" value={r.BArdode}  name='replace_order1'/>
-                      </form></td>
-                    <td><button className="btn btn-circle btn-outline">
-                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M6 18L18 6M6 6l12 12" /></svg>
-                   </button></td>
+                    <td>{r.RPU}</td>  
+                    <td> {r.orderq} </td>
+                    <td> 00.00</td>
+                    <td>
+                   <Modal1 _id={r._id}  r={r} Sale={Sale} setSale={setSale} ></Modal1>
+
+                   </td>
+                   <td> 
+                   <div class="dropdown ">
+                         <label tabindex="0" class="btn btn-xs btn-primary">Update</label>
+                         <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100   rounded-box ">
+                           <li><button onClick={() => remoVeItem (r)} className="btn text-white p-1 m-1 btn-primary btn-xs">X</button>
+                            </li>
+                           <li><label  for={r._id} class="btn text-white p-1 m-1 btn-primary btn-xs">Update </label></li>
+                         </ul>
+                        </div>
+                   </td>
+
                   </tr> 
+                  
                 ))}
               </tbody>
             </table> 
@@ -274,7 +414,7 @@ const Sales2 = () => {
             </div>
             {/* 3rd div  */}
             <div>
-            <button  style={{'width':'25%', 'height':'32px'}} className=" btn-primary m-1 ">Clear Sale</button>
+            <button onClick={reset} style={{'width':'25%', 'height':'32px'}} className=" btn-primary m-1 ">Clear Sale</button>
             <button onClick={saveInvoiceData}  style={{'width':'70%', 'height':'32px'}} className=" btn-primary m-1 ">Print and submin</button>
             
 
@@ -289,8 +429,8 @@ const Sales2 = () => {
 
         <div className="w-1/5 border text-left p-2 ">
           <div className="border-4 p-1">
-          <p class="stat-value text-secondary text-3xl">Paid Amound: {Sale.length}</p>
-          <p class="stat-value text-secondary text-2xl">Change Amound: {Product_quantity}</p>
+          <p class="stat-value text-secondary text-2xl">Paid Amound: {payamount}</p>
+          <p class="stat-value text-secondary text-red-500 text-2xl">Change Amound: {cnageamound}</p>
             <div>
               <div className="flex justify-between">
                 <label>Total Quantity : </label>
@@ -332,11 +472,11 @@ const Sales2 = () => {
             </div>
             <div className="flex justify-between">
               <span> Discount  %  </span>
-              <input type="text"  className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
+              <input type="text" onChange={discountP}  className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
             </div>
             <div className="flex justify-between">
               <span> Discount Amound </span>
-              <input type="text"  className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
+              <input type="text" onChange={discountA} className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
             </div>
             <div className="flex justify-between">
               <span> Vat Amound </span>
@@ -368,36 +508,37 @@ const Sales2 = () => {
                       <input type="checkbox" class="toggle toggle-secondary"  />
                    </div>
                    <div>
-                  <select style={{'width':'150px','height':'40px', 'border':'none', 'color':'red'}} id="cars">
-                    <option style={{'font-size': '15px'}}  value="volvo">Cash</option>
-                    <option style={{'font-size': '15px'}}  value="volvo">Due</option>
-                    <option style={{'font-size': '15px'}}  value="volvo">DBBL </option>
-                    <option style={{'font-size': '15px'}}  value="volvo">BKash</option>
-                    <option style={{'font-size': '15px'}}  value="volvo">Rocket</option>
+                  <select onChange={handleCashType} style={{'width':'150px','height':'40px', 'border':'none', 'color':'red'}} id="cars">
+                    <option style={{'font-size': '15px'}}  value="CASH">Cash</option>
+                    <option style={{'font-size': '15px'}}  value="DUE">Due</option>
+                    <option style={{'font-size': '15px'}}  value="DBBL"> DBBL </option>
+                    <option style={{'font-size': '15px'}}  value="BKASH">BKash</option>
+                    <option style={{'font-size': '15px'}}  value="ROCKET">Rocket</option>
                   </select>
                    </div>
             </div>
             <div> 
             <div className="flex justify-between">
               <span> Cash Amount </span>
-              <input type="text"  className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
+              <input type="text" onChange={handleCashA} className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
             </div>
             <div className="flex justify-between">
               <span> Card Amound </span>
-              <input type="text"  className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
+              <input type="text" onChange={hadleCardA}  className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
             </div>
             <div className="flex justify-between">
               <span> Pay Amound </span>
-              <input type="text"  className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
+              <input type="text" onChange={handlePA} className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
             </div>
             <div className="flex justify-between">
               <span> Rtn Amound </span>
-              <input type="text"  className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
+              <input type="text" className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
             </div>
             </div>            
           </div>
         </div>
       </div>
+      
     </div>
   );
 };
@@ -424,3 +565,14 @@ export default Sales2;
 //             placeholder="amound"
 //           />
 //           <button onClick={playSound} className="btn btn-xs">Submit</button>
+
+
+{/* <form onSubmit={handelUpdateQuantity}>
+                      <input type="text" onBlur={() => updateQuantity(r)} placeholder={r.orderq } name='replace_order'/>
+                      <input type="text" value={r.BArdode}  name='replace_order1'/>
+                      </form> */}
+
+//            <form onSubmit={addToCart}>
+//                <label className="p-1">Barcode</label>
+//                <input name="loger" style={{'width':'300px','height':'30px',}} className="input border-2 bg-red-100" type="text" placeholder="Barcode Hear" />
+//             </form>

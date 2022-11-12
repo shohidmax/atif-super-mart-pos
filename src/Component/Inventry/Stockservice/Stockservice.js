@@ -101,11 +101,11 @@ const ref = useRef();
                 </div>
               </div> : 
               
-              <div  ref={ref} class="overflow-x-auto border-primary">
-                <h1 className='m-2 mx-auto text-xl'>{state}</h1>
-                  <table class="table table-compact w-full">
+              <div  style={{'width':'100%'}}  ref={ref}  class="overflow-x-auto border-4 border-primary">
+                <h1 className='m-2 mx-auto text-xl text-center'>{state}</h1>
+                  <table style={{'width':'100%'}}  class="table table-compact w-full">
                     
-                    <thead>
+                    <thead style={{'width':'210mm'}}>
                       <tr>
                         <th>SN</th> 
                         <th>Name</th>  
@@ -138,23 +138,15 @@ const ref = useRef();
                         }
 
                     </tbody> 
-                    <tfoot>
-                      <tr>
-                      <th>SN</th> 
-                        <th>Name</th>  
-                        <th>BarCode</th> 
-                        <th>company</th> 
-                        <th>BRAND</th> 
-                        <th>CPU</th> 
-                        <th>RPU</th> 
-                        <th>Damage </th>
-                        <th>Status</th>
-                        <th className='text-2xl text-red-500'>Total : {total}</th>
-                      </tr>
-                    </tfoot>
+                    
                   </table>
+                  <hr className='border-4 color-black-500'/>
+                        <h1 className='text-2xl text-center m-2 p-2'>Total Damage : {total.toFixed(2)}</h1>
                 </div>
               }
+              <div>
+
+              </div>
             
             </div>
             <ReactPrint trigger={() => <button> print</button>} content={() => ref.current}/>

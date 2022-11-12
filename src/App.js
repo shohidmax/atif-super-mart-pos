@@ -1,3 +1,4 @@
+import react, {useEffect} from 'react';
 
 import './App.css';
 import { Routes, Route, Link } from "react-router-dom";
@@ -42,6 +43,9 @@ import Inputs from './Inputs/Inputs';
 import Qr from './Component/Utilitis/Qr';
 import Salesreportq from './Component/Invoice/Report/Salesreportq';
 import BarCode from './Component/Invoice/BarCode/BarCode';
+import SalesReport from './Component/Invoice/SalesReport/SalesReport';
+import POS from './Component/Pages/POS/POS';
+import Search from './Ecommarce/Search/Search';
 function App() {
   const [Supplier, setSupplier] = useSupplier();
   const [Brand, setBrand] = useBrand();
@@ -50,13 +54,25 @@ function App() {
   const [Products, setProducts] = useProducts();
 // atifsupermart20219922
 // pass FG22zi4j6kRnYTIyP9
+useEffect(() => {
+  document.addEventListener('knpeydown', detectKeydown, true)
+}, []);
+
+const detectKeydown = (e) =>{
+  console.log(e.key, 'clicked E Text');
+}
   return (
+    
+
     <div className="App ">
     <Header ></Header>
+    {/* <h1 style={{'font-family':'FontA11'}}>happy</h1>
+    <h1>happy</h1> */}
     
     <Routes> 
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/pos" element={<POS />} />
         <Route path="/adduser" element={<Adduser></Adduser>} />
         <Route path="/addproduct" element={<Addproduct></Addproduct>} />
         <Route path="/addssr" element={<Addsr></Addsr>} />
@@ -66,7 +82,7 @@ function App() {
         <Route path="/sales2" element={<Sales></Sales>} />
         <Route path="/print" element={<Print></Print>} />
         <Route path="/print1" element={<Print1></Print1>} />
-        <Route path="/Sales" element={<Requireauth><RequireManager><Sales2></Sales2></RequireManager></Requireauth>} />
+        <Route path="/Sales" element={<Requireauth><Sales2></Sales2></Requireauth>} />
         <Route path="/srlist" element={<Requireauth><Srlist></Srlist></Requireauth>} />
         <Route path="/damage" element={<Damage></Damage>} />
         <Route path="/Addsupplier" element={<Addsuppler></Addsuppler>} />
@@ -81,20 +97,20 @@ function App() {
         <Route path="/qr" element={<Qr></Qr>}/>
         <Route path="/bar" element={<Salesreportq></Salesreportq>}/>
         <Route path="/barcode" element={<BarCode></BarCode>}/>
+        <Route path="/sr" element={<SalesReport></SalesReport>}/>
+        <Route path="/search" element={<Search></Search>}/>
+        {/* <Route path="/wpdate:id" element={<Modal1></Modal1>}/> */}
+        {/* <Route path="/sr" element={}/> */}
       </Routes>
     
-    <Modal1></Modal1>
+    
     <Suppliermodal></Suppliermodal>
     <Brandmodal/>
     <Groupmodal></Groupmodal>
     <Productmodal></Productmodal>
     <Productsmodal/>
     <SaleModal></SaleModal>
-    <Toaster
-    position='top-right'
-    reverseOrder={true}  
-
-    />
+    <Toaster position='top-right'  reverseOrder={true}  />
 {/*     
     <h1> ATIF SUPER MART </h1>
     <a href="tel:+8801793496030">call</a>

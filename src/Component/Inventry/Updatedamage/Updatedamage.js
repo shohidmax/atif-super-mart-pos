@@ -11,12 +11,7 @@ const Updatedamage = () => {
         const Find = B.target.bangla.value;
         const url = `https://frozen-badlands-76581.herokuapp.com/damage-stock-update/${Find}`;
         console.log(url);
-        fetch(url, {
-            method: 'GET',
-            headers: {
-              'Content-Type': 'application/json'
-            }
-          })
+        fetch(url)
         .then(r => r.json())
         .then(data => {
             if (!data) {
@@ -27,7 +22,7 @@ const Updatedamage = () => {
         });
         B.target.reset(); 
     };
-
+    // https://frozen-badlands-76581.herokuapp.com
     const handleAddToDamage = event =>{
         event.preventDefault();
         const ids = Pdata._id; 

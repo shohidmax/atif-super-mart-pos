@@ -8,70 +8,7 @@ import { Barcode, QRCode } from "@progress/kendo-react-barcodes";
 
 const Recept = () => {
     const rptdata = [
-        {
-         "product_barcode": "110201",
-         "product_title": "ATIF SUPER MART,RICE, 28 BACHAI 1KG",
-         "QTS": 25,
-         "Column4": 13.53,
-         "RPU": 66,
-         "Column6": 1636.47
-        },
-        {
-         "product_barcode": "1105693",
-         "product_title": "RUCHITA,MURI,MURI 500GM",
-         "QTS": 1,
-         "Column4": 0.33,
-         "RPU": 40,
-         "Column6": 39.67
-        },
-        {
-         "product_barcode": "1135798",
-         "product_title": "ATIF SUPER MART,MASALA,TEJ PATA 50GM",
-         "QTS": 1,
-         "Column4": 0.08,
-         "RPU": 10,
-         "Column6": 9.92
-        },
-        {
-         "product_barcode": "1135901",
-         "product_title": "ATIF SUPER MART,MASALA,CUMIN 100GM",
-         "QTS": 1,
-         "Column4": 0.49,
-         "RPU": 60,
-         "Column6": 59.51
-        },
-        {
-         "product_barcode": "1166894",
-         "product_title": "ATIF SUPER MART,NUTS, KISMIS 100GM",
-         "QTS": 1,
-         "Column4": 0.41,
-         "RPU": 50,
-         "Column6": 49.59
-        },
-        {
-         "product_barcode": "1498155",
-         "product_title": "ATIF SUPER MART,SUGAR,SUGER LOCAL 1KG",
-         "QTS": 1,
-         "Column4": 0.98,
-         "RPU": 120,
-         "Column6": 119.02
-        },
-        {
-         "product_barcode": "1TK",
-         "product_title": "ATIF SUPER MART,ADJUSTMENT,ADJUSTMENT PRODUCT BILL 1TK",
-         "QTS": 150,
-         "Column4": 1.11,
-         "RPU": 1,
-         "Column6": 148.89
-        },
-        {
-         "product_barcode": "841165138418",
-         "product_title": "PRAN,SAUCE,HOT TOMATO SAUCE 750GM",
-         "QTS": 1,
-         "Column4": 1.23,
-         "RPU": 150,
-         "Column6": 148.77
-        },
+    
         {
          "product_barcode": "8901157001143",
          "product_title": "GOOD KNIGHT,LIQUID VAPORISER, POWER ACTIVE 45ML",
@@ -95,55 +32,7 @@ const Recept = () => {
          "Column4": 0.27,
          "RPU": 33,
          "Column6": 32.73
-        },
-        {
-         "product_barcode": "8941100511275",
-         "product_title": "RADHUNI,MASALA, CHICKEN MASALA 20GM",
-         "QTS": 2,
-         "Column4": 0.25,
-         "RPU": 15,
-         "Column6": 29.75
-        },
-        {
-         "product_barcode": "8941100511305",
-         "product_title": "RADHUNI,MASALA,MEAT MASALA 25GM",
-         "QTS": 2,
-         "Column4": 0.3,
-         "RPU": 18,
-         "Column6": 35.7
-        },
-        {
-         "product_barcode": "8941100619452",
-         "product_title": "VIM,DISHWASH,VIM BAR 300GM",
-         "QTS": 1,
-         "Column4": 0.33,
-         "RPU": 40,
-         "Column6": 39.67
-        },
-        {
-         "product_barcode": "8941101010289",
-         "product_title": "ARONG,UHT MILK,UHT MILK 500ML",
-         "QTS": 1,
-         "Column4": 0.45,
-         "RPU": 55,
-         "Column6": 54.55
-        },
-        {
-         "product_barcode": "8941152012324",
-         "product_title": "DANISH,TEA,CLASSIC BLACK TEA BAG 50 BAGES",
-         "QTS": 1,
-         "Column4": 0.62,
-         "RPU": 75,
-         "Column6": 74.38
-        },
-        {
-         "product_barcode": "8941193004562",
-         "product_title": "BASHUNDHARA,OIL, SOYABIN OIL 5LIT",
-         "QTS": 1,
-         "Column4": 7.22,
-         "RPU": 880,
-         "Column6": 872.78
-        }
+        } 
        ]
        const rpt = [
                 {
@@ -341,7 +230,7 @@ const Recept = () => {
                     </div>
                     <div>
                             <div class="overflow-x-auto">
-                              <table class="table table-compact w-full">
+                              <table class="table mb-1 table-compact w-full">
                                 <thead>
                                   <tr>
                                     <th>PrdInfo</th> 
@@ -351,9 +240,9 @@ const Recept = () => {
                                   </tr>
                                 </thead>  
                               </table>
-                                {
+                                { //style={{'font-family':'FontA11'}}
                                     rptdata.map((r,q) => <>
-                                     <h1 style={{'font-size':'12px', 'font-family':'FontA11'}} className='text-start bold'> {r.product_title}  </h1>
+                                     <h1 style={{'font-size':'14px', 'font-family':'FontA11'}} className='text-start bold'> {r.product_title}  </h1>
                                     <div  className='flex justify-between p-1'>
                                         <p className='fond-bold' style={{'font-size':'14px', 'font-family':'FontA11', 'font-wedth':'800'}}>{r.product_barcode} </p>  
                                         <p className='fond-bold' style={{'font-size':'14px'}}>{r.QTS} </p>  

@@ -1,12 +1,18 @@
-import React, { useState, useEffect, useRef } from "react"; 
+import React, { useState, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import useProducts from "../../../Hooks/useProducts/useProducts";
 import Modal1 from "../../Element/Modal1";
-import Recept from "../../Invoice/Recept/Recept"; 
+import Recept from "../../Invoice/Recept/Recept";
+import Print from "../../Print/Print";
 import LoadVlogs from "../../Utilitis/LoadVlogs";
 import toast, { Toaster } from 'react-hot-toast';
-import swal from 'sweetalert';  
+import swal from 'sweetalert';
+import ReactPrint from 'react-to-print';
+
+import { useReactToPrint } from 'react-to-print';
 import auth from "../../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
+
 const Sales2 = () => {
   const [user] = useAuthState(auth);
   const ref = useRef(); 
@@ -14,13 +20,14 @@ const Sales2 = () => {
   const [Sale, setSale] = useState([]);
   const [print, setPrint] = useState(false);
   // const [cart, setCart] = useStat8851607500026
-  const [copy, setCopy] = useState([]);
-  const [Products, setProducts] = useState([]);
+  const [copy, setCopy] = useState('');
+  const [Products, setProducts] = useProducts();
   const [Cproduct, setCproduct] = useState({});
   //------------------------------------------------------------------ Date and Time---------------------------------------------------
 const date = new Date();
 const [month, day, year] = [date.getMonth(), date.getDate(), date.getFullYear()];
 const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSeconds()];
+
   // ------------------------------------------------------------ salese informatin for every invoice  ---------------------------------
   const [Qty, setQty] = useState('');
   const [Produc, setProduct] = useState('');
@@ -65,11 +72,11 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
     const discountP = event => {
       setDiscountP(event.target.value);
     }
-    // --------------------------------------------------------- discount amound  -------------------------------------------
+    // --------------------------------------------------------------------- discount amound  -------------------------------------------
     const discountA = event => {
       setDiscount(event.target.value); 
     }
-    // -------------------------------------------------------- payment  Type ---------------------------------------------
+    // --------------------------------------------------------------------- payment  Type ---------------------------------------------
     if (PayType == '') {
       setPayType('CASH');
       
@@ -79,7 +86,7 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
       setPayType(event.target.value);
     }
     
-    //---------------------------------------------------------card pay amound  ----------------------------------------------
+    //--------------------------------------------------------------------- card pay amound  ----------------------------------------------
     const hadleCardA = event => {
       setcardAmound(event.target.value);
     }
@@ -88,7 +95,7 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
       setCashAmound(event.target.value);
     }
     
-  // ------------------------------------------------------- Detect key sortcut ----------------------------------------
+  // --------------------------------------------------------------------- Detect key sortcut ----------------------------------------
 
     useEffect(() => {
       fetch('https://frozen-badlands-76581.herokuapp.com/hold')
@@ -96,15 +103,18 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
       .then(data => setHold(data))
     }, [Hold]);
 
-    useEffect(() => {
-      fetch('https://frozen-badlands-76581.herokuapp.com/products')
-      .then(r => r.json())
-      .then(data => setProducts(data))
-    }, [Products]);
+    // useEffect(() => {
+    //   fetch('https://frozen-badlands-76581.herokuapp.com/products')
+    //   .then(r => r.json())
+    //   .then(data => setProducts(data))
+    // }, [Products]);
 // -------------------------------------------------- key function -----------------------------------------------------------------
     const DetectKey =(e)=>{
       console.log(e.key, 'clicked E Text');
-    } 
+    }
+
+
+
   //------------------------------------------------------------------------- Price Calculation ------------------------------------
     let total = 0;
     let Product_quantity = 0;
@@ -156,9 +166,12 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
         console.log(data)
         const rtp =[];
         setSale(rtp);
-        swal("Product Hold successfully!"); 
-      }) 
-        // setHold(finalData.toArray()) 
+        swal("Product Hold successfully!");
+
+      })
+
+        // setHold(finalData.toArray())
+        
       }
     }
     // ------------------------------------------------------------------------ recall hold data ----------------------------===
@@ -184,78 +197,162 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
     if (print == true) {
       return <Recept></Recept>;
     }
+    //------------------------------------------------------------------------- Update quantity --------------------------------
 
+    const updateQuantity = async (e, q) =>{
+      // const rw = await e.target.value 
+      // e.preventDefault();
+      // const rb = e.target.value;
+      handelUpdateQuantity()
+    }
     //------------------------------------------------------- Update quantity --------------------------------
     const handelUpdateQuantity = (R) =>{ 
       R.preventDefault();
       const Replace = R.target.replace_order.value;
       setupdateQTY(Replace)
-      R.target.reset(); 
+      R.target.reset();
+    
        return Replace;
-  } 
+  }
+
 //---------------------------------------------------------add to cart ----------------------------------------------------
 
- 
 const addToCart = (barcode) => {
   // get barcode from search Input
-  const getbarcode = barcode ; 
-  // const getbarcode = barcode || barcode.target.loger.value; 
+  const getbarcode = barcode || barcode.target.loger.value; 
   // find product from store or database 
   const getSerarchProduct = Products.find((p) => p.BarCode == getbarcode);
-  // console.log(getSerarchProduct, '0000000000000000000000000000000000000000000000000000');
-  if (getSerarchProduct === undefined) {
-        return swal("Product Not found"); 
-  }
   const existe = Sale.find((i) => i.BarCode == getSerarchProduct.BarCode);
   setCproduct(getSerarchProduct)
   // comparare local state and database
-  // let newMatch = getSerarchProduct == existe;
+  let newMatch = getSerarchProduct == existe;
   // if data not store in object so get datat and set also aquantity
-    if (!existe) {
-        
+    if (newMatch == false) {
       if (!getSerarchProduct.StockQty == 0) {
         getSerarchProduct.orderq = 1;
         setSale([...Sale, getSerarchProduct]);
-      }else {
+        
+      } else {
         swal("Product Out of Stock!");
       }
     } else{
       // --------------------------------------------________________________________________________________________#############################
-      if (getSerarchProduct.StockQty >= existe.orderq + 1 == true) { 
-        const rolex = Sale.find((i) => i.BarCode == getbarcode);
-        rolex.orderq = rolex.orderq + 1;
-        setSale([...Sale])
-      } else {  
-        swal("no more products Stock!");
-      }
+      const rolex = Sale.find((i) => i.BarCode == getbarcode);
+      rolex.orderq = rolex.orderq + 1;
+      const rolex2 = [{rolex}]
+        const maps = [...Sale];
+      const maps2 = maps.map(obj => rolex2.find(o => o.BarCode === obj.BarCode) || obj);
+      setSale([...Sale])
     }
+  
  }
+
+
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+// const addToCart = (barcode) => {
+//   // get barcode from search Input
+//   const getbarcode = barcode || barcode.target.loger.value; 
+//   // find product from store or database 
+//   const getSerarchProduct = Products.find((p) => p.BarCode == getbarcode);
+//   const existe = Sale.find((i) => i.BarCode == getSerarchProduct.BarCode);
+//   setCproduct(getSerarchProduct)
+//   // comparare local state and database
+//   let newMatch = getSerarchProduct == existe;
+//   // if data not store in object so get datat and set also aquantity
+//     if (newMatch == false) {
+//       if (!getSerarchProduct.StockQty == 0) {
+//         getSerarchProduct.orderq = 1;
+//         setSale([...Sale, getSerarchProduct]);
+        
+//       } else {
+//         swal("Product Out of Stock!");
+//       }
+//     } else{
+//       // --------------------------------------------________________________________________________________________#############################
+//       if (existe.orderq >= existe.StockQty) {
+//         const rolex = Sale.find((i) => i.BarCode == getbarcode);
+//         console.log(existe.orderq >= existe.StockQty);
+//         rolex.orderq = rolex.orderq + 1;
+//         const rolex2 = [{rolex}]
+//         const maps = [...Sale];
+//         const maps2 = maps.map(obj => rolex2.find(o => o.BarCode === obj.BarCode) || obj);
+//         setSale([...Sale])
+        
+//       } else {
+//         swal("no more pro!");
+//       }
+      
+//     }
+  
+//  }
+// 8888888888***************************************************************************
+
+// const addToCart = (barcode) =>{ 
+//   const getbarcode = barcode; 
+//   const selectedProduct = Products.find((p) => p.BarCode == getbarcode); 
+//   let newCart = [];
+//   const exists = Sale.find(product => product.BarCode === selectedProduct.BarCode);
+//   console.log(exists);
+//   if(!exists){
+//       if (!selectedProduct.StockQty == 0) {
+//         selectedProduct.orderq = 1;
+//         newCart = [...Sale, selectedProduct];
+//       } else {
+//         toast.error('out of tock');
+//       }
+//   }
+//   else{
+//     const rest = Sale.filter(product => product.BarCode !== selectedProduct.BarCode); 
+//       exists.orderq = exists.orderq + 1;
+//       newCart = [...rest, exists];
+//     // if () {
+//     //   console.log(exists.orderq >= exists.StockQty,exists.orderq >= selectedProduct.StockQty == true);
+//     // } else {
+//     //   toast.error(' no more products')
+//     // }
+//   }
+//   setSale(newCart);
+//   // addToDb(selectedProduct.id);
+// }
+
+
+
      // ------------------------------------------------------------add To Cart 2 --------------------------------------------------
      const addToCart2 = ( barcode2) =>{
       addToCart(barcode2.toUpperCase());
-     } 
+     }
+     
+
      // ------------------------------------------------------------add To Cart 2--------------------------------------------------
      const addToCart3 = ( barcode3) =>{
       barcode3.preventDefault();
       const getbarcode = barcode3.target.loger.value; 
       addToCart(getbarcode.toUpperCase());
       barcode3.target.reset();
-     } 
+     }
+
+
      //----------------------------------------------------------------------------------------------------------------------------
      const remoVeItem = (data) =>{
       // const removestate = Sale.remove(r) 
       const process = window.confirm('Do you want to remove Sales all Items');
       if (process) {
-        const arr = Sale.filter(item => item !== data);
+        const arr = Sale.filter(item => item !== data)
+
       setSale(arr)
+        
       }
+      
+
      }
+
      // ----------------------------------------------------------------- applay promotion ---------------
      const applayPromotion =() =>{
-
       const Saled = Sale;
       const date = new Date();
       const finalData = {Saled};
+
       const a = `http://localhost:5000/finalsale`;
       console.log(a);
       fetch(a,{
@@ -269,7 +366,6 @@ const addToCart = (barcode) => {
       .then(r => r.json())
       .then(data => {
         console.log(data)
-        toast.success(`${data.data}`)
         const a =[];
         setSale(a)
  
@@ -331,7 +427,7 @@ const addToCart = (barcode) => {
   // 01620141018 saju vai web developer uber
  //------------------------------------------------------------------- Print Last Invoice ------------------------------------
  const printLastInvoice = () =>{
-    const array1 = [5,7,9, 11];
+    const array1 = [5,7,9];
     console.log(array1[array1.length -1]);
  }
  
@@ -743,3 +839,109 @@ export default Sales2;
 //     }
   
 //  }
+
+
+
+//-------------------------------------- Trash List--------------------------------------
+
+
+
+
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//--------------------------------draft---------------------
+    // const rolex2 = [{rolex}]
+        // const maps = [...Sale];
+      // const maps2 = maps.map(obj => rolex2.find(o => o.BarCode === obj.BarCode) || obj);
+      // console.log(maps2);
+
+//-----------------------------end draft -------------------
+// const addToCart = (barcode) => {
+//   // get barcode from search Input
+//   const getbarcode = barcode || barcode.target.loger.value; 
+//   // find product from store or database 
+//   const getSerarchProduct = Products.find((p) => p.BarCode == getbarcode);
+//   const existe = Sale.find((i) => i.BarCode == getSerarchProduct.BarCode);
+//   setCproduct(getSerarchProduct)
+//   // comparare local state and database
+//   let newMatch = getSerarchProduct == existe;
+//   // if data not store in object so get datat and set also aquantity
+//     if (newMatch == false) {
+//       if (!getSerarchProduct.StockQty == 0) {
+//         getSerarchProduct.orderq = 1;
+//         setSale([...Sale, getSerarchProduct]);
+        
+//       } else {
+//         swal("Product Out of Stock!");
+//       }
+//     } else{
+//       // --------------------------------------------________________________________________________________________#############################
+//       if (existe.orderq >= existe.StockQty) {
+//         const rolex = Sale.find((i) => i.BarCode == getbarcode);
+//         console.log(existe.orderq >= existe.StockQty);
+//         rolex.orderq = rolex.orderq + 1;
+//         const rolex2 = [{rolex}]
+//         const maps = [...Sale];
+//         const maps2 = maps.map(obj => rolex2.find(o => o.BarCode === obj.BarCode) || obj);
+//         setSale([...Sale])
+        
+//       } else {
+//         swal("no more pro!");
+//       }
+      
+//     }
+  
+//  }
+// 8888888888***************************************************************************
+
+// const addToCart = (barcode) =>{ 
+//   const getbarcode = barcode; 
+//   const selectedProduct = Products.find((p) => p.BarCode == getbarcode); 
+//   let newCart = [];
+//   const exists = Sale.find(product => product.BarCode === selectedProduct.BarCode);
+//   console.log(exists);
+//   if(!exists){
+//       if (!selectedProduct.StockQty == 0) {
+//         selectedProduct.orderq = 1;
+//         newCart = [...Sale, selectedProduct];
+//       } else {
+//         toast.error('out of tock');
+//       }
+//   }
+//   else{
+//     const rest = Sale.filter(product => product.BarCode !== selectedProduct.BarCode); 
+//       exists.orderq = exists.orderq + 1;
+//       newCart = [...rest, exists];
+//     // if () {
+//     //   console.log(exists.orderq >= exists.StockQty,exists.orderq >= selectedProduct.StockQty == true);
+//     // } else {
+//     //   toast.error(' no more products')
+//     // }
+//   }
+//   setSale(newCart);
+//   // addToDb(selectedProduct.id);
+// }
+
+
+
+-----------------------------------------------draft ----------------------------------------
+const addToCart5 =  barcode =>{
+    const getBarcode = barcode;
+    // console.log(getBarcode, 'get barcode form function props');
+    const getProduct = Products.find(pro => pro.BarCode == getBarcode)
+    // console.log('get product fron store or state', getProduct);
+    const exis = copy.find(f => f.BarCode == getBarcode);
+    // console.log('find  from use state',exis);
+    if (!exis) {
+      getProduct.orderq = 1;
+      setCopy([...copy,getProduct])
+      
+    } else {
+      console.log('product already added');
+      // const updateProduct = copy.find(q => q.BarCode == getBarcode) 
+      const arr = copy.filter(item => item.BarCode !== getBarcode);
+      setCopy(arr) 
+
+    }
+
+    console.log(copy);
+}

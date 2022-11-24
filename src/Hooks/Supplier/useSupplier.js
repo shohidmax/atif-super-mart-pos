@@ -7,7 +7,7 @@ const useSupplier = () =>{
         fetch('https://frozen-badlands-76581.herokuapp.com/supplier')
         .then(res => res.json())
         .then(data => setSupplier(data));
-    }, []);
+    }, [Supplier]);
     return [Supplier, setSupplier]
 }
 

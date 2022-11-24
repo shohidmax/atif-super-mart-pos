@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import Sales2 from '../../Pages/Sales2/Sales2';
 
 const RequireManager = ({children}) => {
@@ -28,7 +29,7 @@ const RequireManager = ({children}) => {
             <form onSubmit={approve}>
                 <input type="text" className='input m-2' name='pass1' placeholder='Login Password' autoComplete='off'  required/> <br/>
                 <input className='btn m-2' type="submit" value='Login' />
-                <input className='btn' type="submit" value='Home' />
+                <Link to="/home"  className='btn'>Home</Link>
             </form>
             
         </div>

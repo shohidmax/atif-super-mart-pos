@@ -9,8 +9,7 @@ import Home from './Component/Pages/Home/Home';
 import useSupplier from './Hooks/Supplier/useSupplier';
 import useBrand from './Hooks/Brand/useBrand';
 import useProduct from './Hooks/Product/useProduct';
-import useGroups from './Hooks/Groups/useGroups';
-import Modal1 from './Component/Element/Modal1';
+import useGroups from './Hooks/Groups/useGroups'; 
 import Suppliermodal from './Component/Element/Suppliermodal';
 import Brandmodal from './Component/Element/Brandmodal';
 import Productmodal from './Component/Element/Productmodal';
@@ -46,6 +45,10 @@ import BarCode from './Component/Invoice/BarCode/BarCode';
 import SalesReport from './Component/Invoice/SalesReport/SalesReport';
 import POS from './Component/Pages/POS/POS';
 import Search from './Ecommarce/Search/Search';
+import Dashboard from './Component/Pages/Dashboard/Dashboard';
+import DashboardProfile from './Component/Pages/DashboardProfile/DashboardProfile';
+import Notfound from './Component/Pages/Notfound/Notfound';
+import Preceve from './Component/Inventry/Preceve/Preceve';
 function App() {
   const [Supplier, setSupplier] = useSupplier();
   const [Brand, setBrand] = useBrand();
@@ -66,6 +69,7 @@ const detectKeydown = (e) =>{
 
     <div className="App ">
     <Header ></Header>
+
     {/* <h1 style={{'font-family':'FontA11'}}>happy</h1>
     <h1>happy</h1> */}
     
@@ -94,11 +98,21 @@ const detectKeydown = (e) =>{
         <Route path="/accounts" element={<Account></Account>}/>
         <Route path="/rpt" element={<Recept></Recept>}/>
         <Route path="/inputs" element={<Inputs></Inputs>}/>
-        <Route path="/qr" element={<Qr></Qr>}/>
         <Route path="/bar" element={<Salesreportq></Salesreportq>}/>
-        <Route path="/barcode" element={<BarCode></BarCode>}/>
-        <Route path="/sr" element={<SalesReport></SalesReport>}/>
+        <Route path="/sr" element={<SalesReport></SalesReport>}/> 
         <Route path="/search" element={<Search></Search>}/>
+        <Route path="/pr" element={<Preceve></Preceve>}/>
+        <Route path="/dashboard" element={<Dashboard/>}>
+          <Route index element={<DashboardProfile/>}></Route>
+          <Route path="/dashboard/addsr" element={<Sales2></Sales2>}></Route>
+          <Route path="/dashboard/qr" element={<Qr></Qr>}/>
+          <Route path="/dashboard/barcode" element={<BarCode></BarCode>}/>
+          <Route path="/dashboard/rpt" element={<Recept></Recept>}/>
+
+
+
+        </Route>
+        <Route path='*' element={<Notfound></Notfound>}>not found</Route>
         {/* <Route path="/wpdate:id" element={<Modal1></Modal1>}/> */}
         {/* <Route path="/sr" element={}/> */}
       </Routes>

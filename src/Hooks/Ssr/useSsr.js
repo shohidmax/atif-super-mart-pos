@@ -7,7 +7,7 @@ const useSsr = () =>{
         fetch('https://frozen-badlands-76581.herokuapp.com/Ssr')
         .then(res => res.json())
         .then(data => setSsr(data));
-    }, []);
+    }, [Ssr]);
     return [Ssr, setSsr]
 }
 

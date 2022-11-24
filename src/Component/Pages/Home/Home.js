@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Slider from '../Slider/Slider';
 import toast, { Toaster } from 'react-hot-toast';
 import { Link } from 'react-router-dom';
+import Header from '../Header/Header';
 
 const Home = () => {
     const [salese, setSales] = useState([]);
@@ -134,7 +135,7 @@ const Home = () => {
         }
     ];
     const load = () =>{
-        const url = 'http://localhost:5000/sale';
+        const url = 'https://frozen-badlands-76581.herokuapp.com/sale';
         fetch(url)
         .then(r => r.json())
         .then(data => setSales(data))
@@ -147,7 +148,7 @@ const Home = () => {
         const edate = e.target.edate.value;
         console.log(sdate, edate);
         const finddata = {sdate, edate};
-        const url = `http://localhost:5000/datefilter?sdate=${sdate}&edate=${edate}`;
+        const url = `https://frozen-badlands-76581.herokuapp.com/datefilter?sdate=${sdate}&edate=${edate}`;
         fetch(url )
         .then(r => r.json())
         .then(data => {
@@ -172,7 +173,7 @@ const Home = () => {
         const newSale = {date, name, about};
         console.log(newSale);
         if (newSale) {
-            fetch('http://localhost:5000/sale', {
+            fetch('https://frozen-badlands-76581.herokuapp.com/sale', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -193,6 +194,7 @@ const Home = () => {
 
     return (
         <div className='p-2'>
+
             {/* <Slider></Slider> */}
             &lt;P&gt; This is Paragraph {salese.length} &lt;/P&gt;
             <button className='btn' onClick={load}>load data</button>

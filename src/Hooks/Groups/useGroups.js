@@ -7,7 +7,7 @@ const useGroups = () =>{
         fetch('https://frozen-badlands-76581.herokuapp.com/group')
         .then(res => res.json())
         .then(data => setGroups(data));
-    }, []);
+    }, [Groups]);
     return [Groups, setGroups]
 }
 

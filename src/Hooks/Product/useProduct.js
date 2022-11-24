@@ -7,7 +7,7 @@ const useProduct = () =>{
         fetch('https://frozen-badlands-76581.herokuapp.com/product')
         .then(res => res.json())
         .then(data => setProduct(data));
-    }, []);
+    }, [Product]);
     return [Product, setProduct]
 }
 

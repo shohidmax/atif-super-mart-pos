@@ -47,6 +47,7 @@ const Header = () => {
         
       </li>
       <li className='btn btn-primary p-2 m-2 '><Link to="/sales">Sales</Link></li>
+      <li className='btn btn-primary p-2 m-2 '><Link to="/dashboard">Dashboard</Link></li>
       <li className='btn btn-primary p-2 m-2 ' tabindex="0">
         <a>
           Parent

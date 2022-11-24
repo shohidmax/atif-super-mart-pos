@@ -1,26 +1,30 @@
-import React, { useState, useEffect, useRef } from "react"; 
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import useProducts from "../../../Hooks/useProducts/useProducts";
 import Modal1 from "../../Element/Modal1";
-import Recept from "../../Invoice/Recept/Recept"; 
+import Recept from "../../Invoice/Recept/Recept";
+import Print from "../../Print/Print";
 import LoadVlogs from "../../Utilitis/LoadVlogs";
 import toast, { Toaster } from 'react-hot-toast';
-import swal from 'sweetalert';  
+import swal from 'sweetalert';
 import auth from "../../../firebase.init";
 import { useAuthState } from "react-firebase-hooks/auth";
+
 const Sales2 = () => {
   const [user] = useAuthState(auth);
-  const ref = useRef(); 
+ 
   //-------------------------------------------------------------------- Main State ----------------------------------------------------
   const [Sale, setSale] = useState([]);
   const [print, setPrint] = useState(false);
   // const [cart, setCart] = useStat8851607500026
-  const [copy, setCopy] = useState([]);
-  const [Products, setProducts] = useState([]);
+  const [copy, setCopy] = useState('');
+  const [Products] = useProducts();
   const [Cproduct, setCproduct] = useState({});
   //------------------------------------------------------------------ Date and Time---------------------------------------------------
-const date = new Date();
+  const date = new Date();
 const [month, day, year] = [date.getMonth(), date.getDate(), date.getFullYear()];
 const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSeconds()];
+
   // ------------------------------------------------------------ salese informatin for every invoice  ---------------------------------
   const [Qty, setQty] = useState('');
   const [Produc, setProduct] = useState('');
@@ -47,16 +51,6 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
     const handleMobile = event => {
       setMobile(event.target.value);
     }
-// ------------------------------------------------------------------------- Coustomer Mobile Number -------------------------------
-    const PaymentType = event => {
-      setPayType(event.target.value);
-    }
-// ------------------------------------------------------------------------- Coustomer Mobile Number -------------------------------
-    const CoustomerName = event => {
-      console.log(event.target.value);
-
-      setCoustomer(event.target.value);
-    }
    // -----------------------------------------------------------------------  pay amound     ----------------------------------------
     const handlePA = event => {
       setPayamount(event.target.value);
@@ -65,21 +59,16 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
     const discountP = event => {
       setDiscountP(event.target.value);
     }
-    // --------------------------------------------------------- discount amound  -------------------------------------------
+    // --------------------------------------------------------------------- discount amound  -------------------------------------------
     const discountA = event => {
-      setDiscount(event.target.value); 
+      setDiscount(event.target.value);
     }
-    // -------------------------------------------------------- payment  Type ---------------------------------------------
-    if (PayType == '') {
-      setPayType('CASH');
-      
-    }
+    // --------------------------------------------------------------------- payment  Type ---------------------------------------------
     const handleCashType = event => {
-       
       setPayType(event.target.value);
     }
     
-    //---------------------------------------------------------card pay amound  ----------------------------------------------
+    //--------------------------------------------------------------------- card pay amound  ----------------------------------------------
     const hadleCardA = event => {
       setcardAmound(event.target.value);
     }
@@ -88,23 +77,20 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
       setCashAmound(event.target.value);
     }
     
-  // ------------------------------------------------------- Detect key sortcut ----------------------------------------
+  // --------------------------------------------------------------------- Detect key sortcut ----------------------------------------
 
     useEffect(() => {
       fetch('https://frozen-badlands-76581.herokuapp.com/hold')
       .then(r => r.json())
       .then(data => setHold(data))
-    }, [Hold]);
-
-    useEffect(() => {
-      fetch('https://frozen-badlands-76581.herokuapp.com/products')
-      .then(r => r.json())
-      .then(data => setProducts(data))
-    }, [Products]);
+    }, [Sale]);
 // -------------------------------------------------- key function -----------------------------------------------------------------
     const DetectKey =(e)=>{
       console.log(e.key, 'clicked E Text');
-    } 
+    }
+
+
+
   //------------------------------------------------------------------------- Price Calculation ------------------------------------
     let total = 0;
     let Product_quantity = 0;
@@ -131,7 +117,7 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
       const words =  str.split(' ');
       console.log(words);
       // ----- make  object --------
-      const Hold_ID =  `${words[1]}${day}${month + 1}${minutes}${seconds}`;
+      const Hold_ID =  `${words[1]}${day}${month}${minutes}${seconds}`;
       const Hold_attendent =  user.displayName;
       const Hold_quntity =  Hold_quantity;
       const Hold_items =  Sale.length;
@@ -156,9 +142,12 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
         console.log(data)
         const rtp =[];
         setSale(rtp);
-        swal("Product Hold successfully!"); 
-      }) 
-        // setHold(finalData.toArray()) 
+        swal("Product Hold successfully!");
+
+      })
+
+        // setHold(finalData.toArray())
+        
       }
     }
     // ------------------------------------------------------------------------ recall hold data ----------------------------===
@@ -184,159 +173,92 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
     if (print == true) {
       return <Recept></Recept>;
     }
+    //------------------------------------------------------------------------- Update quantity --------------------------------
 
-    //------------------------------------------------------- Update quantity --------------------------------
+    const updateQuantity = async (e, q) =>{
+      // const rw = await e.target.value 
+      // e.preventDefault();
+      // const rb = e.target.value;
+      handelUpdateQuantity()
+    }
+    //-------------------------------------------------------------------------Update quantity--------------------------------
     const handelUpdateQuantity = (R) =>{ 
       R.preventDefault();
       const Replace = R.target.replace_order.value;
       setupdateQTY(Replace)
-      R.target.reset(); 
+    
        return Replace;
-  } 
+       R.target.reset();
+  }
+
 //---------------------------------------------------------add to cart ----------------------------------------------------
 
- 
-const addToCart = (barcode) => {
-  // get barcode from search Input
-  const getbarcode = barcode ; 
-  // const getbarcode = barcode || barcode.target.loger.value; 
-  // find product from store or database 
-  const getSerarchProduct = Products.find((p) => p.BarCode == getbarcode);
-  // console.log(getSerarchProduct, '0000000000000000000000000000000000000000000000000000');
-  if (getSerarchProduct === undefined) {
-        return swal("Product Not found"); 
-  }
-  const existe = Sale.find((i) => i.BarCode == getSerarchProduct.BarCode);
-  setCproduct(getSerarchProduct)
-  // comparare local state and database
-  // let newMatch = getSerarchProduct == existe;
-  // if data not store in object so get datat and set also aquantity
-    if (!existe) {
-        
-      if (!getSerarchProduct.StockQty == 0) {
-        getSerarchProduct.orderq = 1;
-        setSale([...Sale, getSerarchProduct]);
-      }else {
-        swal("Product Out of Stock!");
-      }
-    } else{
-      // --------------------------------------------________________________________________________________________#############################
-      if (getSerarchProduct.StockQty >= existe.orderq + 1 == true) { 
-        const rolex = Sale.find((i) => i.BarCode == getbarcode);
-        rolex.orderq = rolex.orderq + 1;
-        setSale([...Sale])
-      } else {  
-        swal("no more products Stock!");
-      }
-    }
- }
+   const addToCart = (barcode) => {
+      // get barcode from search Input
+      const getbarcode = barcode || barcode.target.loger.value; 
+      // find product from store or database 
+      const getSerarchProduct = Products.find((p) => p.BarCode == getbarcode);
+      const existe = Sale.find((i) => i.BarCode == getSerarchProduct.BarCode);
+      setCproduct(getSerarchProduct)
+      // comparare local state and database
+      let newMatch = getSerarchProduct == existe;
+      // if data not store in object so get datat and set also aquantity
+        if (newMatch == false) {
+          if (!getSerarchProduct.StockQty == 0) {
+            getSerarchProduct.orderq = 1;
+            setSale([...Sale, getSerarchProduct]);
+            
+          } else {
+            swal("Product Out of Stock!");
+          }
+        } else{
+          // --------------------------------------------________________________________________________________________#############################
+          const rolex = Sale.find((i) => i.BarCode == getbarcode);
+          rolex.orderq = rolex.orderq + 1;
+          const rolex2 = [{rolex}]
+            const maps = [...Sale];
+          const maps2 = maps.map(obj => rolex2.find(o => o.BarCode === obj.BarCode) || obj);
+          setSale([...Sale])
+        }
+      
+     }
+
+
+
      // ------------------------------------------------------------add To Cart 2 --------------------------------------------------
      const addToCart2 = ( barcode2) =>{
-      addToCart(barcode2.toUpperCase());
-     } 
+      addToCart(barcode2);
+     }
+     
+
      // ------------------------------------------------------------add To Cart 2--------------------------------------------------
      const addToCart3 = ( barcode3) =>{
       barcode3.preventDefault();
       const getbarcode = barcode3.target.loger.value; 
-      addToCart(getbarcode.toUpperCase());
+      addToCart(getbarcode);
       barcode3.target.reset();
-     } 
+     }
+
+
      //----------------------------------------------------------------------------------------------------------------------------
      const remoVeItem = (data) =>{
       // const removestate = Sale.remove(r) 
-      const process = window.confirm('Do you want to remove Sales all Items');
-      if (process) {
-        const arr = Sale.filter(item => item !== data);
+      const arr = Sale.filter(item => item !== data)
+
       setSale(arr)
-      }
-     }
-     // ----------------------------------------------------------------- applay promotion ---------------
-     const applayPromotion =() =>{
-
-      const Saled = Sale;
-      const date = new Date();
-      const finalData = {Saled};
-      const a = `http://localhost:5000/finalsale`;
-      console.log(a);
-      fetch(a,{
-        method: 'PUT',
-        headers: {
-            'content-type': 'application/json',
-            'Accept': 'application/json'
-        },
-        body: JSON.stringify(finalData)
-    })
-      .then(r => r.json())
-      .then(data => {
-        console.log(data)
-        toast.success(`${data.data}`)
-        const a =[];
-        setSale(a)
- 
-      })
 
      }
-        //----------------------------------------------- recept send ---------------------------------------------------------------
-    const returnreceapt = () =>{
-      return <Recept></Recept> ; 
 
-      
-    }
- 
 
-// ---------------------------------------------------------------------Final sale Data for invoice -----------------------------------------
-    const HandlePrintandSubmit = () =>{
-    const process = window.confirm('Do you want to remove Sales all Items');
-    if (process) {
-      const User_Sale = [user.displayName, user.email];
-      console.log(User_Sale);
-      const Shop_ID = 'AM01'; 
-      const newmonth = month + 1;
-      const Sale_Date =  `${year}-${newmonth}-${day}`;
-      const Sale_Time =  `${hour}${minutes}${seconds}`;
-      const Sale_Invoice = `${day}${month + 1}${year}${Shop_ID}010001`;
-      // const Sale_Invoice = `${day}${month + 1}${year}${Shop_ID}010001`.slice(-4);
-      const Coustomer_Name = Coustomer;
-      const Sale_Discount = Discount;
-      const Sale_Pay_Type = PayType;
-      const Sale_Quntity = Product_quantity;
-      const Pay_Amound = 1;
-      const RTN_Amound = 1;
-      const Sale_Data = Sale;
-      console.log({Sale_Time ,Shop_ID,Sale_Date, Sale_Invoice,Coustomer_Name,Sale_Discount,Sale_Pay_Type,Sale_Quntity,Pay_Amound,RTN_Amound,Sale_Data});
 
-      returnreceapt()   
-    }
-
-    }
-    // ------------------------------------------------------ Pay amound -----------------------------------------------------
-    const payAmound1 =(e) =>{
-      e.preventDefault();
-      HandlePrintandSubmit()
-      e.target.reset();
-      
-    }
- 
 
   // -----------------------------------------------------------------------reset sales datat------------------------------------- 
   const reset = () => {
-    const process = window.confirm('Do you want to remove Sales all Items');
-    if (process) {
-      let a = [];
-      setSale(a);
-      toast.success(`Sales Data has been cleard`);
-    }
-
-  } 
-  // 01620141018 saju vai web developer uber
- //------------------------------------------------------------------- Print Last Invoice ------------------------------------
- const printLastInvoice = () =>{
-    const array1 = [5,7,9, 11];
-    console.log(array1[array1.length -1]);
- }
+    let a = [];
+    setSale(a);
+    toast.success(`Sales Data has been cleard`);
+  }
  
-// expected outpu
-
   // Product loading
   if (Products <= 500) {
     return <LoadVlogs></LoadVlogs>;
@@ -358,7 +280,8 @@ const addToCart = (barcode) => {
     "Damage_Quntity": 0,
     "Comment": 0,
     "Status": "active"
-  } 
+}
+// console.log(user);
   return (
     <div>
       <div className="flex p-6 m-6  w-5/5 border">
@@ -425,7 +348,7 @@ const addToCart = (barcode) => {
           
             <div>
             <label className="p-2"> Name </label>
-            <input   onChange={CoustomerName} style={{'width':'350px','height':'30px',}} className="input border-2 bg-red-100 " type="text" placeholder="Coustomer Name Here" />
+            <input name="loger" style={{'width':'350px','height':'30px',}} className="input border-2 bg-red-100 " type="text" placeholder="Coustomer Name Here" />
             </div>
         </div>
         <hr/>
@@ -459,9 +382,9 @@ const addToCart = (barcode) => {
                 </tr>
               </thead>
               <tbody>
-                {Sale.slice(0).reverse().map((r, index) => (
-                  <tr key={index + 1}> 
-                    <th>{(Sale.length - 1)  - (index - 1)}</th>
+                {Sale.map((r, index) => (
+                  <tr key={index + 1}>
+                    <th>{index + 1}</th>
                     <td><button onClick={handCopy} type="input" name="copy" value={r.BarCode}> {r.BarCode}</button></td>  
                     <td>{r.Brand} {" "}{r.Style} </td>
                     <td>{r.RPU}</td>  
@@ -469,7 +392,8 @@ const addToCart = (barcode) => {
                     <td> 00.00</td>
                     <td>
                     {r.RPU * r.orderq}
-                   <Modal1 _id={r._id}  r={r} Sale={Sale} setSale={setSale} ></Modal1> 
+                   <Modal1 _id={r._id}  r={r} Sale={Sale} setSale={setSale} ></Modal1>
+
                    </td>
                    <td> 
                    <div class="dropdown ">
@@ -501,7 +425,7 @@ const addToCart = (barcode) => {
                   <th>Qty</th>
                   <th>Items</th>
                   <th>Amound</th>
-                  <th>recall</th>
+                  <th> recall</th>
                 </tr>
               </thead>
               <tbody>
@@ -535,8 +459,8 @@ const addToCart = (barcode) => {
           <div className="border-2 mx-auto" style={{'width':'55%'}}>
             {/* 1st div  */}
             <div className="flex">
-            <button onClick={applayPromotion}  style={{'width':'25%', 'height':'32px'}} className=" btn-primary m-1 w-1/4">Applay Promotion</button>
-            <button onClick={printLastInvoice}  style={{'width':'70%', 'height':'32px'}} className=" btn-primary m-1 ">Print Last invoice</button>
+            <button  style={{'width':'25%', 'height':'32px'}} className=" btn-primary m-1 w-1/4">Applay Promotion</button>
+            <button  style={{'width':'70%', 'height':'32px'}} className=" btn-primary m-1 ">Print Last invoice</button>
             
 
             </div>
@@ -548,7 +472,7 @@ const addToCart = (barcode) => {
             {/* 3rd div  */}
             <div>
             <button onClick={reset} style={{'width':'25%', 'height':'32px'}} className=" btn-primary m-1 ">Clear Sale</button>
-            <button onClick={HandlePrintandSubmit}  style={{'width':'70%', 'height':'32px'}} className=" btn-primary m-1 ">Print and submin</button>
+            <button onClick={saveInvoiceData}  style={{'width':'70%', 'height':'32px'}} className=" btn-primary m-1 ">Print and submin</button>
             
 
 
@@ -659,13 +583,10 @@ const addToCart = (barcode) => {
               <span> Card Amound </span>
               <input type="text" onChange={hadleCardA}  className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
             </div>
-            <form  onSubmit={payAmound1}>
-                <div className="flex justify-between">
-                <span> Pay Amound </span> 
-                <input type="text" onChange={handlePA} className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
-                </div>
-            </form>
-
+            <div className="flex justify-between">
+              <span> Pay Amound </span>
+              <input type="text" onChange={handlePA} className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
+            </div>
             <div className="flex justify-between">
               <span> Rtn Amound </span>
               <input type="text" className="text-end" style={{'width':'150px','height':'20px',}} placeholder="0.00" />
@@ -674,7 +595,7 @@ const addToCart = (barcode) => {
           </div>
         </div>
       </div>
-      {/* <input value='value' className="hidden" type="submit" /> */}     
+      
     </div>
   );
 };
@@ -712,34 +633,3 @@ export default Sales2;
 //                <label className="p-1">Barcode</label>
 //                <input name="loger" style={{'width':'300px','height':'30px',}} className="input border-2 bg-red-100" type="text" placeholder="Barcode Hear" />
 //             </form>
-
-
-// const addToCart = (barcode) => {
-//   // get barcode from search Input
-//   const getbarcode = barcode || barcode.target.loger.value; 
-//   // find product from store or database 
-//   const getSerarchProduct = Products.find((p) => p.BarCode == getbarcode);
-//   const existe = Sale.find((i) => i.BarCode == getSerarchProduct.BarCode);
-//   setCproduct(getSerarchProduct)
-//   // comparare local state and database
-//   let newMatch = getSerarchProduct == existe;
-//   // if data not store in object so get datat and set also aquantity
-//     if (newMatch == false) {
-//       if (!getSerarchProduct.StockQty == 0) {
-//         getSerarchProduct.orderq = 1;
-//         setSale([...Sale, getSerarchProduct]);
-        
-//       } else {
-//         swal("Product Out of Stock!");
-//       }
-//     } else{
-//       // --------------------------------------------________________________________________________________________#############################
-//       const rolex = Sale.find((i) => i.BarCode == getbarcode);
-//       rolex.orderq = rolex.orderq + 1;
-//       const rolex2 = [{rolex}]
-//         const maps = [...Sale];
-//       const maps2 = maps.map(obj => rolex2.find(o => o.BarCode === obj.BarCode) || obj);
-//       setSale([...Sale])
-//     }
-  
-//  }

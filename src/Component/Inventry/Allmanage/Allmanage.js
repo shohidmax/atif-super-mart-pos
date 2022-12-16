@@ -24,7 +24,7 @@ const Allmanage = () => {
   const handleUserDelete = (id) => {
     const proceed = window.confirm("Are you sure you want to delete?");
     if (proceed) {
-      const url = `https://frozen-badlands-76581.herokuapp.com//brand/${id}`;
+      const url = `https://atif-super-mart-pos-server.vercel.app///brand/${id}`;
       fetch(url, {
         method: "DELETE",
       })
@@ -41,7 +41,7 @@ const Allmanage = () => {
   const searchBar = async (e) => {
     const searchbar2 = e.target.value.toUpperCase();
     if (searchbar2) {
-      let result = await fetch(`https://frozen-badlands-76581.herokuapp.com/search/${searchbar2}`);
+      let result = await fetch(`https://atif-super-mart-pos-server.vercel.app//search/${searchbar2}`);
       result = await result.json();
       console.log(result);
       if (result)

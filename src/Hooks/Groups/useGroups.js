@@ -4,7 +4,7 @@ const useGroups = () =>{
     const [Groups, setGroups] = useState([]);
 
     useEffect( ()=>{
-        fetch('https://frozen-badlands-76581.herokuapp.com/group')
+        fetch('https://atif-super-mart-pos-server.vercel.app//group')
         .then(res => res.json())
         .then(data => setGroups(data));
     }, [Groups]);

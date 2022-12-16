@@ -10,8 +10,8 @@ const Input = () => {
     });
 
     return (
-        <input 
-            value={value} 
+        <input
+            value={value}
             type="text"
         />
     );

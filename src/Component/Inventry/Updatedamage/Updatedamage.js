@@ -9,7 +9,7 @@ const Updatedamage = () => {
     const findproduct = (B) =>{
         B.preventDefault();
         const Find = B.target.bangla.value;
-        const url = `https://frozen-badlands-76581.herokuapp.com/damage-stock-update/${Find}`;
+        const url = `https://atif-super-mart-pos-server.vercel.app//damage-stock-update/${Find}`;
         console.log(url);
         fetch(url)
         .then(r => r.json())
@@ -22,7 +22,7 @@ const Updatedamage = () => {
         });
         B.target.reset(); 
     };
-    // https://frozen-badlands-76581.herokuapp.com
+    // https://atif-super-mart-pos-server.vercel.app/
     const handleAddToDamage = event =>{
         event.preventDefault();
         const ids = Pdata._id; 
@@ -31,7 +31,7 @@ const Updatedamage = () => {
         const reStock = parseFloat(Damage_Quntity) + Pdata.Damage_Quntity;
         const updatedStock = {reStock};
  
-        const url = `https://frozen-badlands-76581.herokuapp.com/handleAddToDamage/${ids}`;
+        const url = `https://atif-super-mart-pos-server.vercel.app//handleAddToDamage/${ids}`;
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -57,7 +57,7 @@ const Updatedamage = () => {
         const reStock = parseFloat(Damage_Quntity) - Pdata.Damage_Quntity;
         const updatedStock = {reStock};
  
-        const url = `https://frozen-badlands-76581.herokuapp.com/handleAddToDamage/${ids}`;
+        const url = `https://atif-super-mart-pos-server.vercel.app//handleAddToDamage/${ids}`;
         fetch(url, {
             method: 'PUT',
             headers: {

@@ -32,7 +32,7 @@ console.log(largest + 1, 'brand number',  ID);
     const Branddata = {ID , Brand_Type_Name};
 
     // send data to the server
-    fetch('https://frozen-badlands-76581.herokuapp.com/brand', {
+    fetch('https://atif-super-mart-pos-server.vercel.app//brand', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

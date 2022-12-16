@@ -135,7 +135,7 @@ const Home = () => {
         }
     ];
     const load = () =>{
-        const url = 'https://frozen-badlands-76581.herokuapp.com/sale';
+        const url = 'https://atif-super-mart-pos-server.vercel.app//sale';
         fetch(url)
         .then(r => r.json())
         .then(data => setSales(data))
@@ -148,7 +148,7 @@ const Home = () => {
         const edate = e.target.edate.value;
         console.log(sdate, edate);
         const finddata = {sdate, edate};
-        const url = `https://frozen-badlands-76581.herokuapp.com/datefilter?sdate=${sdate}&edate=${edate}`;
+        const url = `https://atif-super-mart-pos-server.vercel.app//datefilter?sdate=${sdate}&edate=${edate}`;
         fetch(url )
         .then(r => r.json())
         .then(data => {
@@ -173,7 +173,7 @@ const Home = () => {
         const newSale = {date, name, about};
         console.log(newSale);
         if (newSale) {
-            fetch('https://frozen-badlands-76581.herokuapp.com/sale', {
+            fetch('https://atif-super-mart-pos-server.vercel.app//sale', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

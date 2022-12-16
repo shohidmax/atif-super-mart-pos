@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 
 const useSsr = () =>{
     const [Ssr, setSsr] = useState([]);
-    // https://frozen-badlands-76581.herokuapp.com/Ssrs
+    // https://atif-super-mart-pos-server.vercel.app//Ssrs
     useEffect( ()=>{
-        fetch('https://frozen-badlands-76581.herokuapp.com/Ssr')
+        fetch('https://atif-super-mart-pos-server.vercel.app//Ssr')
         .then(res => res.json())
         .then(data => setSsr(data));
     }, [Ssr]);

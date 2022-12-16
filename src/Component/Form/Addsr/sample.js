@@ -38,7 +38,7 @@ console.log(user);
                 const Productdata = {name, minorder, model, Stock_Qty, RPU, long_discription, email, img};
           
                 // send data to the server
-                fetch('https://frozen-badlands-76581.herokuapp.com/products', {
+                fetch('https://atif-super-mart-pos-server.vercel.app//products', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',

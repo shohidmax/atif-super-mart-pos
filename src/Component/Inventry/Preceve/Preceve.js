@@ -5,7 +5,7 @@ import useSupplier from '../../../Hooks/Supplier/useSupplier';
 const Preceve = () => {
     const [suPPlier, setsuPPlier] = useState('');
     const [barcode, setbarcode] = useState(''); 
-    const [pro, setpro] = useState({});
+    const [pro, setPurched] = useState([]);
     const [Supplier] = useSupplier();
     if (!suPPlier) {
         setsuPPlier('no data found')
@@ -13,23 +13,30 @@ const Preceve = () => {
     // console.log(barcode);
     // let barcode = 8908010373171;
     const findProducts = (e) =>{
-        fetch(`http://localhost:5000/shoppurchase?supp=${suPPlier}&barcode=${e}`)
+        fetch(`https://atif-super-mart-pos-server.vercel.app//shoppurchase?supp=${suPPlier}&barcode=${e}`)
       .then(r => r.json())
       .then(data => {
         console.log(data)
         if (data.data === 'data not found') {
             swal(`${data.data}`);
         }else{
-            setpro(data);
+            const datas = [data];
+            setPurched(datas);
+            localdata()
         }
       }) 
     }
     const handlebarcode = (e) =>{
         e.preventDefault();
         const ids = e.target.bar.value; 
+        console.log(ids);
         setbarcode(ids.toUpperCase().toString())
         findProducts(ids.toUpperCase())
         e.target.reset();
+    }
+
+    const localdata = () =>{
+        localStorage.setItem("hold_par", JSON.stringify(Supplier))
     }
 //     const date = new Date();
 //     const [month, day, year] = [date.getMonth(), date.getDate(), date.getFullYear()];
@@ -253,53 +260,15 @@ const Preceve = () => {
                     
                     </div> 
                 </div>
-
-
-
-
-
-
-
-                <h1>hhhhh</h1>
-                <h1>hhhhh</h1>
-                <h1>hhhhh</h1>
-                <h1>hhhhh</h1>
-                <h1>hhhhh</h1>
-                <h1>hhhhh</h1> 
-                <h1>hhhhh</h1> 
-                <h1>hhhhh</h1> 
-                <h1>hhhhh</h1> 
-                <h1>hhhhh</h1> 
-                <h1>hhhhh</h1> 
-                <h1>hhhhh</h1> 
-                <h1>hhhhh</h1> 
-                <h1>hhhhh</h1> 
-                <h1>hhhhh</h1> 
-                <h1>hhhhh</h1> 
-                <h1 className='text-3xl'>hhhhh</h1> 
-                <h1 className='text-3xl'>hhhhh</h1> 
-                <h1 className='text-3xl'>hhhhh</h1> 
-                <h1 className='text-3xl'>hhhhh</h1> 
-                <h1 className='text-3xl'>hhhhh</h1> 
-                <h1 className='text-3xl'>hhhhh</h1> 
-                <h1 className='text-3xl'>hhhhh</h1> 
-                <h1 className='text-3xl'>hhhhh</h1> 
-                <h1 className='text-3xl'>hhhhh</h1> 
-                <h1 className='text-3xl'>hhhhh</h1> 
-                <h1 className='text-3xl'>hhhhh</h1> 
-                <h1 className='text-3xl'>hhhhh</h1> 
-                <h1 className='text-3xl'>hhhhh</h1> 
-                <h1 className='text-3xl'>hhhhh</h1> 
-                <h1 className='text-3xl'>hhhhh</h1> 
-                <h1 className='text-3xl'>hhhhh</h1> 
-                <h1 className='text-3xl'>hhhhh</h1> 
-                <h1 className='text-3xl'>hhhhh</h1> 
-                <h1 className='text-3xl'>hhhhh</h1> 
-                <h1 className='text-3xl'>hhhhh</h1> 
-                <h1 className='text-3xl'>hhhhh</h1> 
-                <h1 className='text-3xl'>hhhhh</h1> 
-                <h1 className='text-3xl'>hhhhh</h1> 
-
+                    
+                    {
+                        Supplier.map((name , i) =>{
+                            <div key={i+ 1}>
+                                <h1>group ID </h1>
+                                <h1>group name </h1>
+                            </div>
+                        })
+                    }
             </div>
             
         </div>

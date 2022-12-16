@@ -37,6 +37,7 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
   const [payamount, setPayamount] = useState(''); 
   const [cardAmound, setcardAmound] = useState(''); 
   const [cashAmound, setCashAmound] = useState(''); 
+  const [InvoiceNO, setInvoiceNO] = useState(''); 
   const [updateQTY, setupdateQTY] = useState(0); 
   const [Hold, setHold] = useState([]);
 
@@ -91,16 +92,24 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
   // ------------------------------------------------------- Detect key sortcut ----------------------------------------
 
     useEffect(() => {
-      fetch('https://frozen-badlands-76581.herokuapp.com/hold')
+      fetch('https://atif-super-mart-pos-server.vercel.app//hold')
       .then(r => r.json())
       .then(data => setHold(data))
     }, [Hold]);
 
     useEffect(() => {
-      fetch('https://frozen-badlands-76581.herokuapp.com/products')
+      fetch('https://atif-super-mart-pos-server.vercel.app//products')
       .then(r => r.json())
-      .then(data => setProducts(data))
+      .then(data => setProducts(data.filter(prod => !prod.StockQty == 0)))
     }, [Products]);
+    useEffect(() => {
+      fetch('https://atif-super-mart-pos-server.vercel.app//invoicenumber')
+      .then(r => r.json())
+      .then(data => {
+        console.log(data);
+
+      })
+    }, []);
 // -------------------------------------------------- key function -----------------------------------------------------------------
     const DetectKey =(e)=>{
       console.log(e.key, 'clicked E Text');
@@ -136,15 +145,14 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
       const Hold_quntity =  Hold_quantity;
       const Hold_items =  Sale.length;
       const Hold_Amound =  Holdtotal;
-      const Hold_data =  Sale;
-      
+      const Hold_data =  Sale; 
       // let currentsaledata = Sale; 
       const confirm = window.confirm('Do You want ho hold Your Sales!!')
       if (confirm) {
         const finalData =  {Hold_ID, Hold_attendent, Hold_quntity, Hold_items, Hold_Amound, Hold_data};
         console.log(finalData);
 
-        fetch('https://frozen-badlands-76581.herokuapp.com/holddata', {
+        fetch('https://atif-super-mart-pos-server.vercel.app//holddata', {
           method: 'POST',
           headers: {
               'content-type': 'application/json'
@@ -166,7 +174,7 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
      const data = window.confirm(`Sale again!! ${id.Hold_ID} Hold by ${id.Hold_attendent}`);
      if (data == true) {
       console.log('succesfully prder placed');
-      const a = `http://localhost:5000/hold/${id.Hold_ID}`;
+      const a = `https://atif-super-mart-pos-server.vercel.app//hold/${id.Hold_ID}`;
       console.log(a);
       fetch(a)
       .then(r => r.json())
@@ -256,7 +264,7 @@ const addToCart = (barcode) => {
       const Saled = Sale;
       const date = new Date();
       const finalData = {Saled};
-      const a = `http://localhost:5000/finalsale`;
+      const a = `https://atif-super-mart-pos-server.vercel.app//finalsale`;
       console.log(a);
       fetch(a,{
         method: 'PUT',
@@ -265,7 +273,7 @@ const addToCart = (barcode) => {
             'Accept': 'application/json'
         },
         body: JSON.stringify(finalData)
-    })
+        })
       .then(r => r.json())
       .then(data => {
         console.log(data)
@@ -303,7 +311,26 @@ const addToCart = (barcode) => {
       const Pay_Amound = 1;
       const RTN_Amound = 1;
       const Sale_Data = Sale;
-      console.log({Sale_Time ,Shop_ID,Sale_Date, Sale_Invoice,Coustomer_Name,Sale_Discount,Sale_Pay_Type,Sale_Quntity,Pay_Amound,RTN_Amound,Sale_Data});
+      const finalSale = {Sale_Time ,Shop_ID,Sale_Date, Sale_Invoice,Coustomer_Name,Sale_Discount,Sale_Pay_Type,Sale_Quntity,Pay_Amound,RTN_Amound,Sale_Data};
+      console.log(finalSale);
+      const a = `https://atif-super-mart-pos-server.vercel.app//finalsale`;
+      console.log(a);
+      fetch(a,{
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(finalSale)
+        })
+      .then(r => r.json())
+      .then(data => {
+        console.log(data)
+        toast.success(`${data.data}`)
+        const a =[];
+        setSale(a)
+ 
+      })
 
       returnreceapt()   
     }

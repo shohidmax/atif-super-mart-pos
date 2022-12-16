@@ -4,7 +4,7 @@ const useBrand = () =>{
     const [Brand, setBrand] = useState([]);
 
     useEffect( ()=>{
-        fetch('https://frozen-badlands-76581.herokuapp.com/brand')
+        fetch('https://atif-super-mart-pos-server.vercel.app//brand')
         .then(res => res.json())
         .then(data => setBrand(data));
     }, [Brand]);

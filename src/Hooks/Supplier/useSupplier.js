@@ -4,7 +4,7 @@ const useSupplier = () =>{
     const [Supplier, setSupplier] = useState([]);
 
     useEffect( ()=>{
-        fetch('https://frozen-badlands-76581.herokuapp.com/supplier')
+        fetch('https://atif-super-mart-pos-server.vercel.app//supplier')
         .then(res => res.json())
         .then(data => setSupplier(data));
     }, [Supplier]);
@@ -20,4 +20,4 @@ export default useSupplier;
 //       }
 // }
 // https://shielded-beyond-98967.herokuapp.com/products
-// https://frozen-badlands-76581.herokuapp.com/products/supp.json
+// https://atif-super-mart-pos-server.vercel.app//products/supp.json

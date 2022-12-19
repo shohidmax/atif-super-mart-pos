@@ -38,7 +38,7 @@ console.log(user);
                 const Productdata = {name, minorder, model, Stock_Qty, RPU, long_discription, email, img};
           
                 // send data to the server
-                fetch('https://atif-super-mart-pos-server.vercel.app//products', {
+                fetch('https://atifsupermart.onrender.com/products', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json',

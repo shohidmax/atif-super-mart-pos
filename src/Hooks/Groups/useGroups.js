@@ -4,7 +4,7 @@ const useGroups = () =>{
     const [Groups, setGroups] = useState([]);
 
     useEffect( ()=>{
-        fetch('https://atif-super-mart-pos-server.vercel.app//group')
+        fetch('https://atifsupermart.onrender.com/group')
         .then(res => res.json())
         .then(data => setGroups(data));
     }, [Groups]);

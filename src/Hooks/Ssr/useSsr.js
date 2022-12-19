@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 
 const useSsr = () =>{
     const [Ssr, setSsr] = useState([]);
-    // https://atif-super-mart-pos-server.vercel.app//Ssrs
+    // https://atifsupermart.onrender.com/Ssrs
     useEffect( ()=>{
-        fetch('https://atif-super-mart-pos-server.vercel.app//Ssr')
+        fetch('https://atifsupermart.onrender.com/Ssr')
         .then(res => res.json())
         .then(data => setSsr(data));
     }, [Ssr]);

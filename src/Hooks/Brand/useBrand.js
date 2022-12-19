@@ -4,7 +4,7 @@ const useBrand = () =>{
     const [Brand, setBrand] = useState([]);
 
     useEffect( ()=>{
-        fetch('https://atif-super-mart-pos-server.vercel.app//brand')
+        fetch('https://atifsupermart.onrender.com/brand')
         .then(res => res.json())
         .then(data => setBrand(data));
     }, [Brand]);

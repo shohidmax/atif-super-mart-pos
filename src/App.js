@@ -71,7 +71,7 @@ function App() {
 
       {/* <h1 style={{'font-family':'FontA11'}}>happy</h1>
     <h1>happy</h1> */}
-
+// egg 24 salt 2kg
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
@@ -107,6 +107,7 @@ function App() {
           <Route path="/dashboard/qr" element={<Qr></Qr>} />
           <Route path="/dashboard/barcode" element={<BarCode></BarCode>} />
           <Route path="/dashboard/rpt" element={<Recept></Recept>} />
+          <Route path="/dashboard/srlist" element={<Requireauth><Srlist></Srlist></Requireauth>} />
 
 
 

@@ -92,18 +92,18 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
   // ------------------------------------------------------- Detect key sortcut ----------------------------------------
 
     useEffect(() => {
-      fetch('https://atif-super-mart-pos-server.vercel.app//hold')
+      fetch('https://atifsupermart.onrender.com/hold')
       .then(r => r.json())
       .then(data => setHold(data))
     }, [Hold]);
 
     useEffect(() => {
-      fetch('https://atif-super-mart-pos-server.vercel.app//products')
+      fetch('https://atifsupermart.onrender.com/products')
       .then(r => r.json())
       .then(data => setProducts(data.filter(prod => !prod.StockQty == 0)))
     }, [Products]);
     useEffect(() => {
-      fetch('https://atif-super-mart-pos-server.vercel.app//invoicenumber')
+      fetch('https://atifsupermart.onrender.com/invoicenumber')
       .then(r => r.json())
       .then(data => {
         console.log(data);
@@ -152,7 +152,7 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
         const finalData =  {Hold_ID, Hold_attendent, Hold_quntity, Hold_items, Hold_Amound, Hold_data};
         console.log(finalData);
 
-        fetch('https://atif-super-mart-pos-server.vercel.app//holddata', {
+        fetch('https://atifsupermart.onrender.com/holddata', {
           method: 'POST',
           headers: {
               'content-type': 'application/json'
@@ -174,7 +174,7 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
      const data = window.confirm(`Sale again!! ${id.Hold_ID} Hold by ${id.Hold_attendent}`);
      if (data == true) {
       console.log('succesfully prder placed');
-      const a = `https://atif-super-mart-pos-server.vercel.app//hold/${id.Hold_ID}`;
+      const a = `https://atifsupermart.onrender.com/hold/${id.Hold_ID}`;
       console.log(a);
       fetch(a)
       .then(r => r.json())
@@ -264,7 +264,7 @@ const addToCart = (barcode) => {
       const Saled = Sale;
       const date = new Date();
       const finalData = {Saled};
-      const a = `https://atif-super-mart-pos-server.vercel.app//finalsale`;
+      const a = `https://atifsupermart.onrender.com/finalsale`;
       console.log(a);
       fetch(a,{
         method: 'PUT',
@@ -313,7 +313,7 @@ const addToCart = (barcode) => {
       const Sale_Data = Sale;
       const finalSale = {Sale_Time ,Shop_ID,Sale_Date, Sale_Invoice,Coustomer_Name,Sale_Discount,Sale_Pay_Type,Sale_Quntity,Pay_Amound,RTN_Amound,Sale_Data};
       console.log(finalSale);
-      const a = `https://atif-super-mart-pos-server.vercel.app//finalsale`;
+      const a = `https://atifsupermart.onrender.com/finalsale`;
       console.log(a);
       fetch(a,{
         method: 'PUT',

@@ -13,7 +13,7 @@ const Search = () => {
   const searchBar = async (e) => {
     const searchbar2 = e.target.value.toUpperCase();
     if (searchbar2) {
-      let result = await fetch(`https://atif-super-mart-pos-server.vercel.app//search/${searchbar2}`);
+      let result = await fetch(`https://atifsupermart.onrender.com/search/${searchbar2}`);
       result = await result.json()
       console.log(result);
       if (result) (

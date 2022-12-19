@@ -3,7 +3,7 @@ const useProducts = () =>{
     const [Products, setProducts] = useState([]);
 
     useEffect( ()=>{
-        fetch('https://atif-super-mart-pos-server.vercel.app//products')
+        fetch('https://atifsupermart.onrender.com/products')
         .then(res => res.json())
         .then(data => setProducts(data));
     }, [Products]);

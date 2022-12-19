@@ -11,7 +11,7 @@ const Suppliermodal = () => {
     const Branddata = {ID, Brand_Type_Name};
 
     // send data to the server
-    fetch('https://atif-super-mart-pos-server.vercel.app//supplier', {
+    fetch('https://atifsupermart.onrender.com/supplier', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

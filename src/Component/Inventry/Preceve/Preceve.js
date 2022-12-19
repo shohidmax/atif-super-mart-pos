@@ -13,7 +13,7 @@ const Preceve = () => {
     // console.log(barcode);
     // let barcode = 8908010373171;
     const findProducts = (e) =>{
-        fetch(`https://atif-super-mart-pos-server.vercel.app//shoppurchase?supp=${suPPlier}&barcode=${e}`)
+        fetch(`https://atifsupermart.onrender.com/shoppurchase?supp=${suPPlier}&barcode=${e}`)
       .then(r => r.json())
       .then(data => {
         console.log(data)

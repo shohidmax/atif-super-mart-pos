@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 
 const useProduct = () =>{
     const [Product, setProduct] = useState([]);
-    // https://atif-super-mart-pos-server.vercel.app//products
+    // https://atifsupermart.onrender.com/products
     useEffect( ()=>{
-        fetch('https://atif-super-mart-pos-server.vercel.app//product')
+        fetch('https://atifsupermart.onrender.com/product')
         .then(res => res.json())
         .then(data => setProduct(data));
     }, [Product]);

@@ -37,7 +37,7 @@ const Addsr = () => {
         console.log(srrData);
         // send data to the server
         if (Ssr.length < ID) {
-            fetch('https://atif-super-mart-pos-server.vercel.app//ssr', {
+            fetch('https://atifsupermart.onrender.com/ssr', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

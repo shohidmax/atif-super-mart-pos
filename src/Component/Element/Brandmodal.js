@@ -32,7 +32,7 @@ console.log(largest + 1, 'brand number',  ID);
     const Branddata = {ID , Brand_Type_Name};
 
     // send data to the server
-    fetch('https://atifsupermart.onrender.com/brand', {
+    fetch('http://localhost:5000/brand', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

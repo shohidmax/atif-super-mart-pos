@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 
 const useSsr = () =>{
     const [Ssr, setSsr] = useState([]);
-    // https://atifsupermart.onrender.com/Ssrs
+    // http://localhost:5000/Ssrs
     useEffect( ()=>{
-        fetch('https://atifsupermart.onrender.com/Ssr')
+        fetch('http://localhost:5000/Ssr')
         .then(res => res.json())
         .then(data => setSsr(data));
     }, [Ssr]);

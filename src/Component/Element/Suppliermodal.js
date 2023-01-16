@@ -11,7 +11,7 @@ const Suppliermodal = () => {
     const Branddata = {ID, Brand_Type_Name};
 
     // send data to the server
-    fetch('https://atifsupermart.onrender.com/supplier', {
+    fetch('http://localhost:5000/supplier', {
         method: 'POST',
         headers: {
             'content-type': 'application/json'

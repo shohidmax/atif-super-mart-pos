@@ -37,7 +37,7 @@ const Addsr = () => {
         console.log(srrData);
         // send data to the server
         if (Ssr.length < ID) {
-            fetch('https://atifsupermart.onrender.com/ssr', {
+            fetch('http://localhost:5000/ssr', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

@@ -80,7 +80,7 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
   // --------------------------------------------------------------------- Detect key sortcut ----------------------------------------
 
     useEffect(() => {
-      fetch('https://atifsupermart.onrender.com/hold')
+      fetch('http://localhost:5000/hold')
       .then(r => r.json())
       .then(data => setHold(data))
     }, [Sale]);
@@ -130,7 +130,7 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
         const finalData =  {Hold_ID, Hold_attendent, Hold_quntity, Hold_items, Hold_Amound, Hold_data};
         console.log(finalData);
 
-        fetch('https://atifsupermart.onrender.com/holddata', {
+        fetch('http://localhost:5000/holddata', {
           method: 'POST',
           headers: {
               'content-type': 'application/json'
@@ -155,7 +155,7 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
      const data = window.confirm(`Sale again!! ${id.Hold_ID} Hold by ${id.Hold_attendent}`);
      if (data == true) {
       console.log('succesfully prder placed');
-      const a = `https://atifsupermart.onrender.com/hold/${id.Hold_ID}`;
+      const a = `http://localhost:5000/hold/${id.Hold_ID}`;
       console.log(a);
       fetch(a)
       .then(r => r.json())

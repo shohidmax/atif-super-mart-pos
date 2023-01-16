@@ -134,60 +134,60 @@ const Home = () => {
             "about": "asdasdasd"
         }
     ];
-    const load = () =>{
-        const url = 'https://atifsupermart.onrender.com/sale';
+    const load = () => {
+        const url = 'http://localhost:5000/sale';
         fetch(url)
-        .then(r => r.json())
-        .then(data => setSales(data))
-    } 
-    
-    
+            .then(r => r.json())
+            .then(data => setSales(data))
+    }
+
+
     const hadelGetdata = e => {
         e.preventDefault();
         const sdate = e.target.sdate.value;
         const edate = e.target.edate.value;
         console.log(sdate, edate);
-        const finddata = {sdate, edate};
-        const url = `https://atifsupermart.onrender.com/datefilter?sdate=${sdate}&edate=${edate}`;
-        fetch(url )
-        .then(r => r.json())
-        .then(data => {
-            if (!data.length) {
-                return toast.error('Data Load faild Please Try again !!!')
-            }
+        const finddata = { sdate, edate };
+        const url = `http://localhost:5000/datefilter?sdate=${sdate}&edate=${edate}`;
+        fetch(url)
+            .then(r => r.json())
+            .then(data => {
+                if (!data.length) {
+                    return toast.error('Data Load faild Please Try again !!!')
+                }
                 toast.success('Data Load Succesfully !!!')
                 setSales(data);
 
-            
+
             })
-     
+
     }
 
 
 
-    const handelAddSale = (e) =>{
-        e.preventDefault(); 
+    const handelAddSale = (e) => {
+        e.preventDefault();
         const date = e.target.date.value;
         const name = e.target.name.value;
         const about = e.target.about.value;
-        const newSale = {date, name, about};
+        const newSale = { date, name, about };
         console.log(newSale);
         if (newSale) {
-            fetch('https://atifsupermart.onrender.com/sale', {
+            fetch('http://localhost:5000/sale', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
                 },
                 body: JSON.stringify(newSale)
             })
-            .then(res => res.json())
-            .then(data =>{
-              console.log(data);
-              toast.success('Sale added successfully!!!');
-                e.target.reset();
-                load()
-            })
-            
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    toast.success('Sale added successfully!!!');
+                    e.target.reset();
+                    load()
+                })
+
         }
     };
 
@@ -196,54 +196,20 @@ const Home = () => {
         <div className='p-2'>
 
             {/* <Slider></Slider> */}
-            &lt;P&gt; This is Paragraph {salese.length} &lt;/P&gt;
-            <button className='btn' onClick={load}>load data</button>
-
-
-            <div className='border-4'>
-                <form onSubmit={handelAddSale}>
-                    
-                    <input name="date"   className="input overflow-hidden input-bordered input-secondary w-full max-w-xs m-2 p-2 m-auto"   type="date" placeholder='Enter Your BarCode Hare' required /><br/>
-                    <input name="name"   className="input overflow-hidden input-bordered input-secondary w-full max-w-xs m-2 p-2 m-auto"   type="text" placeholder='Enter Your BarCode Hare' required /><br/>
-                    <input name="about"   className="input overflow-hidden input-bordered input-secondary w-full max-w-xs m-2 p-2 m-auto"   type="text" placeholder='Enter Your BarCode Hare' required /><br/>
-                    <input    className="btn btn-primaryt  "   type="submit" value='submit' required /><br/>
-
-                </form>
-            </div>
-            <div>
-                <h1>get date wise data </h1>
-                <form onSubmit={hadelGetdata}>
-                <input name="sdate"   className="input overflow-hidden input-bordered input-secondary w-full max-w-xs m-2 p-2 m-auto"   type="date" placeholder='Enter Your BarCode Hare' required /><br/>
-                <input name="edate"   className="input overflow-hidden input-bordered input-secondary w-full max-w-xs m-2 p-2 m-auto"   type="date" placeholder='Enter Your BarCode Hare' required /><br/>
-                <input type="submit" value='submit' className='btn btn-primary' />
-
-                </form>
-            </div>
-            <div>
-                <ul>
-                    {
-                        salese.map((r, q) => <li className='text-2xl bold text-start' key={r._id}>{q + 1} Date: {r.date} name: {r.name} about: {r.about}</li>)
-                    }
-                </ul>
-            </div>
-
-            <div>
-                
-
-            </div>
-
-
-
-
-
-
-
-
             
+           
 
-    <div>
-            
-            {/* <a href="#my-modal-2" className="btn">open modal</a>
+
+
+
+
+
+
+
+
+            <div>
+
+                {/* <a href="#my-modal-2" className="btn">open modal</a>
             <a href="#Supplier-modal" className="btn">open supp</a>
             <a href="#Group-modal" className="btn">Group supp</a>
             <a href="#Product-modal" className="btn">product supp</a>
@@ -251,8 +217,8 @@ const Home = () => {
             <a href="#Brand-modal" className="btn">Brand </a>
             <Link id='#my-modal-2' to={`/wpdate/${r._id}`} className="btn btn-sm">update</Link>
             <a href="#SaleModal" className="btn">sale  </a>  */}
-           
-    </div>
+
+            </div>
         </div>
     );
 };

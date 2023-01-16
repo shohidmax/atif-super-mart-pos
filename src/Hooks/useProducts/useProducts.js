@@ -3,7 +3,7 @@ const useProducts = () =>{
     const [Products, setProducts] = useState([]);
 
     useEffect( ()=>{
-        fetch('https://atifsupermart.onrender.com/products')
+        fetch('http://localhost:5000/products')
         .then(res => res.json())
         .then(data => setProducts(data));
     }, [Products]);

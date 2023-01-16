@@ -4,7 +4,7 @@ const useSupplier = () =>{
     const [Supplier, setSupplier] = useState([]);
 
     useEffect( ()=>{
-        fetch('https://atifsupermart.onrender.com/supplier')
+        fetch('http://localhost:5000/supplier')
         .then(res => res.json())
         .then(data => setSupplier(data));
     }, [Supplier]);
@@ -20,4 +20,4 @@ export default useSupplier;
 //       }
 // }
 // https://shielded-beyond-98967.herokuapp.com/products
-// https://atifsupermart.onrender.com/products/supp.json
+// http://localhost:5000/products/supp.json

@@ -4,7 +4,7 @@ const useBrand = () =>{
     const [Brand, setBrand] = useState([]);
 
     useEffect( ()=>{
-        fetch('https://atifsupermart.onrender.com/brand')
+        fetch('http://localhost:5000/brand')
         .then(res => res.json())
         .then(data => setBrand(data));
     }, [Brand]);

@@ -37,7 +37,7 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
   const [payamount, setPayamount] = useState(''); 
   const [cardAmound, setcardAmound] = useState(''); 
   const [cashAmound, setCashAmound] = useState(''); 
-  const [InvoiceNO, setInvoiceNO] = useState(''); 
+  const [InvoiceNO, setInvoiceNO] = useState([]); 
   const [updateQTY, setupdateQTY] = useState(0); 
   const [Hold, setHold] = useState([]);
 
@@ -88,28 +88,31 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
     const handleCashA = event => {
       setCashAmound(event.target.value);
     }
-    
+    const today = `${year}-${month + 1}-${day}`;
   // ------------------------------------------------------- Detect key sortcut ----------------------------------------
 
     useEffect(() => {
-      fetch('https://atifsupermart.onrender.com/hold')
+      fetch('http://localhost:5000/hold')
       .then(r => r.json())
       .then(data => setHold(data))
     }, [Hold]);
 
     useEffect(() => {
-      fetch('https://atifsupermart.onrender.com/products')
+      fetch('http://localhost:5000/products')
       .then(r => r.json())
       .then(data => setProducts(data.filter(prod => !prod.StockQty == 0)))
     }, [Products]);
-    useEffect(() => {
-      fetch('https://atifsupermart.onrender.com/invoicenumber')
-      .then(r => r.json())
-      .then(data => {
-        console.log(data);
 
+    useEffect(() => {
+      fetch('http://localhost:5000/invoicenumber')
+      .then(r => r.json())
+      .then(data => { 
+        // console.log(data,'mmm', today);
+        setInvoiceNO((data.filter(prod => prod.Sale_Date === today)));
+        // console.log(InvoiceNO);
       })
-    }, []);
+    }, [InvoiceNO]);
+    // console.log(InvoiceNO,'invoice',`${year}-${newmonth}-${day}`);
 // -------------------------------------------------- key function -----------------------------------------------------------------
     const DetectKey =(e)=>{
       console.log(e.key, 'clicked E Text');
@@ -152,7 +155,7 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
         const finalData =  {Hold_ID, Hold_attendent, Hold_quntity, Hold_items, Hold_Amound, Hold_data};
         console.log(finalData);
 
-        fetch('https://atifsupermart.onrender.com/holddata', {
+        fetch('http://localhost:5000/holddata', {
           method: 'POST',
           headers: {
               'content-type': 'application/json'
@@ -174,7 +177,7 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
      const data = window.confirm(`Sale again!! ${id.Hold_ID} Hold by ${id.Hold_attendent}`);
      if (data == true) {
       console.log('succesfully prder placed');
-      const a = `https://atifsupermart.onrender.com/hold/${id.Hold_ID}`;
+      const a = `http://localhost:5000/hold/${id.Hold_ID}`;
       console.log(a);
       fetch(a)
       .then(r => r.json())
@@ -260,11 +263,10 @@ const addToCart = (barcode) => {
      }
      // ----------------------------------------------------------------- applay promotion ---------------
      const applayPromotion =() =>{
-
       const Saled = Sale;
       const date = new Date();
       const finalData = {Saled};
-      const a = `https://atifsupermart.onrender.com/finalsale`;
+      const a = `http://localhost:5000/finalsale`;
       console.log(a);
       fetch(a,{
         method: 'PUT',
@@ -280,22 +282,28 @@ const addToCart = (barcode) => {
         toast.success(`${data.data}`)
         const a =[];
         setSale(a)
- 
       })
-
      }
         //----------------------------------------------- recept send ---------------------------------------------------------------
     const returnreceapt = () =>{
       return <Recept></Recept> ; 
+    }
+    const lastInvoiceNumber = async() =>{
 
-      
+        // for await (const inv of InvoiceNO){
+        //   invoice_list=[...invoice_list, inv.Sale_Invoice.slice(-5)]
+        //    console.log(inv.Sale_Invoice.slice(-5));
+        // }
+        // const new_inv_num = (Math.max(...invoice_list) + 1).toString();
+        // const chng = updatedStock.Sale_Invoice.slice(-5)
+        // updatedStock.Sale_Invoice = updatedStock.Sale_Invoice.replace(chng, new_inv_num)
     }
  
 
 // ---------------------------------------------------------------------Final sale Data for invoice -----------------------------------------
     const HandlePrintandSubmit = () =>{
     const process = window.confirm('Do you want to remove Sales all Items');
-    if (process) {
+    if (process && Sale.length != 0) {
       const User_Sale = [user.displayName, user.email];
       console.log(User_Sale);
       const Shop_ID = 'AM01'; 
@@ -313,7 +321,7 @@ const addToCart = (barcode) => {
       const Sale_Data = Sale;
       const finalSale = {Sale_Time ,Shop_ID,Sale_Date, Sale_Invoice,Coustomer_Name,Sale_Discount,Sale_Pay_Type,Sale_Quntity,Pay_Amound,RTN_Amound,Sale_Data};
       console.log(finalSale);
-      const a = `https://atifsupermart.onrender.com/finalsale`;
+      const a = `http://localhost:5000/finalsale-v1`;
       console.log(a);
       fetch(a,{
         method: 'PUT',

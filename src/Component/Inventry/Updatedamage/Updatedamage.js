@@ -9,7 +9,7 @@ const Updatedamage = () => {
     const findproduct = (B) =>{
         B.preventDefault();
         const Find = B.target.bangla.value;
-        const url = `https://atifsupermart.onrender.com/damage-stock-update/${Find}`;
+        const url = `http://localhost:5000/damage-stock-update/${Find}`;
         console.log(url);
         fetch(url)
         .then(r => r.json())
@@ -22,7 +22,7 @@ const Updatedamage = () => {
         });
         B.target.reset(); 
     };
-    // https://atifsupermart.onrender.com
+    // http://localhost:5000
     const handleAddToDamage = event =>{
         event.preventDefault();
         const ids = Pdata._id; 
@@ -31,7 +31,7 @@ const Updatedamage = () => {
         const reStock = parseFloat(Damage_Quntity) + Pdata.Damage_Quntity;
         const updatedStock = {reStock};
  
-        const url = `https://atifsupermart.onrender.com/handleAddToDamage/${ids}`;
+        const url = `http://localhost:5000/handleAddToDamage/${ids}`;
         fetch(url, {
             method: 'PUT',
             headers: {
@@ -57,7 +57,7 @@ const Updatedamage = () => {
         const reStock = parseFloat(Damage_Quntity) - Pdata.Damage_Quntity;
         const updatedStock = {reStock};
  
-        const url = `https://atifsupermart.onrender.com/handleAddToDamage/${ids}`;
+        const url = `http://localhost:5000/handleAddToDamage/${ids}`;
         fetch(url, {
             method: 'PUT',
             headers: {

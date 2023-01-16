@@ -48,6 +48,7 @@ import Dashboard from './Component/Pages/Dashboard/Dashboard';
 import DashboardProfile from './Component/Pages/DashboardProfile/DashboardProfile';
 import Notfound from './Component/Pages/Notfound/Notfound';
 import Preceve from './Component/Inventry/Preceve/Preceve';
+import DailyCost from './Component/Accounts/DailyCost';
 function App() {
   const [Supplier, setSupplier] = useSupplier();
   const [Brand, setBrand] = useBrand();
@@ -71,7 +72,6 @@ function App() {
 
       {/* <h1 style={{'font-family':'FontA11'}}>happy</h1>
     <h1>happy</h1> */}
-// egg 24 salt 2kg
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
@@ -101,6 +101,8 @@ function App() {
         <Route path="/sr" element={<SalesReport></SalesReport>} />
         <Route path="/search" element={<Search></Search>} />
         <Route path="/pr" element={<Preceve></Preceve>} />
+        <Route path="/dailycost" element={<DailyCost></DailyCost>} />
+        <Route path="/salereport" element={<SalesReport></SalesReport>} />
         <Route path="/dashboard" element={<Dashboard />}>
           <Route index element={<DashboardProfile />}></Route>
           <Route path="/dashboard/addsr" element={<Sales2></Sales2>}></Route>

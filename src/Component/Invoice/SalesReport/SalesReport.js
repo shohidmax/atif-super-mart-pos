@@ -6,7 +6,7 @@ const SalesReport = () => {
 
 // load all data from database
   const load = () => {
-      const url = 'http://localhost:5000/sale';
+      const url = 'https://atifsupermart.onrender.com/sale';
       fetch(url)
           .then(r => r.json())
           .then(data => setSales(data))
@@ -19,7 +19,7 @@ const SalesReport = () => {
       const edate = e.target.edate.value;
       console.log(sdate, edate);
       const finddata = { sdate, edate };
-      const url = `http://localhost:5000/datefilter?sdate=${sdate}&edate=${edate}`;
+      const url = `https://atifsupermart.onrender.com/datefilter?sdate=${sdate}&edate=${edate}`;
       fetch(url)
           .then(r => r.json())
           .then(data => {
@@ -42,7 +42,7 @@ const SalesReport = () => {
       const newSale = { date, name, about };
       console.log(newSale);
       if (newSale) {
-          fetch('http://localhost:5000/sale', {
+          fetch('https://atifsupermart.onrender.com/sale', {
               method: 'POST',
               headers: {
                   'content-type': 'application/json'

@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 
 const useProduct = () =>{
     const [Product, setProduct] = useState([]);
-    // http://localhost:5000/products
+    // https://atifsupermart.onrender.com/products
     useEffect( ()=>{
-        fetch('http://localhost:5000/product')
+        fetch('https://atifsupermart.onrender.com/product')
         .then(res => res.json())
         .then(data => setProduct(data));
     }, [Product]);

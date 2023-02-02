@@ -92,19 +92,19 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
   // ------------------------------------------------------- Detect key sortcut ----------------------------------------
 
     useEffect(() => {
-      fetch('http://localhost:5000/hold')
+      fetch('https://atifsupermart.onrender.com/hold')
       .then(r => r.json())
       .then(data => setHold(data))
     }, [Hold]);
 
     useEffect(() => {
-      fetch('http://localhost:5000/products')
+      fetch('https://atifsupermart.onrender.com/products')
       .then(r => r.json())
       .then(data => setProducts(data.filter(prod => !prod.StockQty == 0)))
     }, [Products]);
 
     useEffect(() => {
-      fetch('http://localhost:5000/invoicenumber')
+      fetch('https://atifsupermart.onrender.com/invoicenumber')
       .then(r => r.json())
       .then(data => { 
         // console.log(data,'mmm', today);
@@ -155,7 +155,7 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
         const finalData =  {Hold_ID, Hold_attendent, Hold_quntity, Hold_items, Hold_Amound, Hold_data};
         console.log(finalData);
 
-        fetch('http://localhost:5000/holddata', {
+        fetch('https://atifsupermart.onrender.com/holddata', {
           method: 'POST',
           headers: {
               'content-type': 'application/json'
@@ -177,7 +177,7 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
      const data = window.confirm(`Sale again!! ${id.Hold_ID} Hold by ${id.Hold_attendent}`);
      if (data == true) {
       console.log('succesfully prder placed');
-      const a = `http://localhost:5000/hold/${id.Hold_ID}`;
+      const a = `https://atifsupermart.onrender.com/hold/${id.Hold_ID}`;
       console.log(a);
       fetch(a)
       .then(r => r.json())
@@ -266,7 +266,7 @@ const addToCart = (barcode) => {
       const Saled = Sale;
       const date = new Date();
       const finalData = {Saled};
-      const a = `http://localhost:5000/finalsale`;
+      const a = `https://atifsupermart.onrender.com/finalsale`;
       console.log(a);
       fetch(a,{
         method: 'PUT',
@@ -321,7 +321,7 @@ const addToCart = (barcode) => {
       const Sale_Data = Sale;
       const finalSale = {Sale_Time ,Shop_ID,Sale_Date, Sale_Invoice,Coustomer_Name,Sale_Discount,Sale_Pay_Type,Sale_Quntity,Pay_Amound,RTN_Amound,Sale_Data};
       console.log(finalSale);
-      const a = `http://localhost:5000/finalsale-v1`;
+      const a = `https://atifsupermart.onrender.com/finalsale-v1`;
       console.log(a);
       fetch(a,{
         method: 'PUT',

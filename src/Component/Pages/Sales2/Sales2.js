@@ -90,7 +90,7 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
     }
     const today = `${year}-${month + 1}-${day}`;
   // ------------------------------------------------------- Detect key sortcut ----------------------------------------
-
+    console.log(Hold, Sale);
     useEffect(() => {
       fetch('https://atifsupermart.onrender.com/hold')
       .then(r => r.json())
@@ -510,7 +510,7 @@ const addToCart = (barcode) => {
                    <div class="dropdown ">
                          <label tabindex="0" class="btn btn-xs btn-primary">Update</label>
                          <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100   rounded-box ">
-                           <li><button onClick={() => remoVeItem (r)} className="btn text-white p-1 m-1 btn-primary btn-xs">X</button>
+                           <li><button onClick={() => remoVeItem (r)} className="btn bg-red-500 text-white p-1 m-1  btn-xs">X</button>
                             </li>
                            <li><label  for={r._id} class="btn text-white p-1 m-1 btn-primary btn-xs">Update </label></li>
                          </ul>

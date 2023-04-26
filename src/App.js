@@ -49,6 +49,7 @@ import DashboardProfile from './Component/Pages/DashboardProfile/DashboardProfil
 import Notfound from './Component/Pages/Notfound/Notfound';
 import Preceve from './Component/Inventry/Preceve/Preceve';
 import DailyCost from './Component/Accounts/DailyCost';
+import Testdata2 from './Component/TestData/Testdata2';
 function App() {
   const [Supplier, setSupplier] = useSupplier();
   const [Brand, setBrand] = useBrand();
@@ -65,13 +66,13 @@ function App() {
     console.log(e.key, 'clicked E Text');
   }
   return (
-
+   
 
     <div className="App ">
       <Header ></Header>
 
-      {/* <h1 style={{'font-family':'FontA11'}}>happy</h1>
-    <h1>happy</h1> */}
+      <h1 style={{'font-family':'FontA11'}}>happy</h1>
+    <h1>happy</h1>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
@@ -92,6 +93,7 @@ function App() {
         <Route path="/damageq" element={<Requireauth><Updatedamage></Updatedamage></Requireauth>} />
         <Route path="/Order" element={<Requireauth><RequireManager><Stockservice></Stockservice></RequireManager></Requireauth>} />
         <Route path="/Test" element={<Testdata></Testdata>} />
+        <Route path="/test2" element={<Testdata2></Testdata2>} />
         <Route path="/login" element={<Login></Login>} />
         <Route path="/signup" element={<SignUp></SignUp>} />
         <Route path="/accounts" element={<Account></Account>} />

@@ -50,6 +50,7 @@ import Notfound from './Component/Pages/Notfound/Notfound';
 import Preceve from './Component/Inventry/Preceve/Preceve';
 import DailyCost from './Component/Accounts/DailyCost';
 import Testdata2 from './Component/TestData/Testdata2';
+import Shopreceve from './Component/Inventry/Shopreceve/Shopreceve';
 function App() {
   const [Supplier, setSupplier] = useSupplier();
   const [Brand, setBrand] = useBrand();
@@ -71,8 +72,7 @@ function App() {
     <div className="App ">
       <Header ></Header>
 
-      <h1 style={{'font-family':'FontA11'}}>happy</h1>
-    <h1>happy</h1>
+      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
@@ -105,6 +105,7 @@ function App() {
         <Route path="/pr" element={<Preceve></Preceve>} />
         <Route path="/dailycost" element={<DailyCost></DailyCost>} />
         <Route path="/salereport" element={<SalesReport></SalesReport>} />
+        <Route path="/receve" element={<Shopreceve/>} />
         <Route path="/dashboard" element={<Dashboard />}>
           <Route index element={<DashboardProfile />}></Route>
           <Route path="/dashboard/addsr" element={<Sales2></Sales2>}></Route>

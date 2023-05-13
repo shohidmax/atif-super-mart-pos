@@ -1,4 +1,6 @@
 import { useState } from "react";
+import LoadVlogs from "../Utilitis/LoadVlogs";
+import LoadingSpin from "../Utilitis/LoadingSpin/LoadingSpin";
 
 
 function Testdata2() {
@@ -137,8 +139,9 @@ function Testdata2() {
   }
   return (
     <div className="App">
-    
-      <h1>{sata}</h1>
+    <LoadVlogs/>
+    <LoadingSpin></LoadingSpin> 
+      <h1>{sata}..........</h1>
       <button className="btn btn-primary" onClick={() => handleConvert(dataH, dataS)}>slip</button>
     </div>
   );

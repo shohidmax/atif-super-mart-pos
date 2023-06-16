@@ -48,9 +48,10 @@ import Dashboard from './Component/Pages/Dashboard/Dashboard';
 import DashboardProfile from './Component/Pages/DashboardProfile/DashboardProfile';
 import Notfound from './Component/Pages/Notfound/Notfound';
 import Preceve from './Component/Inventry/Preceve/Preceve';
-import DailyCost from './Component/Accounts/DailyCost';
 import Testdata2 from './Component/TestData/Testdata2';
 import Shopreceve from './Component/Inventry/Shopreceve/Shopreceve';
+import Calculator from './Component/Footer/Calculator';
+import DailyCost from './Component/Accounts/DailyCost/DailyCost';
 function App() {
   const [Supplier, setSupplier] = useSupplier();
   const [Brand, setBrand] = useBrand();
@@ -78,6 +79,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/pos" element={<POS />} />
         <Route path="/adduser" element={<Adduser></Adduser>} />
+        <Route path="/cal" element={<Calculator/>} />
         <Route path="/addproduct" element={<Addproduct></Addproduct>} />
         <Route path="/addssr" element={<Addsr></Addsr>} />
         <Route path="/rpt" element={<Recept></Recept>} />
@@ -103,7 +105,7 @@ function App() {
         <Route path="/sr" element={<SalesReport></SalesReport>} />
         <Route path="/search" element={<Search></Search>} />
         <Route path="/pr" element={<Preceve></Preceve>} />
-        <Route path="/dailycost" element={<DailyCost></DailyCost>} />
+        <Route path="/hisab" element={<DailyCost></DailyCost>} />
         <Route path="/salereport" element={<SalesReport></SalesReport>} />
         <Route path="/receve" element={<Shopreceve/>} />
         <Route path="/dashboard" element={<Dashboard />}>

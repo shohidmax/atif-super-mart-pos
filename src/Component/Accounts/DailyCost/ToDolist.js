@@ -69,7 +69,11 @@ const TodoList = () => {
       </div>
       <ul>
         {todos.map((todo) => (
-          <li key={todo.id}>
+         <div>
+            <h1>
+            {todo.text} - {todo.amound}
+            </h1>
+             <li key={todo.id}>
             <input
               type="checkbox"
               class="checkbox checkbox-secondary"
@@ -85,9 +89,10 @@ const TodoList = () => {
             </span>
             <button className='btn btn-sm btn-danger' style={{'margin-left': '50px'}} onClick={() => deleteTodo(todo.id)}> Delete </button>
           </li>
+         </div>
+         
         ))}
       </ul>
-      <hr className='border-2 border-red' style={{'color':'white', 'weight':'30px'}}/> 
     </div>
   );
 };

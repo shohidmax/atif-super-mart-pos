@@ -40,7 +40,7 @@ const SalesReport = () => {
       const name = e.target.name.value;
       const about = e.target.about.value;
       const newSale = { date, name, about };
-      console.log(newSale);
+      // console.log(newSale);
       if (newSale) {
           fetch('https://atifsupermart.onrender.com/sale', {
               method: 'POST',

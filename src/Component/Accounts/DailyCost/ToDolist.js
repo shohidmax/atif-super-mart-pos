@@ -24,6 +24,7 @@ const TodoList = () => {
       setTodos([...todos, newTodo]);
       setInputText('');
       setInputAmount('');
+      localStorage.setItem('dynamic',todos)
     }
   };
 
@@ -45,9 +46,16 @@ const TodoList = () => {
     setTodos(updatedTodos);
   };
 
+ 
+    const clicks = () =>{
+     const rr = localStorage.getItem('dynamic')
+      console( rr.ToArray);
+    }
+
   return (
-    <div>
-      <h2>Todo List</h2>
+    <div className=''>
+      <h2>Todo List</h2> 
+      <button onClick={clicks}>vlll</button>
       <div>
         <input
           class="input input-bordered input-sm w-full max-w-xs"

@@ -1,20 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
+import useBank from '../../../Hooks/Accounts_hisab/useBank';
 
 const Bankcost = () => { 
-    const [bank, setbank] = useState([]);
- 
+    const [bank, setbank] = useBank();
     let total = 0;
     for(const NotE of bank){
     total = total + Number(NotE.Amound);
     };
 
-    useEffect(() => {
-        fetch('http://localhost:3002/bank')
-        .then(r => r.json())
-        .then(data => setbank(data))
-      }, [bank]);
-// console.log(bank);
     const handelBankAmound = (e) => {
         e.preventDefault();
         const Pay_Type = e.target.note.value;
@@ -63,7 +57,7 @@ const Bankcost = () => {
           <div>
           <h1 className='text-xl'>Bank cost </h1>
                     <form onSubmit={handelBankAmound}>
-                        <select name='note' class="select select-success  max-w-xs">
+                        <select name='note' className="select select-success  max-w-xs">
                         <option disabled selected name='notevalue'>Select Payment </option >
                         <option value='Bkash'>BKASH</option>
                         <option value='DBBL'>DBBL</option>
@@ -76,8 +70,8 @@ const Bankcost = () => {
                     </form>
           </div>
           <div>
-          <div class="overflow-x-auto">
-          <table class="table w-full overflow-x-auto">
+          <div className="overflow-x-auto"  style={{'height':'350px'}}>
+          <table className="table w-full overflow-x-auto">
                         <thead>
                             <tr>
                             <th>SN</th>

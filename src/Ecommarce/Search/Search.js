@@ -33,10 +33,10 @@ const Search = () => {
     <div className='border-black mb-6 mx-auto grid grid-cols-2/4 gap-4 content-center place-items-center'>
       <h5>{re?.length}</h5>
 
-      <input onChange={searchBar} type="text" placeholder="Type here" class="input   input-bordered w-full max-w-xs" /><br />
+      <input onChange={searchBar} type="text" placeholder="Type here" className="input   input-bordered w-full max-w-xs" /><br />
       <div>
-        <div class="overflow-x-auto">
-          <table class="table table-compact w-full">
+        <div className="overflow-x-auto">
+          <table className="table table-compact w-full">
             <thead>
               <tr>
                 <th>Barcode</th>

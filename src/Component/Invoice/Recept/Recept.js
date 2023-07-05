@@ -229,8 +229,8 @@ const Recept = () => {
                         <hr/>
                     </div>
                     <div>
-                            <div class="overflow-x-auto">
-                              <table class="table mb-1 table-compact w-full">
+                            <div className="overflow-x-auto">
+                              <table className="table mb-1 table-compact w-full">
                                 <thead>
                                   <tr>
                                     <th>PrdInfo</th> 

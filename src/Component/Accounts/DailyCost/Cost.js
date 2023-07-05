@@ -1,21 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { toast } from 'react-hot-toast';
 import LoadVlogs from '../../Utilitis/LoadVlogs';
+import useCost from '../../../Hooks/Accounts_hisab/useCost';
 
 const Cost = () => { 
-    const [Cost, setCost] = useState([]);
-let total = 0;
+    const [Cost, setCost] = useCost();
+    let total = 0;
   
-for(const NotE of Cost){
-total = total + Number(NotE.Amound); 
-};
+    for(const NotE of Cost){
+    total = total + Number(NotE.Amound); 
+    };
 
-    useEffect(() => {
-        fetch('http://localhost:3002/cost')
-        .then(r => r.json())
-        .then(data => setCost(data))
-      }, [Cost]);
-// console.log(bank);
     const handelCashAmound = (e) => {
         e.preventDefault();
         const Pay_Name = e.target.Cost_name.value;
@@ -34,7 +29,7 @@ total = total + Number(NotE.Amound);
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);
-                    toast.success('Bank amound added successfully!!!');
+                    toast.success('Cost added successfully!!!');
                     e.target.reset();
                 })
   
@@ -59,10 +54,8 @@ total = total + Number(NotE.Amound);
         }
       };
     return (
-        <div className=''>
-            
-          
-          <div>
+        <div className=''> 
+          <div className=' '>
           <h1 className='text-xl'>Daily Cost </h1>
                     <form onSubmit={handelCashAmound}>
                     <input name='Cost_name'   required  style={{'width':'250px','height':'50px',}} className="text-end input border-2 bg-red-100 " type="text" placeholder="Name of Cost" />
@@ -73,8 +66,8 @@ total = total + Number(NotE.Amound);
           <div>
           
            
-           <div class="overflow-x-auto">
-          <table class="table w-full overflow-x-auto">
+           <div className="overflow-x-auto"  style={{'height':'350px'}}>
+          <table className="table w-full overflow-x-auto">
                         <thead>
                             <tr>
                             <th>SN</th>

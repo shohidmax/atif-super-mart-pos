@@ -46,9 +46,9 @@ const Login = () => {
       else{
           
         <>
-        <div class="alert alert-success shadow-lg">
+        <div className="alert alert-success shadow-lg">
             <div>
-              <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
               <span>Your purchase has been confirmed!</span>
             </div>
           </div>
@@ -61,32 +61,32 @@ const Login = () => {
         <div>
             <h1>Please Login</h1>
             <div className=' lg:w-3/4 mx-auto'>
-            <div class="hero min-h-screen bg-base-000">
-                  <div class="hero-content flex-col lg:flex-row-reverse">
-                    <div class="text-center lg:text-left">
-                      <h1 class="text-5xl font-bold">Login now!</h1>
-                      <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+            <div className="hero min-h-screen bg-base-000">
+                  <div className="hero-content flex-col lg:flex-row-reverse">
+                    <div className="text-center lg:text-left">
+                      <h1 className="text-5xl font-bold">Login now!</h1>
+                      <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                     </div>
-                    <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                      <div class="card-body">
-                        <div class="form-control">
-                          <label class="label">
-                            <span class="label-text">Email</span>
+                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                      <div className="card-body">
+                        <div className="form-control">
+                          <label className="label">
+                            <span className="label-text">Email</span>
                           </label>
-                          <input type="text" onBlur={handleEmailBlur} placeholder="email" class="input input-bordered" required />
+                          <input type="text" onBlur={handleEmailBlur} placeholder="email" className="input input-bordered" required />
                         </div>
-                        <div class="form-control">
-                          <label class="label">
-                            <span class="label-text">Password</span>
+                        <div className="form-control">
+                          <label className="label">
+                            <span className="label-text">Password</span>
                           </label>
-                          <input type="text" placeholder="password" required onBlur={handlePasswordBlur} class="input input-bordered" />
-                          <label class="label">
-                            <button href="#" class="label-text-alt link link-hover">Forgot password?</button>
-                            <Link to='/signup' class="label-text-alt linknpm install react-hot-toast link-hover">Signup</Link>
+                          <input type="text" placeholder="password" required onBlur={handlePasswordBlur} className="input input-bordered" />
+                          <label className="label">
+                            <button href="#" className="label-text-alt link link-hover">Forgot password?</button>
+                            <Link to='/signup' className="label-text-alt linknpm install react-hot-toast link-hover">Signup</Link>
                           </label>
                         </div>
-                        <div class="form-control mt-6">
-                          <button onClick={handleUserSignIn} class="btn btn-primary">Login</button>
+                        <div className="form-control mt-6">
+                          <button onClick={handleUserSignIn} className="btn btn-primary">Login</button>
                         </div>
                         <div>
                           <GoogleSignin></GoogleSignin>

@@ -58,7 +58,7 @@ const TodoList = () => {
       <button onClick={clicks}>vlll</button>
       <div>
         <input
-          class="input input-bordered input-sm w-full max-w-xs"
+          className="input input-bordered input-sm w-full max-w-xs"
           type="text"
           value={inputText}
           onChange={handleTextChange}
@@ -67,13 +67,13 @@ const TodoList = () => {
         <br/>
         <input
           type="number"
-          class="input input-bordered input-sm w-full max-w-xs"
+          className="input input-bordered input-sm w-full max-w-xs"
           value={inputAmount}
           onChange={handleAmountChange}
           placeholder="Enter amount ৳"
         />
         <br/>
-        <button class="btn btn-sm" onClick={addTodo}> Add TO LIST</button>
+        <button className="btn btn-sm" onClick={addTodo}> Add TO LIST</button>
       </div>
       <ul>
         {todos.map((todo) => (
@@ -84,7 +84,7 @@ const TodoList = () => {
              <li key={todo.id}>
             <input
               type="checkbox"
-              class="checkbox checkbox-secondary"
+              className="checkbox checkbox-secondary"
               checked={todo.completed}
               onChange={() => toggleTodo(todo.id)}
             />

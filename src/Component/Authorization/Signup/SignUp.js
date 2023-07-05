@@ -90,44 +90,44 @@ console.log(user);
         <div>
             <h1>Please Login</h1>
             <div className=' lg:w-3/4 mx-auto'>
-            <div class="hero min-h-screen bg-base-000">
-                  <div class="hero-content flex-col lg:flex-row-reverse">
-                    <div class="text-center lg:text-left">
-                      <h1 class="text-5xl font-bold">SignUp now!</h1>
-                      <p class="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+            <div className="hero min-h-screen bg-base-000">
+                  <div className="hero-content flex-col lg:flex-row-reverse">
+                    <div className="text-center lg:text-left">
+                      <h1 className="text-5xl font-bold">SignUp now!</h1>
+                      <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
                     </div>
-                    <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-                      <div class="card-body">
-                        <div class="form-control">
-                          <label class="label">
-                            <span class="label-text">Name</span>
+                    <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+                      <div className="card-body">
+                        <div className="form-control">
+                          <label className="label">
+                            <span className="label-text">Name</span>
                           </label>
-                          <input type="text" placeholder="Your Name" class="input input-bordered" required/>
+                          <input type="text" placeholder="Your Name" className="input input-bordered" required/>
                         </div>
-                        <div class="form-control">
-                          <label class="label">
-                            <span class="label-text">Email</span>
+                        <div className="form-control">
+                          <label className="label">
+                            <span className="label-text">Email</span>
                           </label>
-                          <input type="text" onChange={handleEmailBlur} placeholder="Email" class="input input-bordered" required/>
+                          <input type="text" onChange={handleEmailBlur} placeholder="Email" className="input input-bordered" required/>
                         </div>
-                        <div class="form-control">
-                          <label class="label">
-                            <span class="label-text">Password</span>
+                        <div className="form-control">
+                          <label className="label">
+                            <span className="label-text">Password</span>
                           </label>
-                          <input type="password" onChange={handlePasswordBlur} placeholder="Password" class="input input-bordered" required/>
+                          <input type="password" onChange={handlePasswordBlur} placeholder="Password" className="input input-bordered" required/>
                         </div>
-                        <div class="form-control">
-                          <label class="label">
-                            <span class="label-text">Password</span>
+                        <div className="form-control">
+                          <label className="label">
+                            <span className="label-text">Password</span>
                           </label>
-                          <input type="password" onChange={handleConfirmPasswordBlur} placeholder="Password" class="input input-bordered" required />
-                          <label class="label">
-                            <button href="#" class="label-text-alt link link-hover">Forgot password?</button>
-                            <Link to='/login' class="label-text-alt btn-link link-hover">Signin</Link>
+                          <input type="password" onChange={handleConfirmPasswordBlur} placeholder="Password" className="input input-bordered" required />
+                          <label className="label">
+                            <button href="#" className="label-text-alt link link-hover">Forgot password?</button>
+                            <Link to='/login' className="label-text-alt btn-link link-hover">Signin</Link>
                           </label>
                         </div>
-                        <div class="form-control mt-6">
-                          <button onClick={HandleSignup} class="btn btn-primary">SignUp</button>
+                        <div className="form-control mt-6">
+                          <button onClick={HandleSignup} className="btn btn-primary">SignUp</button>
                         </div>
                       </div>
                     </div>

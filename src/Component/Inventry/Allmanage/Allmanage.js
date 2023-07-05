@@ -98,16 +98,16 @@ const Allmanage = () => {
             type="text"
             placeholder="Barcode Hear"
           />
-          <button class="btn btn-square border-2  mt-1">
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-6" fill="none" viewBox="0 0 20 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+          <button className="btn btn-square border-2  mt-1">
+      <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-6" fill="none" viewBox="0 0 20 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
     </button>
         </div>
       </div>
-      <div class="divider divider-horizontal">OR</div>
+      <div className="divider divider-horizontal">OR</div>
       <div>
             <div>
-            <div class="overflow-x-auto">
-          <table ref={textAreaRef} class="table table-compact w-full ">
+            <div className="overflow-x-auto">
+          <table ref={textAreaRef} className="table table-compact w-full ">
             <thead>
               <tr>
                 <th>SN</th>
@@ -126,7 +126,7 @@ const Allmanage = () => {
             </thead>
             <tbody className="snap">
              {
-                Products.map((r, index) => <tr class="hover">
+                Products.map((r, index) => <tr className="hover">
                 <th>{index + 1}</th>
                 <td >{r.BarCode} <button className="btn-outline  hover:bg-transparent hover:rounded-full hover:animate-bounce hover::scale-110 transition duration-100 ease-in-out	 btn-xs" onClick={() => copyToClipBoard(r.BarCode)}><img style={{'width': '20px', 'height': 'auto'}} className='m-1' src={img} alt="" /></button> </td>
                 <td>{r.Group}</td>

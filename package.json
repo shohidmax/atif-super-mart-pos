@@ -16,7 +16,6 @@
     "@testing-library/user-event": "^13.5.0",
     "barcode": "^0.0.4",
     "browser-thermal-printer": "^0.0.1",
-    "daisyui": "^2.24.0",
     "firebase": "^9.11.0",
     "flowbite": "^1.5.3",
     "flowbite-react": "^0.2.0",
@@ -59,6 +58,7 @@
   },
   "devDependencies": {
     "@types/png.js": "^0.2.1",
+    "daisyui": "^3.1.7",
     "tailwindcss": "^3.1.8"
   }
 }

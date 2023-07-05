@@ -76,7 +76,7 @@ const handCopy = e => {
   console.log(Sale);
 
   if (Products <= 500) {
-    return <button class="btn loading">loading</button>;
+    return <button className="btn loading">loading</button>;
   }
 
   return (
@@ -93,8 +93,8 @@ const handCopy = e => {
           </form>
           <hr className="m-2 color-balck-800" />
 
-          <div class="overflow-x-auto">
-            <table class="table table-compact w-full">
+          <div className="overflow-x-auto">
+            <table className="table table-compact w-full">
               <thead>
                 <tr>
                   <th> SN</th>
@@ -131,8 +131,8 @@ const handCopy = e => {
         <div className="w-1/5 border text-left p-2 ">
           <h1 className="broder-b-4">Total Price</h1>
           <br />
-          <p class="stat-value text-secondary">Quantity: {Sale.length}</p>
-          <h4><div class="stat-value"> $ {total}</div></h4>
+          <p className="stat-value text-secondary">Quantity: {Sale.length}</p>
+          <h4><div className="stat-value"> $ {total}</div></h4>
           <h4>vat:</h4>
           <h4>pay amound:</h4>
           <h4>Change Amound:</h4>

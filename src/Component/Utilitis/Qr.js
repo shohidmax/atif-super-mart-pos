@@ -50,7 +50,7 @@ const Qr = () => {
 
     return (
         <div className='mx-auto '>
-             <input type="text" onChange={hadelonbr} placeholder="text" class="input input-bordered mb-3" required />
+             <input type="text" onChange={hadelonbr} placeholder="text" className="input input-bordered mb-3" required />
              {
                 !copySuccess ? <Loadcomponent className="mt-4"></Loadcomponent> : <div className='lg:flex '>
                 <div className='w-6/12 border-2 p-2 m-2 mx-auto'>

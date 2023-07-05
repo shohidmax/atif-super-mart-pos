@@ -97,7 +97,7 @@ const Preceve = () => {
                             <div className='flex'>
                                 <label className=' mt-4  text-xl font-medium text-slate-700'>Supplier</label>
                                 {/* <input  className='input input-primary p-2 m-2 w-8/12'  type="text" /> */}
-                                <select onChange={(e) => setsuPPlier(e.target.value) } class="select select-bordered w-full max-w-xs">
+                                <select onChange={(e) => setsuPPlier(e.target.value) } className="select select-bordered w-full max-w-xs">
                                   <option disabled selected>Who shot first?</option>
                                   {
                                     Supplier.map((d, i) => <option key={i + 1}> {d.Name}</option>)
@@ -163,8 +163,8 @@ const Preceve = () => {
                     </div>
                     <div className='border-2 m-2 p-2 bg-orange-100 border-red-500'>
                         <div style={{'height':'380px'}} className=''>
-                            <div class="overflow-x-auto">
-                                <table class="table table-compact w-full">
+                            <div className="overflow-x-auto">
+                                <table className="table table-compact w-full">
                                   <thead>
                                     <tr>
                                       <th>Barcode</th> 

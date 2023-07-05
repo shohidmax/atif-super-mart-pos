@@ -48,19 +48,19 @@ const ref = useRef();
 
     if (Products.length == 0) {
       return <div>
-      <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+      <div className="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
         
-              <div class="animate-pulse flex space-x-4">
-                <div class="rounded-full bg-slate-200 h-10 w-10"></div>
-                <div class="flex-1 space-y-6 py-1">
-                  <div class="h-2 bg-slate-200 rounded"><span>Loading Please Wait</span></div>
-                  <div class="space-y-3">
+              <div className="animate-pulse flex space-x-4">
+                <div className="rounded-full bg-slate-200 h-10 w-10"></div>
+                <div className="flex-1 space-y-6 py-1">
+                  <div className="h-2 bg-slate-200 rounded"><span>Loading Please Wait</span></div>
+                  <div className="space-y-3">
                     
-                    <div class="grid grid-cols-3 gap-4">
-                      <div class="h-2 bg-slate-200 rounded col-span-2"></div>
-                      <div class="h-2 bg-slate-200 rounded col-span-1"></div>
+                    <div className="grid grid-cols-3 gap-4">
+                      <div className="h-2 bg-slate-200 rounded col-span-2"></div>
+                      <div className="h-2 bg-slate-200 rounded col-span-1"></div>
                     </div>
-                    <div class="h-2 bg-slate-200 rounded"></div>
+                    <div className="h-2 bg-slate-200 rounded"></div>
                   </div>
                 </div>
               </div>
@@ -74,7 +74,7 @@ const ref = useRef();
                 <h1 className='text-5xl'>Supplier Wise Damage Report {Products.length}</h1>
                 <div className='m-2 pt-4'>
                     <form >
-                    <select  onChange={DevideSupplier}  class="select select-primary w-full max-w-xs"  name='suppl'>
+                    <select  onChange={DevideSupplier}  className="select select-primary w-full max-w-xs"  name='suppl'>
                              <option disabled selected>select Your supplier </option>
                              {
                                     Supplier.map((s, index) => <option key={index + 1} value={s.Name}>{s.Reg_Name}</option>)
@@ -85,25 +85,25 @@ const ref = useRef();
             </div>
             <div className=' p-4 m-2 mx-auto'>
               {
-                Stock.length == 0 ? <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
-                <div class="animate-pulse flex space-x-4">
-                  <div class="rounded-full bg-slate-200 h-10 w-10"></div>
-                  <div class="flex-1 space-y-6 py-1">
-                    <div class="h-2 bg-slate-200 rounded"></div>
-                    <div class="space-y-3">
-                      <div class="grid grid-cols-3 gap-4">
-                        <div class="h-2 bg-slate-200 rounded col-span-2"></div>
-                        <div class="h-2 bg-slate-200 rounded col-span-1"></div>
+                Stock.length == 0 ? <div className="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+                <div className="animate-pulse flex space-x-4">
+                  <div className="rounded-full bg-slate-200 h-10 w-10"></div>
+                  <div className="flex-1 space-y-6 py-1">
+                    <div className="h-2 bg-slate-200 rounded"></div>
+                    <div className="space-y-3">
+                      <div className="grid grid-cols-3 gap-4">
+                        <div className="h-2 bg-slate-200 rounded col-span-2"></div>
+                        <div className="h-2 bg-slate-200 rounded col-span-1"></div>
                       </div>
-                      <div class="h-2 bg-slate-200 rounded"></div>
+                      <div className="h-2 bg-slate-200 rounded"></div>
                     </div>
                   </div>
                 </div>
               </div> : 
               
-              <div  style={{'width':'100%'}}  ref={ref}  class="overflow-x-auto border-4 border-primary">
+              <div  style={{'width':'100%'}}  ref={ref}  className="overflow-x-auto border-4 border-primary">
                 <h1 className='m-2 mx-auto text-xl text-center'>{state}</h1>
-                  <table style={{'width':'100%'}}  class="table table-compact w-full">
+                  <table style={{'width':'100%'}}  className="table table-compact w-full">
                     
                     <thead style={{'width':'210mm'}}>
                       <tr>

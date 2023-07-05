@@ -11,19 +11,19 @@ const Productmodal = () => {
                   {/* supplier lebel */}
                   <div> 
                     <label>Your Supplier </label>
-                  <input type="text" placeholder="please select your supplier" class="input input-bordered input-success w-full max-w-5xl" />
+                  <input type="text" placeholder="please select your supplier" className="input input-bordered input-success w-full max-w-5xl" />
                   <a href="#my-modal-2" className="btn">+</a>
                   </div>
                   {/* Group and Product  */}
                   <div className='flex'>
                     <div className='flex-1 p-2 m-2 w-50'>
                       <label className='p-2 m-2'>group</label>
-                      <input type="text" placeholder="please select your supplier" class="input input-bordered input-success w-full max-w-xs" />
+                      <input type="text" placeholder="please select your supplier" className="input input-bordered input-success w-full max-w-xs" />
                       <a href="#my-modal-2" className="btn p-2 m-2">+</a>
                     </div>
                     <div className='flex-1 p-2 m-2 w-50'>
                       <label className='p-2 m-2'>group</label>
-                      <input type="text" placeholder="please select your supplier" class="input input-bordered input-success w-full max-w-xs" />
+                      <input type="text" placeholder="please select your supplier" className="input input-bordered input-success w-full max-w-xs" />
                       <a href="#my-modal-2" className="btn p-2 m-2">+</a>
                     </div>
                   </div>
@@ -31,73 +31,73 @@ const Productmodal = () => {
                   <div className='flex'>
                     <div className='flex-1 p-2 m-2 w-50'>
                       <label className='p-2 m-2'>group</label>
-                      <input type="text" placeholder="please select your supplier" class="input input-bordered input-success w-full max-w-xs" />
+                      <input type="text" placeholder="please select your supplier" className="input input-bordered input-success w-full max-w-xs" />
                       <a href="#my-modal-2" className="btn p-2 m-2">+</a>
                     </div>
                     <div className='flex-1 p-2 m-2 w-50'>
                       <label className='p-2 m-2'>size/style</label>
-                      <input type="text" placeholder="    " class="input input-bordered input-success w-full max-w-xs" />
+                      <input type="text" placeholder="    " className="input input-bordered input-success w-full max-w-xs" />
                     </div>
                   </div>
 
                   <div className='flex'>
                     <div className='flex-1 p-2 m-2 w-50'>
                       <label className='p-2 m-2'>group</label>
-                      <input type="text" placeholder="please select your supplier" class="input input-bordered input-success w-full max-w-xs" />
+                      <input type="text" placeholder="please select your supplier" className="input input-bordered input-success w-full max-w-xs" />
                     </div>
                     <div className='flex-1 p-2 m-2 w-50'>
                       <label className='p-2 m-2'>size/style</label>
-                      <input type="text" placeholder="    " class="input input-bordered input-success w-full max-w-xs" />
+                      <input type="text" placeholder="    " className="input input-bordered input-success w-full max-w-xs" />
                     </div>
                   </div>
                   <div className='flex'>
                     <div className='flex-1 p-2 m-2 w-50'>
                       <label className='p-2 m-2'>group</label>
-                      <input type="text" placeholder="please select your supplier" class="input input-bordered input-success w-full max-w-xs" />
+                      <input type="text" placeholder="please select your supplier" className="input input-bordered input-success w-full max-w-xs" />
                     </div>
                     <div className='flex-1 p-2 m-2 w-50'>
                       <label className='p-2 m-2'>size/style</label>
-                      <input type="text" placeholder="    " class="input input-bordered input-success w-full max-w-xs" />
+                      <input type="text" placeholder="    " className="input input-bordered input-success w-full max-w-xs" />
                     </div>
                   </div>
                   <div className='flex'>
                     <div className='flex-1 p-2 m-2 w-50'>
                       <label className='p-2 m-2'>group</label>
-                      <input type="text" placeholder="please select your supplier" class="input input-bordered input-success w-full max-w-xs" />
+                      <input type="text" placeholder="please select your supplier" className="input input-bordered input-success w-full max-w-xs" />
                     </div>
                     <div className='flex-1 p-2 m-2 w-50'>
                       <label className='p-2 m-2'>size/style</label>
-                      <input type="text" placeholder="    " class="input input-bordered input-success w-full max-w-xs" />
+                      <input type="text" placeholder="    " className="input input-bordered input-success w-full max-w-xs" />
                     </div>
                   </div>
                   <div className='flex'>
                     <div className='flex-1 p-2 m-2 w-50'>
                       <label className='p-2 m-2'>group</label>
-                      <input type="text" placeholder="please select your supplier" class="input input-bordered input-success w-full max-w-xs" />
+                      <input type="text" placeholder="please select your supplier" className="input input-bordered input-success w-full max-w-xs" />
                     </div>
                     <div className='flex-1 p-2 m-2 w-50'>
                       <label className='p-2 m-2'>size/style</label>
-                      <input type="text" placeholder="    " class="input input-bordered input-success w-full max-w-xs" />
+                      <input type="text" placeholder="    " className="input input-bordered input-success w-full max-w-xs" />
                     </div>
                   </div>
                   <div className='flex'>
                     <div className='flex-1 p-2 m-2 w-50'>
                       <label className='p-2 m-2'>group</label>
-                      <input type="text" placeholder="please select your supplier" class="input input-bordered input-success w-full max-w-xs" />
+                      <input type="text" placeholder="please select your supplier" className="input input-bordered input-success w-full max-w-xs" />
                     </div>
                     <div className='flex-1 p-2 m-2 w-50'>
                       <label className='p-2 m-2'>size/style</label>
-                      <input type="text" placeholder="    " class="input input-bordered input-success w-full max-w-xs" />
+                      <input type="text" placeholder="    " className="input input-bordered input-success w-full max-w-xs" />
                     </div>
                   </div>
                   <div className='flex'>
                     <div className='flex-1 p-2 m-2 w-50'>
                       <label className='p-2 m-2'>group</label>
-                      <input type="text" placeholder="please select your supplier" class="input input-bordered input-success w-full max-w-xs" />
+                      <input type="text" placeholder="please select your supplier" className="input input-bordered input-success w-full max-w-xs" />
                     </div>
                     <div className='flex-1 p-2 m-2 w-50'>
                       <label className='p-2 m-2'>size/style</label>
-                      <input type="text" placeholder="    " class="input input-bordered input-success w-full max-w-xs" />
+                      <input type="text" placeholder="    " className="input input-bordered input-success w-full max-w-xs" />
                     </div>
                   </div>
 

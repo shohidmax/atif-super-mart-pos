@@ -48,11 +48,11 @@ const Modal1 = ({_id, r, Sale, setSale}) => {
   
   return (
     <div>
-      <input type="checkbox" id={_id} class="modal-toggle" />
+      <input type="checkbox" id={_id} className="modal-toggle" />
 
       <div className="modal " >
         <div style={{'width':'450px'}} className="modal-box mx-auto    max-w-5xl">
-        <label for={_id} class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+        <label for={_id} className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
 
           <h1>{r.Brand} {r.Style} || {r.RPU} TK || {r.BarCode}</h1>
    

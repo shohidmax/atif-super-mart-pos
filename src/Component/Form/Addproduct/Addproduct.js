@@ -22,7 +22,7 @@ const Addproduct = () => {
                         <div style={{'width':'20%'}}><p className='text-xl'>Supplier</p></div>
                         <div style={{'width':'80%'}}> 
                         
-                        <select class="select select-primary " style={{'width':'90%'}}   name='suppl'>
+                        <select className="select select-primary " style={{'width':'90%'}}   name='suppl'>
                              <option disabled selected>Select Your Supplier</option>
                              {
                                     Supplier.map((s, index) => <option key={index + 1} value={s.Name}>{s.Reg_Name}</option>)
@@ -39,7 +39,7 @@ const Addproduct = () => {
                             <div style={{'width':'30%'}}><p className='text-xl'>Group</p></div>
                             <div style={{'width':'70%'}}> 
                         
-                                    <select class="select select-primary " style={{'width':'90%'}}   name='suppl'>
+                                    <select className="select select-primary " style={{'width':'90%'}}   name='suppl'>
                                          <option disabled selected>Select Your Group</option>
                                          {
                                                 Groups.map((s, index) => <option key={index + 1} value={s.Name}>{s.Group_Name}</option>)
@@ -53,7 +53,7 @@ const Addproduct = () => {
                                  <div style={{'width':'30%'}}><p className='text-xl'>Product</p></div>
                                     <div style={{'width':'70%'}}> 
 
-                                        <select class="select select-primary " style={{'width':'90%'}}   name='suppl'>
+                                        <select className="select select-primary " style={{'width':'90%'}}   name='suppl'>
                                              <option disabled selected>Select Your Product</option>
                                              {
                                                     Product.map((s, index) => <option key={index + 1} value={s.Product_Name}>{s.Product_Name}</option>)
@@ -70,7 +70,7 @@ const Addproduct = () => {
                             <div style={{'width':'30%'}}><p className='text-xl'>Brand</p></div>
                             <div style={{'width':'70%'}}> 
                         
-                                    <select class="select select-primary " style={{'width':'90%'}}   name='suppl'>
+                                    <select className="select select-primary " style={{'width':'90%'}}   name='suppl'>
                                          <option className='text-xl' disabled selected>Select Your Group</option>
                                          {
                                                 Brand.map((s, index) => <option className='text-xl' key={index + 1} value={s.Brand_Type_Name}>{s.Brand_Type_Name}</option>)
@@ -86,7 +86,7 @@ const Addproduct = () => {
                          <div  style={{'width':'50%'}} className='flex justify-start '>
                                 <div style={{'width':'30%'}} ><p className='text-xl'>Style/Size</p></div>
                                 <div style={{'width':'70%'}}>
-                                    <input  type="text" style={{'width':'90%'}} placeholder="Type here" class="input input-bordered input-accent " />
+                                    <input  type="text" style={{'width':'90%'}} placeholder="Type here" className="input input-bordered input-accent " />
                                     
                                 </div>
                          </div>
@@ -97,7 +97,7 @@ const Addproduct = () => {
                         <div  style={{'width':'50%'}} className='flex '>
                         <div style={{'width':'30%'}} ><p className='text-xl'>sBarcode</p></div>
                                 <div style={{'width':'70%'}}>
-                                    <input  type="number" style={{'width':'90%'}} placeholder="12564985615498419514" class="input input-bordered input-accent "  disabled/>
+                                    <input  type="number" style={{'width':'90%'}} placeholder="12564985615498419514" className="input input-bordered input-accent "  disabled/>
 
                                 </div>
                 
@@ -106,7 +106,7 @@ const Addproduct = () => {
                          <div  style={{'width':'50%'}} className='flex '>
                                 <div style={{'width':'30%'}} ><p className='text-xl'>Barcode</p></div>
                                 <div style={{'width':'70%'}}>
-                                    <input  type="number" style={{'width':'90%'}} placeholder="Type here" class="input input-bordered input-accent " />
+                                    <input  type="number" style={{'width':'90%'}} placeholder="Type here" className="input input-bordered input-accent " />
 
                                 </div>
                          </div>
@@ -117,7 +117,7 @@ const Addproduct = () => {
                         <div  style={{'width':'40%'}} className='flex '>
                         <div style={{'width':'30%'}} ><p className='text-xl'>CPU</p></div>
                                 <div style={{'width':'70%'}}>
-                                    <input  type="number" style={{'width':'100%'}} placeholder="0.00" class="input input-bordered input-accent text-end text-xl"  />
+                                    <input  type="number" style={{'width':'100%'}} placeholder="0.00" className="input input-bordered input-accent text-end text-xl"  />
 
                                 </div>
                 
@@ -126,7 +126,7 @@ const Addproduct = () => {
                          <div  style={{'width':'20%'}} className='flex '>
                                 <div className='mx-auto' style={{'width':'100%'}}>
                                     <span className='text-xl'>% </span> 
-                                    <input  type="number" style={{'width':'50%'}} placeholder="0.00" class="input input-bordered input-accent text-end text-xl"  />
+                                    <input  type="number" style={{'width':'50%'}} placeholder="0.00" className="input input-bordered input-accent text-end text-xl"  />
 
                                 </div>
                 
@@ -135,7 +135,7 @@ const Addproduct = () => {
                          <div  style={{'width':'40%'}} className='flex '>
                                 <div style={{'width':'30%'}} ><p className='text-xl'>RPU</p></div>
                                 <div style={{'width':'70%'}}>
-                                    <input  type="number" style={{'width':'90%'}} placeholder="0.00" class="input input-bordered input-accent text-end text-xl" />
+                                    <input  type="number" style={{'width':'90%'}} placeholder="0.00" className="input input-bordered input-accent text-end text-xl" />
 
                                 </div>
                          </div>
@@ -146,7 +146,7 @@ const Addproduct = () => {
                         <div  style={{'width':'50%'}} className='flex '>
                         <div style={{'width':'30%'}} ><p className='text-xl'>sBarcode</p></div>
                                 <div style={{'width':'70%'}}>
-                                    <input  type="number" style={{'width':'90%'}} placeholder="12564985615498419514" class="input input-bordered input-accent "  disabled/>
+                                    <input  type="number" style={{'width':'90%'}} placeholder="12564985615498419514" className="input input-bordered input-accent "  disabled/>
 
                                 </div>
                 
@@ -155,7 +155,7 @@ const Addproduct = () => {
                          <div  style={{'width':'50%'}} className='flex '>
                                 <div style={{'width':'30%'}} ><p className='text-xl'>Barcode</p></div>
                                 <div style={{'width':'70%'}}>
-                                    <input  type="number" style={{'width':'90%'}} placeholder="Type here" class="input input-bordered input-accent " />
+                                    <input  type="number" style={{'width':'90%'}} placeholder="Type here" className="input input-bordered input-accent " />
 
                                 </div>
                          </div>

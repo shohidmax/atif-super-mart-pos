@@ -31,7 +31,7 @@ total = total + NotE.note * NotE.noteqty;
              className='p-2 m-2 border-2 '>
                     <h1 className='text-xl'>Note Balance cost</h1>
                     <form onSubmit={netCash}>
-                        <select name='note' class="select select-success  max-w-xs">
+                        <select name='note' className="select select-success  max-w-xs">
                         <option disabled selected name='notevalue'>Select Your Note</option >
                         <option value='1000'>1000 ৳</option>
                         <option value='500' >500 ৳</option>
@@ -46,8 +46,8 @@ total = total + NotE.note * NotE.noteqty;
                         </select>
                     <input name='notevalue'  autoComplete='off'  style={{'width':'250px','height':'50px',}} className="text-end input border-2 bg-red-100 " type="number" placeholder="0.00" /> <button className='btn btn-primary'>+</button>
                     </form>
-                    <div  class="overflow-x-auto"  style={{'height':'350px'}}>
-                        <table class="table w-full overflow-x-auto">
+                    <div  className="overflow-x-auto"  style={{'height':'350px'}}>
+                        <table className="table w-full overflow-x-auto">
                         <thead>
                             <tr>
                             <th>SN</th>
@@ -83,7 +83,7 @@ total = total + NotE.note * NotE.noteqty;
             <div  className='p-2 m-2 border-2'>
             <h1>Daily Cost</h1>
             <form onSubmit={netCash}>
-                        <select name='note' class="select select-success  max-w-xs">
+                        <select name='note' className="select select-success  max-w-xs">
                         <option disabled selected name='notevalue'>Cost type</option >
                         <option value='1000'>1000 ৳</option>
                         <option value='500' >500 ৳</option>
@@ -103,7 +103,7 @@ total = total + NotE.note * NotE.noteqty;
             <div  className='p-2 m-2 border-2'>
             <h1>Note Balance cost</h1>
             <form onSubmit={netCash}>
-                        <select name='note' class="select select-success  max-w-xs">
+                        <select name='note' className="select select-success  max-w-xs">
                         <option disabled selected name='notevalue'>Select Your Note</option >
                         <option value='1000'>1000 ৳</option>
                         <option value='500' >500 ৳</option>

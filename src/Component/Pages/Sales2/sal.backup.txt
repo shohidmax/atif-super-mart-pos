@@ -475,7 +475,7 @@ const addToCart = (barcode) => {
             </div>
           <div>
             <label className="p-2"> Auto Scan </label>
-            <input type="checkbox" class="toggle toggle-secondary"  />
+            <input type="checkbox" className="toggle toggle-secondary"  />
             </div>
           </div>
             <div>
@@ -540,8 +540,8 @@ const addToCart = (barcode) => {
         </div>
           <hr className="m-2 color-balck-800" />
         {/* table data  */}
-          <div class="overflow-x-auto " style={{'height':'350px'}}>
-            <table class="table bg-primary table-compact table-zebra w-full" >
+          <div className="overflow-x-auto " style={{'height':'350px'}}>
+            <table className="table bg-primary table-compact table-zebra w-full" >
               <thead className="bg-primary">
                 <tr className="bg-red-500">
                   <th> SN</th>
@@ -568,12 +568,12 @@ const addToCart = (barcode) => {
                    <Modal1 _id={r._id}  r={r} Sale={Sale} setSale={setSale} ></Modal1> 
                    </td>
                    <td> 
-                   <div class="dropdown ">
-                         <label tabindex="0" class="btn btn-xs btn-primary">Update</label>
-                         <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100   rounded-box ">
+                   <div className="dropdown ">
+                         <label tabindex="0" className="btn btn-xs btn-primary">Update</label>
+                         <ul tabindex="0" className="dropdown-content menu p-2 shadow bg-base-100   rounded-box ">
                            <li><button onClick={() => remoVeItem (r)} className="btn text-white p-1 m-1 btn-primary btn-xs">X</button>
                             </li>
-                           <li><label  for={r._id} class="btn text-white p-1 m-1 btn-primary btn-xs">Update </label></li>
+                           <li><label  for={r._id} className="btn text-white p-1 m-1 btn-primary btn-xs">Update </label></li>
                          </ul>
                         </div>
                    </td>
@@ -589,7 +589,7 @@ const addToCart = (barcode) => {
         <div className="border-4 m-2 w-100 flex">
           {/* first section  */}
           <div className="border-2 overflow-x-auto" style={{'height':'135px'}}>
-            <table class="table table-compact table-zebra">
+            <table className="table table-compact table-zebra">
               <thead>
                 <tr className="border-1 bg-red-500">
                   <th>Hold ID {Hold.length}</th>
@@ -658,8 +658,8 @@ const addToCart = (barcode) => {
 
         <div className="w-1/5 border text-left p-2 ">
           <div className="border-4 p-1">
-          <p class="stat-value text-secondary text-2xl bg-info text-black p-2 ">Paid Amound: {payamount}</p>
-          <p class="stat-value text-secondary text-red-500 text-2xl bg-success text-black p-2">Change Amound: {cnageamound}</p>
+          <p className="stat-value text-secondary text-2xl bg-info text-black p-2 ">Paid Amound: {payamount}</p>
+          <p className="stat-value text-secondary text-red-500 text-2xl bg-success text-black p-2">Change Amound: {cnageamound}</p>
             <div className="mt-1 bg-lime-100">
               <div className="flex justify-between">
                 <label>Total Items : </label>
@@ -734,7 +734,7 @@ const addToCart = (barcode) => {
              
                    <div>
                        <label className="p-2"> C&C </label>
-                      <input type="checkbox" class="toggle toggle-secondary"  />
+                      <input type="checkbox" className="toggle toggle-secondary"  />
                    </div>
                    <div>
                   <select className="bg-green-200" onChange={handleCashType} style={{'width':'150px','height':'40px', 'border':'none', 'color':'red'}} id="cars">
@@ -784,9 +784,9 @@ export default Sales2;
 
 // <h1 className="broder-b-4">Total Price</h1>
 //           <br />
-//           <p class="stat-value text-secondary">Total Item: {Sale.length}</p>
-//           <p class="stat-value text-secondary">Quantity: {Product_quantity}</p>
-//           <h4><div class="stat-value"> $ {total}</div></h4>
+//           <p className="stat-value text-secondary">Total Item: {Sale.length}</p>
+//           <p className="stat-value text-secondary">Quantity: {Product_quantity}</p>
+//           <h4><div className="stat-value"> $ {total}</div></h4>
 //           <h4>vat:</h4>
 //           <h4>pay amound:{totalPrice}</h4>
 //           <h4>Change Amound:</h4>

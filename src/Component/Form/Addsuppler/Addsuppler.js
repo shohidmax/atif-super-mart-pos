@@ -20,7 +20,7 @@ const Addsuppler = () => {
             <label className="mx-2">Your Supplier </label>
             <select
               placeholder="please select your supplier"
-              class="input input-bordered input-sm w-3/4 max-auto"
+              className="input input-bordered input-sm w-3/4 max-auto"
             >
               {Supplier.map((r, index) => (
                 <option>
@@ -36,7 +36,7 @@ const Addsuppler = () => {
           {/* 
                   <div className='flex justify-center m-2 '> 
                   <label className='mx-2'>Group </label>
-                  <select placeholder="please select your supplier" class="input input-bordered input-sm w-3/4 max-auto">
+                  <select placeholder="please select your supplier" className="input input-bordered input-sm w-3/4 max-auto">
                     {
                         Supplier.map((r , index) => <option>{r.Name}  ID: {r.SID}</option>)
                     }
@@ -50,7 +50,7 @@ const Addsuppler = () => {
               <label className="mx-2">Group </label>
               <select
                 placeholder="please select your supplier"
-                class="input input-bordered input-sm w-2/4 max-auto"
+                className="input input-bordered input-sm w-2/4 max-auto"
               >
                 {Groups.map((r, index) => (
                   <option>
@@ -66,7 +66,7 @@ const Addsuppler = () => {
               <label className="mx-2">Product </label>
               <select
                 placeholder="please select your supplier"
-                class="input input-bordered input-sm w-2/4 max-auto"
+                className="input input-bordered input-sm w-2/4 max-auto"
               >
                 {Product.map((r, index) => (
                   <option>
@@ -84,7 +84,7 @@ const Addsuppler = () => {
               <label className="mx-2">Brand </label>
               <select
                 placeholder="please select your supplier"
-                class="input input-bordered input-sm w-2/4 max-auto"
+                className="input input-bordered input-sm w-2/4 max-auto"
               >
                 <option key="">Please Select One</option>
                 {Brand.map((r, index) => (
@@ -101,7 +101,7 @@ const Addsuppler = () => {
               <label className="mx-2">Style/Size </label>
               <input
                 placeholder="please select your supplier"
-                class="input input-bordered input-sm w-2/4 max-auto"
+                className="input input-bordered input-sm w-2/4 max-auto"
               />
             </div>
           </div>
@@ -110,7 +110,7 @@ const Addsuppler = () => {
               <label className="mx-2">sBarCode </label>
               <input
                 placeholder=" Number"
-                class="input input-bordered input-sm w-2/4 max-auto"
+                className="input input-bordered input-sm w-2/4 max-auto"
               />
             </div>
             <div className="flex-1 p-2 m-2 w-50">
@@ -118,7 +118,7 @@ const Addsuppler = () => {
               <input
                 type="number"
                 placeholder="please select your supplier"
-                class="input input-bordered input-sm w-2/4 max-auto"
+                className="input input-bordered input-sm w-2/4 max-auto"
               />
             </div>
           </div>
@@ -132,18 +132,18 @@ const Addsuppler = () => {
               <input
                 placeholder=" 0.00"
                 type="number"
-                class="input input-bordered input-sm w-2/4 max-auto"
+                className="input input-bordered input-sm w-2/4 max-auto"
               />
             </div>
             <div className="flex-1 p-2 m-1 w-50">
-              <label class="label">
-                <span class="label-text">Profit %</span>
+              <label className="label">
+                <span className="label-text">Profit %</span>
                 
               </label>
               <input
                 placeholder=" 0.00"
                 type="number"
-                class="input input-bordered input-sm w-2/4 max-auto"
+                className="input input-bordered input-sm w-2/4 max-auto"
               />
             </div>
             <div className="flex-1 p-2 m-2 w-50">
@@ -151,7 +151,7 @@ const Addsuppler = () => {
               <input
                 type="number"
                 placeholder="please select your supplier"
-                class="input input-bordered input-sm w-2/4 max-auto"
+                className="input input-bordered input-sm w-2/4 max-auto"
               />
             </div>
           </div>
@@ -165,7 +165,7 @@ const Addsuppler = () => {
               <input
                 placeholder=" 0.00"
                 type="number"
-                class="input input-bordered input-sm w-2/4 max-auto"
+                className="input input-bordered input-sm w-2/4 max-auto"
               />
             </div>
             
@@ -174,7 +174,7 @@ const Addsuppler = () => {
               <input
                 type="number"
                 placeholder="please select your supplier"
-                class="input input-bordered input-sm w-2/4 max-auto"
+                className="input input-bordered input-sm w-2/4 max-auto"
               />
             </div>
           </div>
@@ -189,7 +189,7 @@ const Addsuppler = () => {
               <input
                 placeholder=" 0.00"
                 type="number"
-                class="input input-bordered input-sm w-2/4 max-auto"
+                className="input input-bordered input-sm w-2/4 max-auto"
               />
             </div>
             
@@ -198,7 +198,7 @@ const Addsuppler = () => {
               <input
                 type="number"
                 placeholder="please select your supplier"
-                class="input input-bordered input-sm w-2/4 max-auto"
+                className="input input-bordered input-sm w-2/4 max-auto"
               />
             </div>
           </div>
@@ -214,7 +214,7 @@ const Addsuppler = () => {
               <input
                 placeholder=" 0.00"
                 type="number"
-                class="input input-bordered input-sm w-2/4 max-auto"
+                className="input input-bordered input-sm w-2/4 max-auto"
               />
             </div>
             
@@ -223,7 +223,7 @@ const Addsuppler = () => {
               <input
                 type="number"
                 placeholder="please select your supplier"
-                class="input input-bordered input-sm w-2/4 max-auto"
+                className="input input-bordered input-sm w-2/4 max-auto"
               />
             </div>
           </div>

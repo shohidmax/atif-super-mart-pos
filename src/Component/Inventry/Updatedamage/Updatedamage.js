@@ -122,17 +122,17 @@ const Updatedamage = () => {
                 </div>
                 {
                     Pdata.length == 0 ? <div>
-                        <div class="border border-blue-300 shadow rounded-md    w-full max-w-xs m-2 p-2 mx-auto">
-                            <div class="animate-pulse flex space-x-4">
-                              <div class="rounded-full bg-slate-200 h-10 w-10"></div>
-                              <div class="flex-1 space-y-6 py-1">
-                                <div class="h-2 bg-slate-200 rounded"></div>
-                                <div class="space-y-3">
-                                  <div class="grid grid-cols-3 gap-4">
-                                    <div class="h-2 bg-slate-200 rounded col-span-2"></div>
-                                    <div class="h-2 bg-slate-200 rounded col-span-1"></div>
+                        <div className="border border-blue-300 shadow rounded-md    w-full max-w-xs m-2 p-2 mx-auto">
+                            <div className="animate-pulse flex space-x-4">
+                              <div className="rounded-full bg-slate-200 h-10 w-10"></div>
+                              <div className="flex-1 space-y-6 py-1">
+                                <div className="h-2 bg-slate-200 rounded"></div>
+                                <div className="space-y-3">
+                                  <div className="grid grid-cols-3 gap-4">
+                                    <div className="h-2 bg-slate-200 rounded col-span-2"></div>
+                                    <div className="h-2 bg-slate-200 rounded col-span-1"></div>
                                   </div>
-                                  <div class="h-2 bg-slate-200 rounded"></div>
+                                  <div className="h-2 bg-slate-200 rounded"></div>
                                 </div>
                               </div>
                             </div>
@@ -173,7 +173,7 @@ const Updatedamage = () => {
             {/* <button onClick={handleDelever}  className='btn btn-danger w-25 mt-2'> Delevery</button> */}
             </div>
             {
-                Pdata.length == 0 ? <div><progress class="progress progress-info bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500  w-full max-w-xs  mx-auto"></progress>  
+                Pdata.length == 0 ? <div><progress className="progress progress-info bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500  w-full max-w-xs  mx-auto"></progress>  
 
 
                 </div>:

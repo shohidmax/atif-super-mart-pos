@@ -19,7 +19,7 @@ const Due = () => {
         const final_Due = { Due_Name, Amound };
         console.log(final_Due);
         if (final_Due) {
-            fetch('http://localhost:3002/due', {
+            fetch('https://atifsupermart.onrender.com/due', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -40,7 +40,7 @@ const Due = () => {
     const handleDueDelete = (id) => {
         const proceed = window.confirm("Are you sure you want to delete?");
         if (proceed) {
-          const url = `http://localhost:3002/due/${id}`;
+          const url = `https://atifsupermart.onrender.com/due/${id}`;
           fetch(url, {
             method: "DELETE",
           })

@@ -17,7 +17,7 @@ const Bankcost = () => {
         const final_bank = { Pay_Type, Amound };
         console.log(final_bank);
         if (final_bank) {
-            fetch('http://localhost:3002/bank', {
+            fetch('https://atifsupermart.onrender.com/bank', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -38,7 +38,7 @@ const Bankcost = () => {
     const handleBankDelete = (id) => {
         const proceed = window.confirm("Are you sure you want to delete?");
         if (proceed) {
-          const url = `http://localhost:3002/bank/${id}`;
+          const url = `https://atifsupermart.onrender.com/bank/${id}`;
           fetch(url, {
             method: "DELETE",
           })

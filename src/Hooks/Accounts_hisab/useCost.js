@@ -5,7 +5,7 @@ const useCost = () =>{
     const [Cost, setCost] = useState([]);
 
     useEffect( ()=>{
-        fetch('http://localhost:3002/cost')
+        fetch('https://atifsupermart.onrender.com/cost')
         .then(res => res.json())
         .then(data => setCost(data));
     }, [Cost]);

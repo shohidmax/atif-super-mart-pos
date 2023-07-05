@@ -19,5 +19,5 @@ export default useSupplier;
 //         'authorization': `Bearer ${localStorage.getItem('accessToken')}`
 //       }
 // }
-// https://shielded-beyond-98967.herokuapp.com/products
+// https://atifsupermart.onrender.com/products
 // https://atifsupermart.onrender.com/products/supp.json

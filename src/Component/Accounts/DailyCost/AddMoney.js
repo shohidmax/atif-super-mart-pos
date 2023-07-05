@@ -18,7 +18,7 @@ const AddMoney = () => {
        
         const final_Due = { Payee_Name, Amound }; 
         if (final_Due) {
-            fetch('http://localhost:3002/addmoney', {
+            fetch('https://atifsupermart.onrender.com/addmoney', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -39,7 +39,7 @@ const AddMoney = () => {
     const handleDueDelete = (id) => {
         const proceed = window.confirm("Are you sure you want to delete?");
         if (proceed) {
-          const url = `http://localhost:3002/addmoney/${id}`;
+          const url = `https://atifsupermart.onrender.com/addmoney/${id}`;
           fetch(url, {
             method: "DELETE",
           })

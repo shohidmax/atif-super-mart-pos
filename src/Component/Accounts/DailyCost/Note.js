@@ -20,7 +20,7 @@ const Note = () => {
         const NoteAmound = note * noteqty; 
         const newBalance = {note, noteqty, NoteAmound };
         if (newBalance) {
-            fetch('http://localhost:3002/note', {
+            fetch('https://atifsupermart.onrender.com/note', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -41,7 +41,7 @@ const Note = () => {
         const handleBankDelete = (id) => {
             const proceed = window.confirm("Are you sure you want to delete?");
             if (proceed) {
-              const url = `http://localhost:3002/note/${id}`;
+              const url = `https://atifsupermart.onrender.com/note/${id}`;
               fetch(url, {
                 method: "DELETE",
               })

@@ -4,7 +4,7 @@ const useBank = () =>{
     const [bank, setbank] = useState([]);
 
     useEffect( ()=>{
-        fetch('http://localhost:3002/bank')
+        fetch('https://atifsupermart.onrender.com/bank')
         .then(res => res.json())
         .then(data => setbank(data));
     }, [bank]);

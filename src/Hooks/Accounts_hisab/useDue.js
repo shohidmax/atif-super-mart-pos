@@ -5,7 +5,7 @@ const useDue = () =>{
     const [Due, setDue] = useState([]);
 
     useEffect( ()=>{
-        fetch('http://localhost:3002/due')
+        fetch('https://atifsupermart.onrender.com/due')
         .then(res => res.json())
         .then(data => setDue(data));
     }, [Due]);

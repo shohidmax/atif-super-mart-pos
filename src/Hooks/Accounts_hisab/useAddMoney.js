@@ -4,7 +4,7 @@ const useAddMoney = () =>{
     const [addMoney, setaddMoney] = useState([]);
 
     useEffect( ()=>{
-        fetch('http://localhost:3002/addmoney')
+        fetch('https://atifsupermart.onrender.com/addmoney')
         .then(res => res.json())
         .then(data => setaddMoney(data));
     }, [addMoney]);

@@ -4,7 +4,7 @@ const useTodaySale = () => {
     const [Todaysale, setTodaysale] = useState([]);
 
     useEffect( ()=>{
-        fetch('http://localhost:3002/todaysale')
+        fetch('https://atifsupermart.onrender.com/todaysale')
         .then(res => res.json())
         .then(data => setTodaysale(data));
     }, [Todaysale]);

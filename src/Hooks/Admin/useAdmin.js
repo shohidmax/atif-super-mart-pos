@@ -6,7 +6,7 @@ const useAdmin = user => {
     useEffect( () =>{
         const email = user?.email;
 
-        const url = `https://shielded-beyond-98967.herokuapp.com/admin/${email}`;
+        const url = `https://atifsupermart.onrender.com/admin/${email}`;
         if(email){
             fetch(url, {
                 method:'GET',

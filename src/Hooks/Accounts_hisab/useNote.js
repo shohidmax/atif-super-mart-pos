@@ -4,7 +4,7 @@ const useNote = () =>{
     const [Cash, setCash] = useState([]);
 
     useEffect( ()=>{
-        fetch('http://localhost:3002/note')
+        fetch('https://atifsupermart.onrender.com/note')
         .then(res => res.json())
         .then(data => setCash(data));
     }, [Cash]);

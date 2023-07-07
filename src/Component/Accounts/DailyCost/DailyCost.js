@@ -14,14 +14,22 @@ import useTodaySale from '../../../Hooks/Accounts_hisab/useTodaySale';
 import NextCote from './NextCote';
 import useNextCote from '../../../Hooks/Accounts_hisab/useNextCote';
 import useRest from '../../../Hooks/Accounts_hisab/useRest';
+import Loading from '../../Utilitis/Loading';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import auth from '../../../firebase.init';
+import swal from 'sweetalert';
 
 const DailyCost = () => {
+    let lastBalance = 12630;
+    const [user] = useAuthState(auth);
     const [Cash, setCash] = useNote();
     const [Todaysale, setTodaysale] = useTodaySale();
     const [Final, setFinal] = useState(0);
     const [Cort] = useNextCote();
     const [Rest] = useRest();
-
+    const date = new Date();
+    const [month, day, year] = [date.getMonth(), date.getDate(), date.getFullYear()];
+    const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSeconds()];
 
     let totalCort = 0; 
     for(const NotE of Cort){
@@ -52,16 +60,80 @@ const DailyCost = () => {
     totaladdMoney = totaladdMoney + Number(NotE.Amound); 
     };
  
-    const [nextOrder, setNextOrder] = useState(0);  
+    const [nextOrder, setNextOrder] = useState(0); 
+
     const finalSum = () =>{
+
         let finalSUM = 0;
         console.log(Todaysale);
-        const AA = lastBalance + Number(Todaysale[0].Amound) + totaladdMoney;
-        const BB = totalDue1 + totalcost + totalbank ;
-        const CC = setFinal(AA - BB);
-        console.log('operation succes',AA,BB);
+        const AA = lastBalance + Number(Todaysale[0].Amound) + totaladdMoney + Number(Rest[0]?.Amound || 0);
+        const BB = totalDue1 + totalcost + totalbank + totalNote;
+        const CC = (BB - AA);
+        const fgd = setFinal(CC);
+        console.log('operation succes',AA,BB , CC, fgd);
 
     };
+
+
+    const handelFinalData = async() =>{ 
+        const str =  user.displayName;
+        const words =  str.split(' '); 
+        // ----- make  object -------- 
+        const Hisab_ID =  `${words[0]}${day}${month + 1}${minutes}${seconds}`;
+        const Hisab_Date = new Date().toJSON().slice(0, 10);
+        const Hisab_txd = new Date();
+        const Preious_amound = lastBalance;
+        const Todays_Sales = Todaysale[0]?.Amound;
+        const Total_Add_Money = totaladdMoney;
+        const Total_Add_Money_list = addMoney;
+        const Total_Bank = totalbank;
+        const Total_Bank_list = bank;
+        const Total_Due = totalDue1;
+        const Total_Due_list = Due1;
+        const Total_Cost = totalcost;
+        const Total_Cost_list = Cost1;
+        const Total_Note = totalNote;
+        const Total_Note_list = Cash;
+        const Total_Cort = totalCort;
+        const Total_Cort_list = Cort;
+        const Hisab_Rest_Amound = Rest[0]?.Amound || 0; 
+        const COMP_AMOUND = Final; 
+        const final_Hisab_Data =  {Hisab_ID, Hisab_Date, Hisab_txd,Preious_amound, Todays_Sales, Total_Add_Money, Total_Add_Money_list, Total_Bank, Total_Bank_list, Total_Due, Total_Due_list, Total_Cost, Total_Cost_list, Total_Note, Total_Note_list, Total_Cort, Total_Cort_list, Hisab_Rest_Amound, COMP_AMOUND}; 
+
+
+
+        console.log('====================================');
+        console.log(final_Hisab_Data);
+        console.log('====================================');
+        const confirm = window.confirm('Do You want ho hold Your Sales!!')
+        swal("Product Hold successfully!"); 
+
+        if (confirm) {
+          fetch('https://atifsupermart.onrender.com/api/v3/finalsubmit', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(final_Hisab_Data) 
+        })
+        .then(r => r.json())
+        .then(data => {
+          console.log(data) 
+          swal("Product Hold successfully!"); 
+        }) 
+          // setHold(finalData.toArray()) 
+        }
+      }
+
+
+
+
+
+
+
+
+
+     
     const lolona = () =>{
         const proceed = window.confirm("Are you sure you want to delete all record?");
         if (proceed) {
@@ -152,7 +224,7 @@ const DailyCost = () => {
             }
           };
 
-          let lastBalance = 12630;
+
     return (
     <div>
         <div className=''>
@@ -230,8 +302,9 @@ const DailyCost = () => {
         </div>
         <hr className='border-2 border-red m-3' style={{'color':'red', 'weight':'30px', 'margin':'5px,5px'}}/> 
         <div className='flex justify-center mx-auto m-2 p-2'>
-            <h1 className='text text-primary text-3xl p-2 '>{Final}</h1>
             <button className='btn btn-primary' onClick={finalSum}> compear</button>
+            <h1 className='text text-primary text-3xl p-2 '>{ Final} ৳ {Final >= 0 ? <span>বেশি হয়েছে </span>:<span>কম হয়েছে </span>}</h1>
+            {Final? <button className='btn btn-primary mx-2' onClick={handelFinalData}> Submit</button> : <button disabled className='btn btn-primary mx-2' > Submit</button>}
         </div>
         <hr className='border-2 border-red m-3' style={{'color':'red', 'weight':'30px', 'margin':'5px,5px'}}/> 
         <div className='flex justify-center'>
@@ -251,32 +324,32 @@ const DailyCost = () => {
 
            
             <div>
-                <button onClick={lolona} className='btn btn-damger'> delete all data  </button>
+                <button onClick={lolona} className='btn btn-damger'> Delete all data  </button>
             </div>
         </div>
         <hr className='border-2 border-red m-3' style={{'color':'red', 'weight':'30px', 'margin':'5px,5px'}}/> 
        
         <div className=' grid grid-cols-3 p-2 gap-4 '>
             
-            <div>
+            <div className='border-4 bg-gray-300'>
                 <Cost/>
             </div>
             
-            <div>
+            <div  className='border-4 bg-gray-300'>
                 <Bankcost/>
             </div>
           
-            <div>
+            <div  className='border-4 bg-gray-300'>
                 <Note/>
             </div>
             
-            <div>
+            <div  className='border-4 bg-gray-300'>
                 <Due/>
             </div>
-            <div>
+            <div  className='border-4 bg-gray-300'>
                 <AddMoney/>
             </div>
-            <div>
+            <div  className='border-4 bg-gray-300'>
                 <NextCote/>
             </div>
         </div>

@@ -92,12 +92,10 @@ const NextCote = () => {
                             <th>Total Value</th>
                             <th className='text-xl text-red-500'> {total}  ৳ </th>
                             <th className='text-xl'>x/✔</th>
-                            
                             </tr>
                         </tfoot>
                         </table>
             </div>
-
           </div> 
         </div>
     );

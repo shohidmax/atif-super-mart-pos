@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; 
+import React, { useEffect, useState } from 'react'; 
 import Note from './Note';
 import Bankcost from './Bankcost';
 import Cost from './Cost';
@@ -18,9 +18,19 @@ import Loading from '../../Utilitis/Loading';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import swal from 'sweetalert';
+import useAccounts from '../../../Hooks/Accounts_hisab/useAccounts';
+import { Link } from 'react-router-dom';
 
-const DailyCost = () => {
-    let lastBalance = 12630;
+const DailyCost = () => { 
+    const [lastBalance, setlastBalance] = useState(0);
+    const [Accounts] = useAccounts();
+    useEffect( ()=>{
+        fetch('https://atifsupermart.onrender.com/accounts')
+        .then(res => res.json())
+        .then(data => {
+            setlastBalance(data[data.length -1]?.Total_Note)
+        });
+    }, [Accounts]);
     const [user] = useAuthState(auth);
     const [Cash, setCash] = useNote();
     const [Todaysale, setTodaysale] = useTodaySale();
@@ -100,13 +110,7 @@ const DailyCost = () => {
         const COMP_AMOUND = Final; 
         const final_Hisab_Data =  {Hisab_ID, Hisab_Date, Hisab_txd,Preious_amound, Todays_Sales, Total_Add_Money, Total_Add_Money_list, Total_Bank, Total_Bank_list, Total_Due, Total_Due_list, Total_Cost, Total_Cost_list, Total_Note, Total_Note_list, Total_Cort, Total_Cort_list, Hisab_Rest_Amound, COMP_AMOUND}; 
 
-
-
-        console.log('====================================');
-        console.log(final_Hisab_Data);
-        console.log('====================================');
-        const confirm = window.confirm('Do You want ho hold Your Sales!!')
-        swal("Product Hold successfully!"); 
+        const confirm = window.confirm('Do You want ho hold Your Sales!!') 
 
         if (confirm) {
           fetch('https://atifsupermart.onrender.com/api/v3/finalsubmit', {
@@ -120,19 +124,20 @@ const DailyCost = () => {
         .then(data => {
           console.log(data) 
           swal("Product Hold successfully!"); 
+          lolona()
+          window.location.reload();
+          
         }) 
           // setHold(finalData.toArray()) 
         }
       }
 
 
-
-
-
-
-
-
-
+      const handleDownloadPdf = (data) =>{
+        console.log('====================================');
+        console.log("clickef");
+        console.log('====================================');
+      }
      
     const lolona = () =>{
         const proceed = window.confirm("Are you sure you want to delete all record?");
@@ -304,7 +309,8 @@ const DailyCost = () => {
         <div className='flex justify-center mx-auto m-2 p-2'>
             <button className='btn btn-primary' onClick={finalSum}> compear</button>
             <h1 className='text text-primary text-3xl p-2 '>{ Final} ৳ {Final >= 0 ? <span>বেশি হয়েছে </span>:<span>কম হয়েছে </span>}</h1>
-            {Final? <button className='btn btn-primary mx-2' onClick={handelFinalData}> Submit</button> : <button disabled className='btn btn-primary mx-2' > Submit</button>}
+            {Final || Final == 0? <button className='btn btn-primary mx-2' onClick={handelFinalData}> Submit</button> : <button disabled className='btn btn-primary mx-2' > Submit</button>}
+             <Link to='/hisabkhata' className='btn btn-info mx-2' > Hisab List</Link> 
         </div>
         <hr className='border-2 border-red m-3' style={{'color':'red', 'weight':'30px', 'margin':'5px,5px'}}/> 
         <div className='flex justify-center'>

@@ -52,6 +52,9 @@ import Testdata2 from './Component/TestData/Testdata2';
 import Shopreceve from './Component/Inventry/Shopreceve/Shopreceve';
 import Calculator from './Component/Footer/Calculator';
 import DailyCost from './Component/Accounts/DailyCost/DailyCost';
+import SaleseList from './Component/Accounts/DailyCost/SaleseList';
+import DataPdf from './Component/Accounts/DailyCost/DataPdf';
+import A4pdf from './Component/Accounts/DailyCost/A4pdf';
 function App() {
   const [Supplier, setSupplier] = useSupplier();
   const [Brand, setBrand] = useBrand();
@@ -108,7 +111,10 @@ function App() {
         <Route path="/hisab" element={<DailyCost></DailyCost>} />
         <Route path="/salereport" element={<SalesReport></SalesReport>} />
         <Route path="/receve" element={<Shopreceve/>} />
-        <Route path="/dashboard" element={<Dashboard />}>
+        <Route path="/pdf" element={<DataPdf/>} />
+        <Route path="/pdf2/:id" element={<A4pdf/>} />
+        <Route path="/hisabkhata" element={<Requireauth><SaleseList/></Requireauth>} />
+        <Route path="/dashboard" element={<Dashboard />}> 
           <Route index element={<DashboardProfile />}></Route>
           <Route path="/dashboard/addsr" element={<Sales2></Sales2>}></Route>
           <Route path="/dashboard/qr" element={<Qr></Qr>} />

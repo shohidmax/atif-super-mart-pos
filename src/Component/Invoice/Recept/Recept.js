@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRef } from 'react';
-import ReactPrint from 'react-to-print';
+import ReactPrint, { useReactToPrint , generateAndSavePDF} from 'react-to-print';
 import useGroups from '../../../Hooks/Groups/useGroups';
 import logo from './logo.png';
 import { Barcode, QRCode } from "@progress/kendo-react-barcodes";
@@ -188,8 +188,7 @@ const Recept = () => {
        ]
 
     const ref = useRef(); 
-  const [Groups, setGroups] = useGroups();
-       // Price Calculation 
+  const [Groups, setGroups] = useGroups(); 
     let total = 0;
     let Product_quantity = 0;
     const totalPrice = 0;
@@ -198,7 +197,6 @@ const Recept = () => {
     Product_quantity = Product_quantity + product.QTS;
     //  totalPrice = total * Product_quantity;
   };
-
 
     return (
         <div>
@@ -314,7 +312,7 @@ const Recept = () => {
 
 
                    
-            </div>
+            </div> 
             
             <ReactPrint trigger={() => <button> print </button>} content={() => ref.current}/>
         </div>

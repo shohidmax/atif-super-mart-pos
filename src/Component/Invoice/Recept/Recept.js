@@ -303,11 +303,6 @@ const Recept = () => {
 
 
                         
-
-
-                        
-
-                        
                     </div>
 
 

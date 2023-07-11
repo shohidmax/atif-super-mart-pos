@@ -1,13 +1,34 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import useAccounts from '../../../Hooks/Accounts_hisab/useAccounts'; 
 import Loadcomponent from '../../Utilitis/Loadcomponent';
 import LoadVlogs from '../../Utilitis/LoadVlogs';
 import { Page, Text, View, Document, StyleSheet, PDFDownloadLink, renderToFile, usePDF} from '@react-pdf/renderer'; 
 import { Link } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
+import ReactToPrint from 'react-to-print';
 
 
 
 const SaleseList = () => {
+    // api accountsreportbydate
+    const ref = useRef(); 
+    const [Account, setAccount] = useState([]);
+
+    const hadelGetdata = e => {
+        e.preventDefault();
+        const sdate = e.target.sdate.value;
+        const edate = e.target.edate.value; 
+        const url = `https://atifsupermart.onrender.com/accountsreportbydate?sdate=${sdate}&edate=${edate}`;
+        fetch(url)
+            .then(r => r.json())
+            .then(data => {
+                if (!data.length) {
+                    return toast.error('Data Load faild Please Try again !!!')
+                }
+                toast.success('Data Load Succesfully !!!')
+                setAccount(data); 
+            })
+    }
 
     const [Accounts, setAccounts] = useAccounts();
     if (Accounts.length == 0) {
@@ -36,13 +57,29 @@ const SaleseList = () => {
 
 
     return (
-        <div>
-            <h1>{Accounts.length}</h1>
-            <div className='p-4 m-4 mx-auto'>
-            <div class="overflow-x-auto">
-                <table class="table table-zebra"> 
+        <div> 
+            <div>
+                <div className='p-2 mx-auto'>
+                    
+                    <form className='' onSubmit={hadelGetdata}>
+                    <input name="sdate" className="input  overflow-hidden input-bordered input-secondary w-full max-w-xs m-2 p-2 m-auto" type="date" placeholder='Enter Your BarCode Hare' required />
+                    <input name="edate" className="input  overflow-hidden input-bordered input-secondary w-full max-w-xs m-2 p-2 m-auto" type="date" placeholder='Enter Your BarCode Hare' required />
+                    <input type="submit" value='submit' className='btn btn-primary' />
+
+                    </form>
+                </div>
+            </div>
+            
+            <div ref={ref} className='p-4 m-4 mx-auto'>
+                <div className='my-3 text-center'>
+                                 <h1   className='text-3xl  '> ATIF SUPER MART</h1>
+                                 <h1 className='text-xl  '> Accounts Report</h1>
+                                 <hr style={{'border':'1px solid black'}}/>
+                </div>
+                <div class="overflow-x-auto">
+                <table class="table table-zebra table-xl"> 
                     <thead className='bg-blue-200'>
-                    <tr className='text-lg text-color-black  text-bold'>
+                    <tr className='text-lg text-black  text-bold'>
                         <th>SN</th>
                         <th>Date</th>
                         <th>ID</th>
@@ -59,9 +96,9 @@ const SaleseList = () => {
                     </tr>
                     </thead>
                     <tbody> 
-                            {
+                            { 
                                 Accounts.map((r,q) => (
-                                    <tr key={q +1}>
+                                    <tr className='text-black' key={q +1}>
                                     <th>{q + 1}</th>
                                     <td>{r.Hisab_Date}</td>
                                     <td>{r.Hisab_ID} ৳ </td> 
@@ -75,21 +112,20 @@ const SaleseList = () => {
                                     <td>{r.Hisab_Rest_Amound} ৳ </td> 
                                     <td>{r.COMP_AMOUND} ৳ </td> 
                                     <td> 
-                                        <button className='btn btn-xs btn-error m-1' onSubmit={() => handeldeleteAmound(r._id)}>x</button>
+                                        <button className='btn btn-xs btn-error m-1' onClick={() => handeldeleteAmound(r._id)}>x</button>
                                         <button className='btn btn-xs text-white btn-primary m-1' onSubmit={() => handeldeleteAmound(r._id)}>✎</button>
                                         
-                                        <Link to={`/pdf2/${r._id}`}><button className='btn btn-xs btn-success m-1' >📃</button></Link>
-                                
-                                        
-                                    
+                                        <Link to={`/pdf2/${r._id}`}><button className='btn btn-xs btn-success m-1' >📃</button></Link> 
                                     </td>
                                     </tr>
-                                ))
+                                )) 
                             }
                     </tbody>
                 </table>
                 </div>
             </div>
+            {/* <ReactToPrint trigger={() => <button className='btn-primary btn m-2 p-2'> print </button>} content={() => ref.current}/> */}
+
         </div>
     );
 };

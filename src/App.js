@@ -113,9 +113,9 @@ function App() {
         <Route path="/receve" element={<Shopreceve/>} />
         <Route path="/pdf" element={<DataPdf/>} />
         <Route path="/pdf2/:id" element={<A4pdf/>} />
-        <Route path="/hisabkhata" element={<Requireauth><SaleseList/></Requireauth>} />
+        <Route path="/hisabkhata" element={<Requireauth> <SaleseList/> </Requireauth>} />
         <Route path="/dashboard" element={<Dashboard />}> 
-          <Route index element={<DashboardProfile />}></Route>
+          <Route index element={<DashboardProfile/>}></Route>
           <Route path="/dashboard/addsr" element={<Sales2></Sales2>}></Route>
           <Route path="/dashboard/qr" element={<Qr></Qr>} />
           <Route path="/dashboard/barcode" element={<BarCode></BarCode>} />

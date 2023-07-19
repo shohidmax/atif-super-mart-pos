@@ -17,10 +17,11 @@ const A4pdf = () => {
  
     return (
         <div>
-            <div ref={ref} className='border-4 m-4 p-4'>
+            <div    ref={ref} className='border-4 m-4 p-4 mx-auto'>
                 <div className='my-3 text-center'>
                                  <h1   className='text-3xl  '> ATIF SUPER MART</h1>
                                  <h1 className='text-xl  '> Accounts Report</h1>
+                                 <h1 className='text-xl  '> {data.Hisab_Date}</h1>
                                  <hr style={{'border':'1px solid black'}}/>
                 </div>
                 <div>

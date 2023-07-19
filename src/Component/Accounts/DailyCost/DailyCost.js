@@ -23,6 +23,7 @@ import { Link } from 'react-router-dom';
 
 const DailyCost = () => { 
     const [lastBalance, setlastBalance] = useState(0);
+    const [Close, setClose] = useState(false);
     const [Accounts] = useAccounts();
     useEffect( ()=>{
         fetch('https://atifsupermart.onrender.com/accounts')
@@ -81,6 +82,7 @@ const DailyCost = () => {
         const CC = (BB - AA);
         const fgd = setFinal(CC);
         console.log('operation succes',AA,BB , CC, fgd);
+        setClose(true);
 
     };
 
@@ -109,9 +111,7 @@ const DailyCost = () => {
         const Hisab_Rest_Amound = Rest[0]?.Amound || 0; 
         const COMP_AMOUND = Final; 
         const final_Hisab_Data =  {Hisab_ID, Hisab_Date, Hisab_txd,Preious_amound, Todays_Sales, Total_Add_Money, Total_Add_Money_list, Total_Bank, Total_Bank_list, Total_Due, Total_Due_list, Total_Cost, Total_Cost_list, Total_Note, Total_Note_list, Total_Cort, Total_Cort_list, Hisab_Rest_Amound, COMP_AMOUND}; 
-
         const confirm = window.confirm('Do You want ho hold Your Sales!!') 
-
         if (confirm) {
           fetch('https://atifsupermart.onrender.com/api/v3/finalsubmit', {
             method: 'POST',
@@ -126,17 +126,13 @@ const DailyCost = () => {
           swal("Product Hold successfully!"); 
           lolona()
           window.location.reload();
-          
-        }) 
-          // setHold(finalData.toArray()) 
+        })  
         }
       }
 
 
-      const handleDownloadPdf = (data) =>{
-        console.log('====================================');
-        console.log("clickef");
-        console.log('====================================');
+      const handleDownloadPdf = (data) =>{ 
+        console.log("clickef"); 
       }
      
     const lolona = () =>{
@@ -227,9 +223,7 @@ const DailyCost = () => {
                   }
                 });
             }
-          };
-
-
+          }; 
     return (
     <div>
         <div className=''>
@@ -264,20 +258,18 @@ const DailyCost = () => {
                                     <div  className=' tat-title text-2xl'>Total bank</div>
                                     <div className="stat-value text-blue-500">{totalbank}</div>
                                     <div className="stat-desc">Total Entry ({bank?.length})</div>
-                                </div>
-                                
+                                </div> 
                                 <div className="stat">
                                     <div  className=' tat-title text-2xl'>Total DUE</div>
                                     <div className="stat-value text-blue-500">{totalDue1}</div>
                                     <div className="stat-desc">Total Entry ({Due1?.length})</div>
-                                </div>
-                                
+                                </div> 
                                 <div className="stat">
                                     <div  className='text-red-500 text-2xl'>Daily Cost</div>
                                     <div className="stat-value text-red-500">{totalcost}</div>
                                     <div className="stat-desc">Total Entry ({Cost1.length})</div>
                                 </div> 
-                                </div>
+                            </div>
                         </div> 
                     </div>
                     <div className='  rounded text-left'> 
@@ -300,7 +292,7 @@ const DailyCost = () => {
                                     <div className="stat-value">{totalCort}</div>
                                     <div className="stat-desc">↘︎ 90 (14%)</div>
                                 </div> 
-                                </div>
+                            </div>
                         </div> 
                     </div>
                 </div> 
@@ -309,7 +301,7 @@ const DailyCost = () => {
         <div className='flex justify-center mx-auto m-2 p-2'>
             <button className='btn btn-primary' onClick={finalSum}> compear</button>
             <h1 className='text text-primary text-3xl p-2 '>{ Final} ৳ {Final >= 0 ? <span>বেশি হয়েছে </span>:<span>কম হয়েছে </span>}</h1>
-            {Final || Final == 0? <button className='btn btn-primary mx-2' onClick={handelFinalData}> Submit</button> : <button disabled className='btn btn-primary mx-2' > Submit</button>}
+            {Close == true? <button className='btn btn-primary mx-2' onClick={handelFinalData}> Submit</button> : <button disabled className='btn btn-primary mx-2' > Submit</button>}
              <Link to='/hisabkhata' className='btn btn-info mx-2' > Hisab List</Link> 
         </div>
         <hr className='border-2 border-red m-3' style={{'color':'red', 'weight':'30px', 'margin':'5px,5px'}}/> 

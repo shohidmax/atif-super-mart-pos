@@ -1,19 +1,21 @@
 import React, { useRef, useState } from 'react';
-import useAccounts from '../../../Hooks/Accounts_hisab/useAccounts'; 
-import Loadcomponent from '../../Utilitis/Loadcomponent';
-import LoadVlogs from '../../Utilitis/LoadVlogs';
-import { Page, Text, View, Document, StyleSheet, PDFDownloadLink, renderToFile, usePDF} from '@react-pdf/renderer'; 
+import useAccounts from '../../../Hooks/Accounts_hisab/useAccounts';  
+import LoadVlogs from '../../Utilitis/LoadVlogs'; 
 import { Link } from 'react-router-dom';
-import { toast } from 'react-hot-toast';
-import ReactToPrint from 'react-to-print';
+import { toast } from 'react-hot-toast'; 
+import { JsonToExcel } from 'react-json-to-excel';
+import LoadTable from '../../Utilitis/LoadTable';
+import LoadingSpin from '../../Utilitis/LoadingSpin/LoadingSpin';
+import { isDisabled } from '@testing-library/user-event/dist/utils';
 
 
 
 const SaleseList = () => {
+    const today = new Date().toJSON().slice(0, 10);
     // api accountsreportbydate
     const ref = useRef(); 
-    const [Account, setAccount] = useState([]);
-
+    const [Account, setAccount] = useState([]); 
+    const [lol, setlol] = useState(true); 
     const hadelGetdata = e => {
         e.preventDefault();
         const sdate = e.target.sdate.value;
@@ -25,11 +27,11 @@ const SaleseList = () => {
                 if (!data.length) {
                     return toast.error('Data Load faild Please Try again !!!')
                 }
-                toast.success('Data Load Succesfully !!!')
+                toast.success('Data Load Succesfully !!!') 
                 setAccount(data); 
+                setlol(false)
             })
-    }
-
+    } 
     const [Accounts, setAccounts] = useAccounts();
     if (Accounts.length == 0) {
         return <LoadVlogs/>;
@@ -49,12 +51,100 @@ const SaleseList = () => {
               }
             });
         }
-    } 
-
-
-  
-
-
+    }  
+ const q ={
+    "_id": "64a81d2ab7ecdadc2d5c0ae4",
+    "Hisab_ID": "pre771152",
+    "Hisab_Date": "2023-07-02",
+    "Hisab_txd": "2023-07-07T14:11:52.171Z",
+    "Preious_amound": 17923,
+    "Todays_Sales": "6471",
+    "Total_Add_Money": 0,
+    "Total_Add_Money_list": [],
+    "Total_Bank": 1295,
+    "Total_Bank_list": [
+        {
+            "_id": "64a81c8bb7ecdadc2d5c0ade",
+            "Pay_Type": "Bkash",
+            "Amound": "1295"
+        }
+    ],
+    "Total_Due": 528,
+    "Total_Due_list": [
+        {
+            "_id": "64a81c7ab7ecdadc2d5c0add",
+            "Due_Name": "dammy",
+            "Amound": "528"
+        }
+    ],
+    "Total_Cost": 15000,
+    "Total_Cost_list": [
+        {
+            "_id": "64a81ca1b7ecdadc2d5c0adf",
+            "Pay_Name": "shahriar widrow",
+            "Amound": "15000"
+        }
+    ],
+    "Total_Note": 7571,
+    "Total_Note_list": [
+        {
+            "_id": "64a81cb4b7ecdadc2d5c0ae1",
+            "note": "1000",
+            "noteqty": "7",
+            "NoteAmound": 7000
+        },
+        {
+            "_id": "64a81cb4b7ecdadc2d5c0ae0",
+            "note": "500",
+            "noteqty": "1",
+            "NoteAmound": 500
+        },
+        {
+            "_id": "64a81cbeb7ecdadc2d5c0ae2",
+            "note": "10",
+            "noteqty": "7",
+            "NoteAmound": 70
+        },
+        {
+            "_id": "64a81cc5b7ecdadc2d5c0ae3",
+            "note": "1",
+            "noteqty": "1",
+            "NoteAmound": 1
+        }
+    ],
+    "Total_Cort": 0,
+    "Total_Cort_list": [],
+    "Hisab_Rest_Amound": 0,
+    "COMP_AMOUND": 0
+};
+    let totalbank = 0;
+    for(const NotE of Account){
+    totalbank = totalbank + Number(NotE.Total_Bank);
+    };
+    let totalCost = 0;
+    for(const NotE of Account){
+        totalCost = totalCost + Number(NotE.Total_Cost);
+    };
+    let totalNote = 0; 
+    for(const Total_Note of Account){
+        totalNote = totalNote + Number(Total_Note?.Total_Note); 
+    }; 
+    let totalDue = 0; 
+    for(const Total_Note of Account){
+        totalDue = totalDue + Number(Total_Note?.Total_Due); 
+    }; 
+    let totalrest = 0; 
+    for(const Total_Note of Account){
+        totalrest = totalrest + Number(Total_Note?.Hisab_Rest_Amound); 
+    }; 
+    let totalAddmoney = 0; 
+    for(const Total_Note of Account){
+        totalAddmoney = totalAddmoney + Number(Total_Note?.Total_Add_Money); 
+    };  
+    let totalsales = 0; 
+    for(const Total_Note of Account){
+        totalsales = totalsales + Number(Total_Note?.Todays_Sales); 
+    };  
 
     return (
         <div> 
@@ -76,7 +166,7 @@ const SaleseList = () => {
                                  <h1 className='text-xl  '> Accounts Report</h1>
                                  <hr style={{'border':'1px solid black'}}/>
                 </div>
-                <div class="overflow-x-auto">
+                <div class="overflow-x-auto"> 
                 <table class="table table-zebra table-xl"> 
                     <thead className='bg-blue-200'>
                     <tr className='text-lg text-black  text-bold'>
@@ -90,6 +180,7 @@ const SaleseList = () => {
                         <th>Cost</th>
                         <th>Cash</th>
                         <th>Cort</th>
+                        <th>Due</th>
                         <th>Rest_Amound</th>
                         <th>Final Sum</th>
                         <th>Action</th>
@@ -97,11 +188,11 @@ const SaleseList = () => {
                     </thead>
                     <tbody> 
                             { 
-                                Accounts.map((r,q) => (
+                                Account.map((r,q) => (
                                     <tr className='text-black' key={q +1}>
                                     <th>{q + 1}</th>
                                     <td>{r.Hisab_Date}</td>
-                                    <td>{r.Hisab_ID} ৳ </td> 
+                                    <td>{r.Hisab_ID}  </td> 
                                     <td>{r.Preious_amound} ৳ </td> 
                                     <td>{r.Todays_Sales} ৳ </td> 
                                     <td>{r.Total_Add_Money} ৳ </td> 
@@ -109,6 +200,7 @@ const SaleseList = () => {
                                     <td>{r.Total_Cost} ৳ </td> 
                                     <td>{r.Total_Note} ৳ </td> 
                                     <td>{r.Total_Cort} ৳ </td> 
+                                    <td>{r.Total_Due} ৳ </td> 
                                     <td>{r.Hisab_Rest_Amound} ৳ </td> 
                                     <td>{r.COMP_AMOUND} ৳ </td> 
                                     <td> 
@@ -121,10 +213,29 @@ const SaleseList = () => {
                                 )) 
                             }
                     </tbody>
+                    <tfoot className='bg-blue-200'>
+                    <tr className='text-lg text-black  text-bold'>
+                        <th>SN</th>
+                        <th>Date</th>
+                        <th>ID</th>
+                        <th>Previous ৳</th>
+                        <th>{totalsales}</th>
+                        <th>{totalAddmoney}</th>
+                        <th>{totalbank}</th>
+                        <th>{totalCost}</th>
+                        <th>{totalNote}</th>
+                        <th>Cort</th>
+                        <th>{totalDue}</th>
+                        <th>{totalrest}</th>
+                        <th>Final Sum</th>
+                        <th>Action</th>
+                    </tr>
+                    </tfoot>
                 </table>
                 </div>
-            </div>
-            {/* <ReactToPrint trigger={() => <button className='btn-primary btn m-2 p-2'> print </button>} content={() => ref.current}/> */}
+            </div> 
+        {lol == true ? <button></button> : <JsonToExcel className="dfx "  title="Download excel" data={Account}  fileName={`${today} Account Backup`} />}
+       
 
         </div>
     );
@@ -132,73 +243,4 @@ const SaleseList = () => {
 
 export default SaleseList;
 
-const a = {
-    "_id": "64a7fca69a5ce30c9b2d6b00",
-   "Hisab_ID": "pre77538",
-   "Hisab_Date": "2023-07-07",
-   "Hisab_txd": "2023-07-07T11:53:08.611Z",
-   "Preious_amound": 12630,
-   "Todays_Sales": "12956",
-   "Total_Add_Money": 0,
-   "Total_Add_Money_list": [],
-   "Total_Bank": 2302,
-   "Total_Bank_list": [
-   {
-   "_id": "64a7f86dacf44a1a85c75c79",
-   "Pay_Type": "DBBL",
-   "Amound": "622"
-   },
-   {
-   "_id": "64a7f898acf44a1a85c75c7a",
-   "Pay_Type": "BANK",
-   "Amound": "1680"
-   }
-   ],
-   "Total_Due": 985,
-   "Total_Due_list": [
-   {
-   "_id": "64a7f90cacf44a1a85c75c81",
-   "Due_Name": "bangladesh",
-   "Amound": "985"
-   }
-   ],
-   "Total_Cost": 10344,
-   "Total_Cost_list": [
-   {
-   "_id": "64a7f85dacf44a1a85c75c78",
-   "Pay_Name": "bangladesh",
-   "Amound": "10344"
-   }
-   ],
-   "Total_Note": 11370,
-   "Total_Note_list": [
-   {
-   "_id": "64a7f8a3acf44a1a85c75c7b",
-   "note": "1000",
-   "noteqty": "11",
-   "NoteAmound": 11000
-   },
-   {
-   "_id": "64a7f8a8acf44a1a85c75c7c",
-   "note": "200",
-   "noteqty": "1",
-   "NoteAmound": 200
-   },
-   {
-   "_id": "64a7f8b6acf44a1a85c75c7e",
-   "note": "100",
-   "noteqty": "1",
-   "NoteAmound": 100
-   },
-   {
-   "_id": "64a7f8c1acf44a1a85c75c7f",
-   "note": "10",
-   "noteqty": "7",
-   "NoteAmound": 70
-   }
-   ],
-   "Total_Cort": 0,
-   "Total_Cort_list": [],
-   "Hisab_Rest_Amound": 0,
-   "COMP_AMOUND": -585
-       };
+ 

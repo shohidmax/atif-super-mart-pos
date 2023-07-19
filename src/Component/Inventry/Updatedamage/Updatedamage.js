@@ -4,8 +4,6 @@ import LoadTable from '../../Utilitis/LoadTable';
 
 const Updatedamage = () => {
     const [Pdata, setPdata] = useState([]);
-
-    
     const findproduct = (B) =>{
         B.preventDefault();
         const Find = B.target.bangla.value;
@@ -77,31 +75,6 @@ const Updatedamage = () => {
     };
 
 
-
-
-
-    // {
-    //     "_id": "633f4e807784639f332e3b62",
-    //     "Supplier_Name": "EGG",
-    //     "BarCode": 111111,
-    //     "Group": "MILK & DAIRY PRODUCTS",
-    //     "Product": "EGG",
-    //     "Brand": "EGG",
-    //     "Style": "BROWN EGG 1PCS",
-    //     "Stock_Qty": 0,
-    //     "StockQty": 124,
-    //     "CPU": 11.19,
-    //     "CPU_Value": 0,
-    //     "RPU": 12,
-    //     "RPU_Value": 0,
-    //     "Damage_Quntity": 0,
-    //     "Comment": 0,
-    //     "Status": "active"
-    // }
-    if (Pdata.length == 0) {
-    
-        
-    }
 
 
 

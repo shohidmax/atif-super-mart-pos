@@ -73,7 +73,7 @@ const Note = () => {
                         <option value='2'>2 ৳</option>
                         <option value='1'>1 ৳</option>
                         </select>
-                    <input name='notevalue'  autoComplete='off'  style={{'width':'250px','height':'50px',}} className="text-end input border-2 bg-red-100 " type="number" placeholder="0.00" /> <button className='btn btn-primary'>+</button>
+                    <input name='notevalue'  autoComplete='off'    className="text-end input border-2 bg-red-100 sm:w-[250px] w-[150px] h-[50px] " type="number" placeholder="0.00" /> <button className='btn btn-primary'>+</button>
                     </form>
                     <div  className="overflow-x-auto"  style={{'height':'350px'}}>
                         <table className="table w-full overflow-x-auto">

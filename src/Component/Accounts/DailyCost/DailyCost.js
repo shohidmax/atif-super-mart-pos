@@ -13,8 +13,7 @@ import { toast } from 'react-hot-toast';
 import useTodaySale from '../../../Hooks/Accounts_hisab/useTodaySale';
 import NextCote from './NextCote';
 import useNextCote from '../../../Hooks/Accounts_hisab/useNextCote';
-import useRest from '../../../Hooks/Accounts_hisab/useRest';
-import Loading from '../../Utilitis/Loading';
+import useRest from '../../../Hooks/Accounts_hisab/useRest'; 
 import { useAuthState } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import swal from 'sweetalert';
@@ -29,19 +28,22 @@ const DailyCost = () => {
         fetch('https://atifsupermart.onrender.com/accounts')
         .then(res => res.json())
         .then(data => {
-            setlastBalance(data[data.length -1]?.Total_Note)
+            // filter the last data
+            // console.log(data[data.length -1]?.Hisab_Date);
+
+            setlastBalance(data)
         });
     }, [Accounts]);
     const [user] = useAuthState(auth);
     const [Cash, setCash] = useNote();
     const [Todaysale, setTodaysale] = useTodaySale();
     const [Final, setFinal] = useState(0);
-    const [Cort] = useNextCote();
+    const [Cort] = useNextCote(); 
     const [Rest] = useRest();
     const date = new Date();
     const [month, day, year] = [date.getMonth(), date.getDate(), date.getFullYear()];
     const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSeconds()];
-
+   
     let totalCort = 0; 
     for(const NotE of Cort){
         totalCort = totalCort + Number(NotE.Amound); 
@@ -71,7 +73,7 @@ const DailyCost = () => {
     totaladdMoney = totaladdMoney + Number(NotE.Amound); 
     };
  
-    const [nextOrder, setNextOrder] = useState(0); 
+    // const [nextOrder, setNextOrder] = useState(0); 
 
     const finalSum = () =>{
 
@@ -131,9 +133,9 @@ const DailyCost = () => {
       }
 
 
-      const handleDownloadPdf = (data) =>{ 
-        console.log("clickef"); 
-      }
+    //   const handleDownloadPdf = (data) =>{ 
+    //     console.log("clickef"); 
+    //   }
      
     const lolona = () =>{
         const proceed = window.confirm("Are you sure you want to delete all record?");
@@ -224,18 +226,43 @@ const DailyCost = () => {
                 });
             }
           }; 
+
+        //   if (!lastBalance) {
+        //     return<>
+        //     <div className='flex mx-auto'>
+        //         <h1 className='text-2xl flex mx-auto text-center'>Data not Loaded Please Reload </h1>
+        //         <svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24"> </svg>
+        //     </div>
+        //     <div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
+        //     <div class="animate-pulse flex space-x-4">
+        //       <div class="rounded-full bg-slate-200 h-10 w-10"></div>
+        //       <div class="flex-1 space-y-6 py-1">
+        //         <div class="h-2 bg-slate-200 rounded"></div>
+        //         <div class="space-y-3">
+        //           <div class="grid grid-cols-3 gap-4">
+        //             <div class="h-2 bg-slate-200 rounded col-span-2"></div>
+        //             <div class="h-2 bg-slate-200 rounded col-span-1"></div>
+        //           </div>
+        //           <div class="h-2 bg-slate-200 rounded"></div>
+        //         </div>
+        //       </div>
+        //     </div>
+        //   </div>
+            
+        //     </>;
+        // }
     return (
     <div>
-        <div className=''>
-            <div className='flex justify-center mx-auto '>
+        <div className=' flex mx-auto'>
+            <div className=' sm:flex justify-center mx-auto '>
                     <div className=' text-left'> 
                         <div>
-                        <div className="stats stats-vertical  shadow"> 
+                        <div className="stats stats-vertical mx-auto  shadow"> 
                                 <div style={{'width':'260px'}} className="stat">
                                     <div className=' text-2xl'>Previous Cash</div>
-                                    <div className="stat-value text-green-500">{lastBalance}</div>
-                                    <div className="stat-desc">23/06/2023</div>
-                                </div>
+                                    <div className="stat-value text-green-500">{ !lastBalance[lastBalance.length -1]?.Total_Note ? <span class="loading loading-dots loading-xs"></span> : lastBalance[lastBalance.length -1]?.Total_Note}</div>
+                                    <div className="stat-desc">{lastBalance[lastBalance.length -1]?.Hisab_Date}</div>
+                                </div> 
                                 
                                 <div className="stat">
                                     <div  className='tat-title text-2xl'>Today Sales</div>
@@ -290,7 +317,7 @@ const DailyCost = () => {
                                 <div className="stat">
                                     <div  className=' tat-title text-2xl'>Next Day Order</div>
                                     <div className="stat-value">{totalCort}</div>
-                                    <div className="stat-desc">↘︎ 90 (14%)</div>
+                                    <div className="stat-desc">{totalCort + '.00'}</div>
                                 </div> 
                             </div>
                         </div> 
@@ -298,22 +325,22 @@ const DailyCost = () => {
                 </div> 
         </div>
         <hr className='border-2 border-red m-3' style={{'color':'red', 'weight':'30px', 'margin':'5px,5px'}}/> 
-        <div className='flex justify-center mx-auto m-2 p-2'>
+        <div className='sm:flex justify-center mx-auto m-2 p-2'>
             <button className='btn btn-primary' onClick={finalSum}> compear</button>
             <h1 className='text text-primary text-3xl p-2 '>{ Final} ৳ {Final >= 0 ? <span>বেশি হয়েছে </span>:<span>কম হয়েছে </span>}</h1>
             {Close == true? <button className='btn btn-primary mx-2' onClick={handelFinalData}> Submit</button> : <button disabled className='btn btn-primary mx-2' > Submit</button>}
              <Link to='/hisabkhata' className='btn btn-info mx-2' > Hisab List</Link> 
         </div>
         <hr className='border-2 border-red m-3' style={{'color':'red', 'weight':'30px', 'margin':'5px,5px'}}/> 
-        <div className='flex justify-center'>
+        <div className='sm:flex justify-center'>
 
-            <div className='p-2 border-2 rounded border-green-500'>
+            <div className='p-2 mx-2 mt-2 border-2 rounded border-green-500'>
                 <h1>Today sale</h1>
                 <form onSubmit={handelTodaySale}>
                 <input name='todaysaleCollection'  autoComplete='off' required  style={{'width':'200px','height':'50px',}} className="text-end input border-2 bg-red-100 " type="number" placeholder="Today Sales" /> {Todaysale[0]?.Amound ? <button className='btn btn-primary' disabled>+</button>:<button  className='btn btn-primary'>+</button>}
                 </form>
             </div>
-            <div className='p-2 mx-2 border-2 rounded border-green-500'>
+            <div className='p-2 mt-2 mx-2 border-2 rounded border-green-500'>
                 <h1>Rest of the collection</h1>
                 <form onSubmit={handleRestAmound}>
                 <input name='todayrestCollection'  autoComplete='off' required  style={{'width':'200px','height':'50px',}} className="text-end input border-2 bg-red-100 " type="number" placeholder="Rest of the collection value" />  {Rest[0]?.Amound ? <button className='btn btn-primary' disabled>+</button>:<button  className='btn btn-primary'>+</button>}
@@ -327,7 +354,7 @@ const DailyCost = () => {
         </div>
         <hr className='border-2 border-red m-3' style={{'color':'red', 'weight':'30px', 'margin':'5px,5px'}}/> 
        
-        <div className=' grid grid-cols-3 p-2 gap-4 '>
+        <div className=' grid grid-cols-1 sm:grid-cols-3 p-2 gap-4  mx-auto'>
             
             <div className='border-4 bg-gray-300'>
                 <Cost/>

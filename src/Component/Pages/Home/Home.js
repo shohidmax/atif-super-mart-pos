@@ -162,8 +162,7 @@ const Home = () => {
             })
 
     }
-
-
+ 
 
     const handelAddSale = (e) => {
         e.preventDefault();
@@ -193,32 +192,15 @@ const Home = () => {
 
 
     return (
-        <div className='p-2'>
-
-            {/* <Slider></Slider> */}
-            
+        <div >
+            <h1 className='text-7xl'>Welcome To ATIF SUPER MART</h1>
            
+ 
 
 
 
 
-
-
-
-
-
-            <div>
-
-                {/* <a href="#my-modal-2" className="btn">open modal</a>
-            <a href="#Supplier-modal" className="btn">open supp</a>
-            <a href="#Group-modal" className="btn">Group supp</a>
-            <a href="#Product-modal" className="btn">product supp</a>
-            <a href="#Products-modal" className="btn">products supp</a>
-            <a href="#Brand-modal" className="btn">Brand </a>
-            <Link id='#my-modal-2' to={`/wpdate/${r._id}`} className="btn btn-sm">update</Link>
-            <a href="#SaleModal" className="btn">sale  </a>  */}
-
-            </div>
+            
         </div>
     );
 };
@@ -226,3 +208,15 @@ const Home = () => {
 export default Home;
 
 
+{/* <div> */}
+
+{/* <a href="#my-modal-2" className="btn">open modal</a>
+<a href="#Supplier-modal" className="btn">open supp</a>
+<a href="#Group-modal" className="btn">Group supp</a>
+<a href="#Product-modal" className="btn">product supp</a>
+<a href="#Products-modal" className="btn">products supp</a>
+<a href="#Brand-modal" className="btn">Brand </a>
+<Link id='#my-modal-2' to={`/wpdate/${r._id}`} className="btn btn-sm">update</Link>
+<a href="#SaleModal" className="btn">sale  </a>  */}
+
+// </div>

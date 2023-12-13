@@ -1,11 +1,16 @@
 
 
+.card-container {
+  display: flex;
+}
+
 
 .App {
   text-align: center;
+  
 }
 .animate-spin{
-  animation: spin 1s linear infinite;
+  animation: spin 5s linear infinite;
 
 } 
 

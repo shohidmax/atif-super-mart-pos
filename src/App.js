@@ -5,19 +5,14 @@ import { Routes, Route } from "react-router-dom";
 import Addproduct from './Component/Form/Addproduct/Addproduct';
 import Adduser from './Component/Form/Adduser/Adduser';
 import Header from './Component/Pages/Header/Header';
-import Home from './Component/Pages/Home/Home';
-import useSupplier from './Hooks/Supplier/useSupplier';
-import useBrand from './Hooks/Brand/useBrand';
-import useProduct from './Hooks/Product/useProduct';
-import useGroups from './Hooks/Groups/useGroups';
+import Home from './Component/Pages/Home/Home'; 
 import Suppliermodal from './Component/Element/Suppliermodal';
 import Brandmodal from './Component/Element/Brandmodal';
 import Productmodal from './Component/Element/Productmodal';
 import Productsmodal from './Component/Element/Productsmodal';
 import Groupmodal from './Component/Element/Groupmodal';
 import Addsr from './Component/Form/Addsr/Addsr';
-import Allmanage from './Component/Inventry/Allmanage/Allmanage';
-import useProducts from './Hooks/useProducts/useProducts';
+import Allmanage from './Component/Inventry/Allmanage/Allmanage'; 
 import SizeStyle from './Component/Pages/SizeStyle/SizeStyle';
 import Sales from './Component/Inventry/Sales/Sales';
 import SaleModal from './Component/Element/SaleModal';
@@ -55,28 +50,27 @@ import DailyCost from './Component/Accounts/DailyCost/DailyCost';
 import SaleseList from './Component/Accounts/DailyCost/SaleseList';
 import DataPdf from './Component/Accounts/DailyCost/DataPdf';
 import A4pdf from './Component/Accounts/DailyCost/A4pdf';
+import Kitkat from './Component/Invoice/BarCode/Kitkat';
+import Avatar from './Component/Pages/Dashboard/Avatar'; 
+import SnakeGame from './Component/Game/SnakeGame';
 function App() {
-  const [Supplier, setSupplier] = useSupplier();
-  const [Brand, setBrand] = useBrand();
-  const [Product, setProduct] = useProduct();
-  const [Groups, setGroups] = useGroups();
-  const [Products, setProducts] = useProducts();
   // atifsupermart20219922
   // pass FG22zi4j6kRnYTIyP9
   useEffect(() => {
-    document.addEventListener('knpeydown', detectKeydown, true)
+    const q = document.addEventListener('knpeydown', detectKeydown, true)
+    console.log(q);
   }, []);
 
   const detectKeydown = (e) => {
     console.log(e.key, 'clicked E Text');
   }
+ 
+  
   return (
    
 
     <div className="App ">
       <Header ></Header>
-
-      
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/home" element={<Home />} />
@@ -108,10 +102,12 @@ function App() {
         <Route path="/sr" element={<SalesReport></SalesReport>} />
         <Route path="/search" element={<Search></Search>} />
         <Route path="/pr" element={<Preceve></Preceve>} />
-        <Route path="/hisab" element={<DailyCost></DailyCost>} />
+        <Route path="/hisab" element={<Requireauth><DailyCost></DailyCost> </Requireauth>} />
+        <Route path="/snake" element={<SnakeGame/>} />
         <Route path="/salereport" element={<SalesReport></SalesReport>} />
         <Route path="/receve" element={<Shopreceve/>} />
         <Route path="/pdf" element={<DataPdf/>} />
+        <Route path="/kitkat" element={<Kitkat></Kitkat>} />
         <Route path="/pdf2/:id" element={<A4pdf/>} />
         <Route path="/hisabkhata" element={<Requireauth> <SaleseList/> </Requireauth>} />
         <Route path="/dashboard" element={<Dashboard />}> 
@@ -120,10 +116,8 @@ function App() {
           <Route path="/dashboard/qr" element={<Qr></Qr>} />
           <Route path="/dashboard/barcode" element={<BarCode></BarCode>} />
           <Route path="/dashboard/rpt" element={<Recept></Recept>} />
+          <Route path="/dashboard/avatar" element={<Avatar></Avatar>} />
           <Route path="/dashboard/srlist" element={<Requireauth><Srlist></Srlist></Requireauth>} />
-
-
-
         </Route>
         <Route path='*' element={<Notfound></Notfound>}>not found</Route>
         {/* <Route path="/wpdate:id" element={<Modal1></Modal1>}/> */}
@@ -142,6 +136,9 @@ function App() {
     <h1>ATIF SUPER MART </h1>
     <a href="tel:+8801793496030">call</a>
     <a className='m-6' href={`tel:+${call}`}>call</a> */}
+    <div>
+    
+    </div> 
 
       {/* <Footer Supplier={Supplier} Brand={Brand} Groups={Groups} Product={Product} Products={Products}></Footer> */}
     </div>

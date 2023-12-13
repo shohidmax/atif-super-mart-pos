@@ -66,7 +66,7 @@ const Bankcost = () => {
                         <option value='BANK'>BANK</option>
                         <option value='DUE'>DUE</option>
                         </select>
-                    <input name='notevalue'  autoComplete='off' required  style={{'width':'250px','height':'50px',}} className="text-end input border-2 bg-red-100 " type="number" placeholder="0.00" /> <button className='btn btn-primary'>+</button>
+                    <input name='notevalue'  autoComplete='off' required    className="text-end input border-2 bg-red-100 sm:w-[250px] w-[150px] h-[50px] " type="number" placeholder="0.00" /> <button className='btn btn-primary'>+</button>
                     </form>
           </div>
           <div>

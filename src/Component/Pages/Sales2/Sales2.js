@@ -15,7 +15,7 @@ const Sales2 = () => {
   const [print, setPrint] = useState(false);
   // const [cart, setCart] = useStat8851607500026
   const [copy, setCopy] = useState([]);
-  const [Products, setProducts] = useState([]);
+  const [Products, setProducts] = useProducts();
   const [Cproduct, setCproduct] = useState({});
   //------------------------------------------------------------------ Date and Time---------------------------------------------------
 const date = new Date();
@@ -90,18 +90,18 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
     }
     const today = `${year}-${month + 1}-${day}`;
   // ------------------------------------------------------- Detect key sortcut ----------------------------------------
-    console.log(Hold, Sale);
+    // console.log(Hold, Sale);
     useEffect(() => {
       fetch('https://atifsupermart.onrender.com/hold')
       .then(r => r.json())
       .then(data => setHold(data))
     }, [Hold]);
 
-    useEffect(() => {
-      fetch('https://atifsupermart.onrender.com/products')
-      .then(r => r.json())
-      .then(data => setProducts(data.filter(prod => !prod.StockQty == 0)))
-    }, [Products]);
+    // useEffect(() => {
+    //   fetch('https://atifsupermart.onrender.com/products')
+    //   .then(r => r.json())
+    //   .then(data => setProducts(data.filter(prod => !prod.StockQty == 0), console.log(data)))
+    // }, [Products]);
 
     useEffect(() => {
       fetch('https://atifsupermart.onrender.com/invoicenumber')
@@ -126,10 +126,10 @@ const [hour, minutes, seconds] = [date.getHours(), date.getMinutes(), date.getSe
     Product_quantity = Product_quantity + product.orderq;
     //  totalPrice = total * Product_quantity;
   };
-  let cnageamound = payamount - total;
-    const handCopy = e => {
-        const texts = e.target.copy.value;
-    };
+        let cnageamound = payamount - total;
+        const handCopy = e => {
+              const texts = e.target.copy.value;
+             };
      //------------------------------------------------------------------------- Hold Current Data --------------------------------
      let Holdtotal = 0; 
      let Hold_quantity = 0; 
@@ -213,7 +213,7 @@ const addToCart = (barcode) => {
   // const getbarcode = barcode || barcode.target.loger.value; 
   // find product from store or database 
   const getSerarchProduct = Products.find((p) => p.BarCode == getbarcode);
-  // console.log(getSerarchProduct, '0000000000000000000000000000000000000000000000000000');
+  // console.log(getSerarchProduct, '00000000000000');
   if (getSerarchProduct === undefined) {
         return swal("Product Not found"); 
   }
@@ -231,7 +231,7 @@ const addToCart = (barcode) => {
         swal("Product Out of Stock!");
       }
     } else{
-      // --------------------------------------------________________________________________________________________#############################
+      // --------------------------------------------________________________________________________________________#### 
       if (getSerarchProduct.StockQty >= existe.orderq + 1 == true) { 
         const rolex = Sale.find((i) => i.BarCode == getbarcode);
         rolex.orderq = rolex.orderq + 1;
@@ -257,7 +257,7 @@ const addToCart = (barcode) => {
       // const removestate = Sale.remove(r) 
       const process = window.confirm('Do you want to remove Sales all Items');
       if (process) {
-        const arr = Sale.filter(item => item !== data);
+        const arr = Sale.filter(item => item !== data); 
       setSale(arr)
       }
      }
@@ -373,9 +373,9 @@ const addToCart = (barcode) => {
 // expected outpu
 
   // Product loading
-  if (Products <= 500) {
-    return <LoadVlogs></LoadVlogs>;
-  }
+  // if (Products <= 500) {
+  //   return <LoadVlogs></LoadVlogs>;
+  // }
   const rrrr = {
     "_id": "633f4e807784639f332e3856",
     "Supplier_Name": "ACI LTD.",
@@ -482,7 +482,7 @@ const addToCart = (barcode) => {
           <div className="overflow-x-auto " style={{'height':'350px'}}>
             <table className="table bg-primary table-compact table-zebra w-full" >
               <thead className="bg-primary">
-                <tr className="bg-red-500">
+                <tr className="bg-red-200">
                   <th> SN</th>
                   <th>Barcode</th> 
                   <th>Product Discription</th>
@@ -493,7 +493,7 @@ const addToCart = (barcode) => {
                   <th>Action</th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody className="bg-[#81ecec]">
                 {Sale.slice(0).reverse().map((r, index) => (
                   <tr key={index + 1}> 
                     <th>{(Sale.length - 1)  - (index - 1)}</th>
@@ -510,7 +510,7 @@ const addToCart = (barcode) => {
                    <div className="dropdown ">
                          <label tabindex="0" className="btn btn-xs btn-primary">Update</label>
                          <ul tabindex="0" className="dropdown-content menu p-2 shadow bg-base-100   rounded-box ">
-                           <li><button onClick={() => remoVeItem (r)} className="btn bg-red-500 text-white p-1 m-1  btn-xs">X</button>
+                           <li><button onClick={() => remoVeItem (r)} className="btn bg-gray-200 text-white p-1 m-1  btn-xs">X</button>
                             </li>
                            <li><label  for={r._id} className="btn text-white p-1 m-1 btn-primary btn-xs">Update </label></li>
                          </ul>

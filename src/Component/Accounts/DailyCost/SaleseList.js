@@ -3,14 +3,13 @@ import useAccounts from '../../../Hooks/Accounts_hisab/useAccounts';
 import LoadVlogs from '../../Utilitis/LoadVlogs'; 
 import { Link } from 'react-router-dom';
 import { toast } from 'react-hot-toast'; 
-import { JsonToExcel } from 'react-json-to-excel';
-import LoadTable from '../../Utilitis/LoadTable';
-import LoadingSpin from '../../Utilitis/LoadingSpin/LoadingSpin';
-import { isDisabled } from '@testing-library/user-event/dist/utils';
+import { JsonToExcel } from 'react-json-to-excel'; 
 
 
 
 const SaleseList = () => {
+    const [Load, setLoad] = useState(false);
+     
     const today = new Date().toJSON().slice(0, 10);
     // api accountsreportbydate
     const ref = useRef(); 
@@ -21,21 +20,24 @@ const SaleseList = () => {
         const sdate = e.target.sdate.value;
         const edate = e.target.edate.value; 
         const url = `https://atifsupermart.onrender.com/accountsreportbydate?sdate=${sdate}&edate=${edate}`;
-        fetch(url)
+        fetch(url, setLoad(true))
             .then(r => r.json())
             .then(data => {
                 if (!data.length) {
                     return toast.error('Data Load faild Please Try again !!!')
+                   
                 }
                 toast.success('Data Load Succesfully !!!') 
                 setAccount(data); 
                 setlol(false)
+                setLoad(false)
             })
     } 
     const [Accounts, setAccounts] = useAccounts();
     if (Accounts.length == 0) {
         return <LoadVlogs/>;
     }
+    
     const handeldeleteAmound = (id) =>{
         const proceed = window.confirm("Are you sure you want to delete?");
         if (proceed) {
@@ -52,71 +54,7 @@ const SaleseList = () => {
             });
         }
     }  
- const q ={
-    "_id": "64a81d2ab7ecdadc2d5c0ae4",
-    "Hisab_ID": "pre771152",
-    "Hisab_Date": "2023-07-02",
-    "Hisab_txd": "2023-07-07T14:11:52.171Z",
-    "Preious_amound": 17923,
-    "Todays_Sales": "6471",
-    "Total_Add_Money": 0,
-    "Total_Add_Money_list": [],
-    "Total_Bank": 1295,
-    "Total_Bank_list": [
-        {
-            "_id": "64a81c8bb7ecdadc2d5c0ade",
-            "Pay_Type": "Bkash",
-            "Amound": "1295"
-        }
-    ],
-    "Total_Due": 528,
-    "Total_Due_list": [
-        {
-            "_id": "64a81c7ab7ecdadc2d5c0add",
-            "Due_Name": "dammy",
-            "Amound": "528"
-        }
-    ],
-    "Total_Cost": 15000,
-    "Total_Cost_list": [
-        {
-            "_id": "64a81ca1b7ecdadc2d5c0adf",
-            "Pay_Name": "shahriar widrow",
-            "Amound": "15000"
-        }
-    ],
-    "Total_Note": 7571,
-    "Total_Note_list": [
-        {
-            "_id": "64a81cb4b7ecdadc2d5c0ae1",
-            "note": "1000",
-            "noteqty": "7",
-            "NoteAmound": 7000
-        },
-        {
-            "_id": "64a81cb4b7ecdadc2d5c0ae0",
-            "note": "500",
-            "noteqty": "1",
-            "NoteAmound": 500
-        },
-        {
-            "_id": "64a81cbeb7ecdadc2d5c0ae2",
-            "note": "10",
-            "noteqty": "7",
-            "NoteAmound": 70
-        },
-        {
-            "_id": "64a81cc5b7ecdadc2d5c0ae3",
-            "note": "1",
-            "noteqty": "1",
-            "NoteAmound": 1
-        }
-    ],
-    "Total_Cort": 0,
-    "Total_Cort_list": [],
-    "Hisab_Rest_Amound": 0,
-    "COMP_AMOUND": 0
-};
+  
     let totalbank = 0;
     for(const NotE of Account){
     totalbank = totalbank + Number(NotE.Total_Bank);
@@ -152,15 +90,26 @@ const SaleseList = () => {
                 <div className='p-2 mx-auto'>
                     
                     <form className='' onSubmit={hadelGetdata}>
-                    <input name="sdate" className="input  overflow-hidden input-bordered input-secondary w-full max-w-xs m-2 p-2 m-auto" type="date" placeholder='Enter Your BarCode Hare' required />
-                    <input name="edate" className="input  overflow-hidden input-bordered input-secondary w-full max-w-xs m-2 p-2 m-auto" type="date" placeholder='Enter Your BarCode Hare' required />
+                    <input name="sdate" className="input  overflow-hidden input-bordered input-secondary w-full max-w-xs   p-2 m-auto" type="date" placeholder='Enter Your BarCode Hare' required />
+                    <input name="edate" className="input  overflow-hidden input-bordered input-secondary w-full max-w-xs   p-2 m-auto" type="date" placeholder='Enter Your BarCode Hare' required />
                     <input type="submit" value='submit' className='btn btn-primary' />
 
                     </form>
                 </div>
             </div>
+            <div>
+                {
+                    Load == true? <div> 
+                        <svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
+                            
+                        </svg>
+                        Processing... 
+                    </div>: ' '
+                }
+            </div>
             
             <div ref={ref} className='p-4 m-4 mx-auto'>
+
                 <div className='my-3 text-center'>
                                  <h1   className='text-3xl  '> ATIF SUPER MART</h1>
                                  <h1 className='text-xl  '> Accounts Report</h1>

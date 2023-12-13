@@ -13,6 +13,7 @@ const Dashboard = () => {
                     <li> <Link className='btn btn-primary btn-sm m-2   w-8/12' to='/dashboard/addsr' >Saleseman ADD </Link> </li>
                     <li> <Link className='btn btn-primary btn-sm m-2   w-8/12' to='/dashboard/srlist' >Saleseman list </Link> </li>
                     <li> <Link className='btn btn-primary btn-sm m-2   w-8/12' to='/dashboard/qr' >Qr Code Generatoe </Link> </li>
+                    <li> <Link className='btn btn-primary btn-sm m-2   w-8/12' to='/dashboard/avatar' >avatar </Link> </li>
                 </ul>
 
             </div>

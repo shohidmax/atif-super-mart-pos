@@ -11,15 +11,14 @@ const Cost = () => {
     total = total + Number(NotE.Amound); 
     };
 
-    const handelCashAmound = (e) => {
+    const handelCashAmound = async (e) => {
         e.preventDefault();
-        const Pay_Name = e.target.Cost_name.value;
-        const Amound = e.target.notevalue.value;
+        const Pay_Name = await e.target.Cost_name.value;
+        const Amound = await e.target.notevalue.value;
        
-        const final_bank = { Pay_Name, Amound };
-        console.log(final_bank);
+        const final_bank = await { Pay_Name, Amound }; 
         if (final_bank) {
-            fetch('https://atifsupermart.onrender.com/cost', {
+            await fetch('https://atifsupermart.onrender.com/cost', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -27,12 +26,11 @@ const Cost = () => {
                 body: JSON.stringify(final_bank)
             })
                 .then(res => res.json())
-                .then(data => {
-                    console.log(data);
+                . then(data => {
+                     
                     toast.success('Cost added successfully!!!');
                     e.target.reset();
                 })
-  
         }
     };
 
@@ -57,10 +55,10 @@ const Cost = () => {
         <div className=''> 
           <div className=' '>
           <h1 className='text-xl'>Daily Cost </h1>
-                    <form onSubmit={handelCashAmound}>
-                    <input name='Cost_name'   required  style={{'width':'250px','height':'50px',}} className="text-end input border-2 bg-red-100 " type="text" placeholder="Name of Cost" />
+                    <form onSubmit={ handelCashAmound}>
+                    <input name='Cost_name'   required   className="text-end input border-2 bg-red-100 sm:w-[250px] w-[200px] h-[50px]" type="text" placeholder="Name of Cost" />
 
-                    <input name='notevalue'  autoComplete='off' required  style={{'width':'150px','height':'50px',}} className="text-end input border-2 bg-red-100 " type="number" placeholder="0.00" /> <button className='btn btn-primary'>+</button>
+                    <input name='notevalue'  autoComplete='off' required   className="text-end input border-2 bg-red-100 sm:w-[150px] w-[120px]  h-[50px]" type="number" placeholder="0.00" /> <button className='btn btn-primary'>+</button>
                     </form>
           </div>
           <div>

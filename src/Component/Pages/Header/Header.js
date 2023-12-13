@@ -14,28 +14,30 @@ const Header = () => {
         <div>
             <div class="navbar bg-base-100">
               <div class="flex-1">
-                <a class="btn btn-ghost normal-case text-xl">ATIF SUPER MART</a>
+                <Link to='/' class="btn btn-ghost normal-case text-xl">ATIF SUPER MART</Link>
               </div>
               <div class="flex-none">
-                <ul class="menu menu-horizontal px-1">
-                      <li className='btn btn-primary p-2 m-2 '><Link to="/sales">Sales</Link></li>
-                      <li className='btn btn-primary p-2 m-2 '><Link to="/dashboard">Dashboard</Link></li>
-                      <li className='btn btn-primary p-2 m-2 '><Link to="/hisab">Daily sale</Link></li>
-                  <li>
-                    <details>
-                      <summary>
-                        Parent
-                      </summary>
-                      <ul class="p-2  bg-base-100">  
+                <ul class="menu menu-horizontal px-1  "> 
+                      <li className='z-10'>
+                        <details>
+                          <summary className='btn btn-primary p-2 sm:btn-md btn-sm m-2 '>
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-5 h-5 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                          </summary>
+                          <ul class="p-2 bg-base-100 rounded-t-none">
                             <li> <Link to="/Order">Damage List</Link></li>
-                            <li> <Link to="/damageq">Damage</Link></li> <li className='btn btn-primary p-2 m-2 ' > <Link  to="/srlist">SR List</Link></li>
+                            <li> <Link to="/damageq">Damage</Link></li> 
+                            <li> <Link  to="/srlist">SR List</Link></li>
                             <li> <Link  to="/Allmanage">Allmanage</Link></li>
                             <li> <Link  to="/addproduct">add Product</Link></li>
-                            <li> <Link  to="/dailycost">daily Cost</Link></li>
+                            <li> <Link  to="/dailycost">daily Cost</Link></li> 
+                            <li ><Link to="/sales">Sales</Link></li>  
+                            <li><Link to="/hisab">Daily sale</Link></li>
                             <li> {user ?<button onClick={LogOut} >LogOut</button> : <Link to="login" >Login</Link>}</li>
-                      </ul>
-                    </details>
-                  </li>
+                          </ul>
+                        </details>
+                      </li>
+                      <li className='btn btn-primary p-2 sm:btn-md btn-sm m-2  '><Link to="/hisab">Daily sale</Link></li>
+                  
                 </ul>
               </div>
             </div>

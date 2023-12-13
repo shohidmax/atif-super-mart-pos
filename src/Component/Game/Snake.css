@@ -1,0 +1,22 @@
+/* src/styles.css */
+.board {
+    display: grid;
+    grid-template-columns: repeat(10, 20px);
+    grid-gap: 2px;
+    margin-top: 20px;
+  }
+  
+  .cell {
+    width: 20px;
+    height: 20px;
+    background-color: #ddd;
+  }
+  
+  .snake {
+    background-color: #333;
+  }
+  
+  .food {
+    background-color: #ff0000;
+  }
+  
